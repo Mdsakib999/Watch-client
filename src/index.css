@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.b{
+  border: 2px solid;
+}
+.bb{
+  border: 2px solid red;
+}
+
