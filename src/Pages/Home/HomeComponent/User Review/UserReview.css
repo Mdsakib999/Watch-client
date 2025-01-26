@@ -1,0 +1,22 @@
+/* Custom CSS for Swiper navigation arrows */
+.home-customer .swiper {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 60px;
+    padding-left: 10px;  /* specially for home customer*/
+    padding-right: 10px;
+  }
+  
+  .home-customer .swiper-pagination-bullet {
+    background-color: #ff0000;
+    
+    /* border: 2px solid; */
+  }
+  
+  /* Custom CSS for Swiper pagination bullets when active */
+  .swiper-pagination-bullet-active {
+    background-color: #ff5100;
+    
+    /* border: 2px solid; */
+  }
+    

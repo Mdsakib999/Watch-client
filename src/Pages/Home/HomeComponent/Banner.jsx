@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div className='flex justify-evenly items-center  pb-10'>
+        <div className='flex justify-evenly items-center mt-2 pb-10'>
             <div className='w-[60%]'>
                 <p className='lg:w-[80%] mb-7 text-5xl font-bold font-serif'>FIND WATCHES THAT MATCHES YOUR STYLE</p>
 

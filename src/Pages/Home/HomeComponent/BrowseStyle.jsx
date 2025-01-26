@@ -9,9 +9,9 @@ const BrowseStyle = () => {
 
         <div className="col-span-2  bg-white mt-8 rounded-2xl">
           <div className="flex justify-evenly">
-            <p className="text-3xl font-bold mt-4">Casual</p>
+            <p className="text-3xl font-bold mt-4">Formal</p>
             <img
-              className="w-[300px]"
+              className="w-[250px]"
               src="https://img.freepik.com/premium-vector/mechanical-watch-classic-design-realistic-wristwatch-luxury-fashion-object-men-white_87946-6616.jpg?w=360"
               alt=""
             />
@@ -22,8 +22,8 @@ const BrowseStyle = () => {
         <div className="flex justify-evenly">
             <p className="text-3xl font-bold mt-4 ml-4">Casual</p>
             <img
-              className="max-w-[250px]"
-              src="https://img.freepik.com/free-vector/realistic-smart-watch_1284-10933.jpg?t=st=1737808001~exp=1737811601~hmac=f3b1f0cfef96182fcbefc6d7fced22f78fcb5b12498ff6b21d1cab6a2e66e084&w=740"
+              className="max-w-[300px]"
+              src="https://img.freepik.com/premium-photo/closeup-shot-modern-wristwatch-white-background_181624-57800.jpg"
               alt=""
             />
           </div>
