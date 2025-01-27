@@ -2,12 +2,13 @@ import React from 'react';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-3 shadow-md ">
       {/* Logo */}
-      <div className="text-2xl font-bold">SMWATCH.CO</div>
+      <Link to="/" className="text-2xl font-bold">SMWATCH.CO</Link>
 
       {/* Navigation Items */}
       <ul className="flex space-x-6 text-lg font-medium">
@@ -37,7 +38,9 @@ const Navbar = () => {
       {/* Icons */}
       <div className="flex space-x-4 text-xl">
         <FaShoppingCart className="cursor-pointer" />
+        <Link to="/login">
         <FaUser className="cursor-pointer" />
+        </Link>
       </div>
     </nav>
   );

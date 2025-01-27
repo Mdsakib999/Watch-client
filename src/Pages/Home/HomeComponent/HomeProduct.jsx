@@ -31,7 +31,7 @@ const products = [
   },
   {
     id: 4,
-    name: "Stylish Women's Analog Watch",
+    name: "Stylish Women's Smart Watch",
     image: "https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1737807985~exp=1737811585~hmac=5beaa04771614566ac7e32b09704834a8569fd6300745cc184a0f38321de58fb&w=740",
     rating: 4.8,
     price: 180,
@@ -84,7 +84,7 @@ const HomeProduct = () => {
 
   return (
     <div className="my-10 px-10 pb-10">
-      <p className="text-center text-4xl font-semibold">TOP BRANDS</p>
+      <p className="text-center text-4xl font-semibold">OUR PRODUCT'S</p>
       <div className="flex gap-x-4 justify-center mt-7 mb-8 ">
         {["All", "Male", "Female"].map((gender) => (
           <button

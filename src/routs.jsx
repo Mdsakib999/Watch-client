@@ -3,6 +3,8 @@ import App from "./App";
 import Home from "./Pages/Home/Home";
 import About from "./Pages/About/About";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
       {
         path: "/watches/:id",
