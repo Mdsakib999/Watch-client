@@ -17,7 +17,7 @@ import image15 from "../../src/assets/Images/15.png";
 export const data = [
   {
     _id: "1",
-    name: "Classic Rose Gold Chain Watch",
+    name: "Classic Rose Gold Chain Watch.",
     details:
       "A sophisticated watch designed for the modern gentleman. Featuring a rose gold case, a white dial, and a leather chain bracelet, this watch combines elegance and functionality.",
     rating: 4.7,
