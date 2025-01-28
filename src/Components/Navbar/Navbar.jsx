@@ -21,7 +21,7 @@ const Navbar = () => {
           </ul>
         </li>
         <li className="cursor-pointer">On Sale</li>
-        <li className="cursor-pointer">New Arrivals</li>
+        <li className="cursor-pointer"><Link to="/allProduct">New Arrivals</Link> </li>
         <li className="cursor-pointer">Brands</li>
       </ul>
 
