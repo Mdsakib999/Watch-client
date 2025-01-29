@@ -1,18 +1,18 @@
-import image1 from "../../src/assets/Images/1.png";
-import image2 from "../../src/assets/Images/2.png";
-import image3 from "../../src/assets/Images/3.png";
-import image4 from "../../src/assets/Images/4.png";
-import image5 from "../../src/assets/Images/5.png";
-import image6 from "../../src/assets/Images/6.png";
-import image7 from "../../src/assets/Images/7.png";
-import image8 from "../../src/assets/Images/8.png";
-import image9 from "../../src/assets/Images/9.png";
-import image10 from "../../src/assets/Images/10.png";
-import image11 from "../../src/assets/Images/11.png";
-import image12 from "../../src/assets/Images/12.png";
-import image13 from "../../src/assets/Images/13.png";
-import image14 from "../../src/assets/Images/14.png";
-import image15 from "../../src/assets/Images/15.png";
+import image1 from "../src/assets/Images/1.png";
+import image2 from "../src/assets/Images/2.png";
+import image3 from "../src/assets/Images/3.png";
+import image4 from "../src/assets/Images/4.png";
+import image5 from "../src/assets/Images/5.png";
+import image6 from "../src/assets/Images/6.png";
+import image7 from "../src/assets/Images/7.png";
+import image8 from "../src/assets/Images/8.png";
+import image9 from "../src/assets/Images/9.png";
+import image10 from "../src/assets/Images/10.png";
+import image11 from "../src/assets/Images/11.png";
+import image12 from "../src/assets/Images/12.png";
+import image13 from "../src/assets/Images/13.png";
+import image14 from "../src/assets/Images/14.png";
+import image15 from "../src/assets/Images/15.png";
 
 export const data = [
   {
@@ -290,4 +290,3 @@ export const data = [
     },
   },
 ];
-
