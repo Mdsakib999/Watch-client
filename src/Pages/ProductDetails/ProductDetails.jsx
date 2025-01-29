@@ -67,20 +67,35 @@ const ProductDetails = () => {
       case "details":
         return (
           <div>
-            <h2 className="text-2xl font-bold mb-4">Product Details</h2>
-            <ul className="list-disc list-inside">
+            {/* Product Details Section */}
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">
+              Product Details
+            </h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Object.entries(product.product_details).map(([key, value]) => (
-                <li key={key} className="mb-2">
-                  <strong>{key.replace(/([A-Z])/g, " $1").trim()}:</strong>{" "}
-                  {value}
+                <li
+                  key={key}
+                  className="flex items-start p-4 bg-gray-50 border border-gray-100 rounded-md"
+                >
+                  <span className="text-md font-medium text-gray-800 min-w-[150px]">
+                    {key.replace(/([A-Z])/g, " $1").trim()}
+                  </span>
+                  <span className="text-gray-600 ml-2">{value}</span>
                 </li>
               ))}
             </ul>
-            <h3 className="text-xl font-bold mt-6 mb-2">Features</h3>
-            <ul className="list-disc list-inside">
+
+            {/* Features Section */}
+            <h3 className="text-xl font-bold mt-8 mb-4 text-gray-800">
+              Additional Features
+            </h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {product.product_details.features.map((feature, index) => (
-                <li key={index} className="mb-2">
-                  {feature}
+                <li
+                  key={index}
+                  className="flex items-start p-4 bg-gray-50 border border-gray-100 rounded-md "
+                >
+                  <span className="ml-2 text-gray-600">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -90,17 +105,17 @@ const ProductDetails = () => {
         return (
           <div>
             <h2 className="text-2xl font-bold mb-4">Ratings & Reviews</h2>
-            <p>No reviews yet.</p>
+            <p className="text-center text-xl">No reviews yet</p>
           </div>
         );
       case "faqs":
         return (
           <div>
-            <h2 className="text-2xl font-bold mb-4">FAQs</h2>
-            <div className="space-y-4">
+            <h2 className="text-2xl font-semibold mb-6">FAQs</h2>
+            <div className="space-y-4 ">
               {faqs.map((faq, index) => (
                 <div key={index} className="border-b border-gray-200 pb-4">
-                  <h3 className="font-semibold">{faq.question}</h3>
+                  <h3 className="text-lg">{faq.question}</h3>
                   <p className="text-gray-600">{faq.answer}</p>
                 </div>
               ))}
@@ -121,39 +136,47 @@ const ProductDetails = () => {
         </div>
 
         {/* Product Details - Fixed Width */}
-        <div className="max-w-xl pl-6 flex flex-col ">
+        <div className="max-w-xl pl-6 flex flex-col justify-between ">
           {/* Product Title */}
           <div>
             <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
+            <div className="flex items-center mb-4 gap-1.5">
+              <RenderStars rating={product.rating} />
+              <p className="text-lg text-gray-800">
+                {product.rating} / <span className="text-gray-600">5</span>
+              </p>
+            </div>
+            {/* Pricing */}
+            <div className="mb-6 flex gap-5">
+              <p className="text-4xl font-bold">
+                ${product.discount_price.toFixed(2)}
+              </p>
+              <p className="text-4xl font-semibold">
+                <span className="line-through text-gray-400">
+                  ${product.regular_price.toFixed(2)}
+                </span>
+              </p>
+            </div>
+            <p className="text-gray-600 mb-4">{product.details}</p>
           </div>
 
-          <div className="flex items-center mb-4 gap-1.5">
-            <RenderStars rating={product.rating} />
-            <p className="text-lg text-gray-800">
-              {product.rating} / <span className="text-gray-600">5</span>
-            </p>
-          </div>
-
-          {/* Pricing */}
-          <div className="mb-6 flex gap-5">
-            <p className="text-4xl font-bold">
-              ${product.discount_price.toFixed(2)}
-            </p>
-            <p className="text-4xl font-semibold">
-              <span className="line-through text-gray-400">
-                ${product.regular_price.toFixed(2)}
-              </span>
-            </p>
-          </div>
-
-          <p className="text-gray-600 mb-4">{product.details}</p>
           <div className="border-t border-gray-200 my-4"></div>
           <p className="text-lg ">
             Brand
-            <span className=" m-4 px-4  bg-gray-200 py-1 rounded-full">
+            <span className=" m-4 px-4 py-2  bg-gray-200 py-1 rounded-full">
               {product.brand}
             </span>
           </p>
+          <div className="border-t border-gray-200 my-4"></div>
+          {/*  */}
+          <div className="flex justify-between text-lg ">
+            <p className=" px-4 py-2 rounded-4xl bg-gray-200">New & Boxed</p>
+            <p className=" px-4 py-2 rounded-4xl bg-gray-200">
+              {" "}
+              2 year Warrenty
+            </p>
+            <p className=" px-4 py-2 rounded-4xl bg-gray-200">100% Authentic</p>
+          </div>
           <div className="border-t border-gray-200 my-4"></div>
 
           {/* Add to cart & quantity */}
@@ -188,7 +211,7 @@ const ProductDetails = () => {
         {/* Tab Navigation */}
         <div className="flex justify-around border-b border-gray-200 text-xl font-light">
           <button
-            className={`px-4 py-2 ${
+            className={`px-6 py-2 ${
               activeTab === "details"
                 ? "border-b-2 border-black font-semibold"
                 : "text-gray-500"
