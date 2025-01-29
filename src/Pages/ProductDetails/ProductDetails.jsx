@@ -1,50 +1,15 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import ImageGallery from "./ProductDetailsComponent/ImageGallery";
 import RenderStars from "./ProductDetailsComponent/RenderStars";
-import image1 from "../../assets/Images/1.png";
-import image2 from "../../assets/Images/2.png";
-import image3 from "../../assets/Images/3.png";
-import image4 from "../../assets/Images/4.png";
+import { data } from "../../../public/data";
 
 const ProductDetails = () => {
+  const { id } = useParams();
+
   const [activeTab, setActiveTab] = useState("details");
 
-  const product = {
-    _id: "1",
-    name: "Classic Rose Gold Chain Watch",
-    details:
-      "A sophisticated watch designed for the modern gentleman. Featuring a rose gold case, a white dial, and a leather chain bracelet, this watch combines elegance and functionality.",
-    rating: 4.7,
-    brand: "Seiko",
-    images: [image1, image2, image3, image4],
-    regular_price: 320.0,
-    discount_price: 269.99,
-    availability: "In Stock",
-    category: "Casual",
-    gender: "Male",
-    product_details: {
-      brand: "Timeless Co.",
-      material: "Stainless Steel",
-      movement: "Analogue Quartz",
-      waterResistance: "10 Bar",
-      warranty: "2 years",
-      caseSize: "40.4 mm",
-      caseColor: "Rose Gold",
-      braceletMaterial: "Chain",
-      braceletColor: "Leather",
-      dialColor: "White",
-      features: [
-        "Analogue Quartz movement",
-        "Rose gold case",
-        "White dial with minimalist design",
-        "Leather chain bracelet",
-        "Scratch-resistant sapphire crystal",
-        "Water-resistant up to 10 Bar",
-        "Luminous hands for visibility in low light",
-        "Date display",
-      ],
-    },
-  };
+  const product = data.find((item) => item._id === id);
 
   // Static FAQs (same for every product)
   const faqs = [
