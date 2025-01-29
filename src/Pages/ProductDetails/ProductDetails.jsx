@@ -163,7 +163,7 @@ const ProductDetails = () => {
           <div className="border-t border-gray-200 my-4"></div>
           <p className="text-lg ">
             Brand
-            <span className=" m-4 px-4 py-2  bg-gray-200 py-1 rounded-full">
+            <span className=" m-4 px-4 py-2  bg-gray-200  rounded-full">
               {product.brand}
             </span>
           </p>
