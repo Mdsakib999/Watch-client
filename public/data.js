@@ -87,7 +87,7 @@ export const data = [
   },
   {
     _id: "3",
-    name: "Elegant Silver Mesh Watch",
+    name: "Elegant Pure Silver Mesh Watch",
     details:
       "A sleek and elegant watch designed for women. Featuring a silver mesh bracelet, a mother-of-pearl dial, and a minimalist design, this watch is perfect for formal occasions.",
     rating: 4.8,
