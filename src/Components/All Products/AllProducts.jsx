@@ -6,6 +6,7 @@ import { data } from "../../../public/data.js";
 const AllProducts = () => {
   const [filters, setFilters] = useState({
     category: [],
+    brand: [],
     gender: [],
     price: [],
   });
@@ -21,34 +22,98 @@ const AllProducts = () => {
 
   const filteredProducts = data.filter((product) => {
     return (
-      (filters.category.length === 0 || filters.category.includes(product.category)) &&
-      (filters.gender.length === 0 || filters.gender.includes(product.gender)) &&
-      (filters.price.length === 0 || filters.price.some((range) => {
-        const [min, max] = range.split("-").map(Number);
-        return product.discount_price >= min && product.discount_price <= max;
-      }))
+      (filters.category.length === 0 ||
+        filters.category.includes(product.category)) &&
+      (filters.brand.length === 0 ||
+        filters.brand.includes(product.brand)) &&
+      (filters.gender.length === 0 ||
+        filters.gender.includes(product.gender)) &&
+      (filters.price.length === 0 ||
+        filters.price.some((range) => {
+          const [min, max] = range.split("-").map(Number);
+          return product.discount_price >= min && product.discount_price <= max;
+        }))
     );
   });
 
   return (
-    <div className="flex p-4">
+    <div className="flex px-4 bg-gray-50">
       {/* Filters Section */}
-      <div className="w-1/5 p-4">
-        <h2 className="text-xl font-semibold mb-4">Filters</h2>
+      <div className="w-1/5 p-4  bg-white">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300">
+          Filters
+        </h2>
         <div className="space-y-4">
+            {/* Price Filter */}
+          <div>
+            <h3 className="font-semibold">Price</h3>
+            {["0-100", "100-200", "200-500", "500-1000", "1000-5000"].map(
+              (range) => (
+                <label key={range} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    onChange={() => handleFilterChange("price", range)}
+                  />
+                  ${range}
+                </label>
+              )
+            )}
+          </div>
+
+          {/* Brand */}
+          <div>
+            <h3 className="font-semibold mb-3">Brand</h3>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Rolex",
+                "Casio",
+                "Fossil",
+                "Timex",
+                "Tissot",
+                "MVMT",
+                "Garmin",
+              ].map((brand) => (
+                <button
+                  key={brand}
+                  className={`px-4 py-1 rounded-full border ${
+                    filters.brand.includes(brand)
+                      ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
+                      : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
+                  }  transition-colors`}
+                  onClick={() => handleFilterChange("brand", brand)}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Category Filter */}
           <div>
-            <h3 className="font-semibold">Category</h3>
-            {["Casual", "Formal", "Sports", "Luxury", "Smartwatch", "Vintage"].map((category) => (
-              <label key={category} className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="mr-2"
-                  onChange={() => handleFilterChange("category", category)}
-                />
-                {category}
-              </label>
-            ))}
+            <h3 className="font-semibold mb-3">Category</h3>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Casual",
+                "Formal",
+                "Sports",
+                "Luxury",
+                "Smartwatch",
+                "Vintage",
+              ].map((category) => (
+                <button
+                  key={category}
+                  className={`px-4 py-1 rounded-full border ${
+                    filters.category.includes(category)
+                      ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
+                      : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
+                  }  transition-colors`}
+                  onClick={() => handleFilterChange("category", category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Gender Filter */}
@@ -66,33 +131,22 @@ const AllProducts = () => {
             ))}
           </div>
 
-          {/* Price Filter */}
-          <div>
-            <h3 className="font-semibold">Price</h3>
-            {["0-100", "100-200", "200-500", "500-1000", "1000-5000"].map((range) => (
-              <label key={range} className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="mr-2"
-                  onChange={() => handleFilterChange("price", range)}
-                />
-                ${range}
-              </label>
-            ))}
-          </div>
         </div>
       </div>
 
       {/* Products Section */}
-      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 ">
         {filteredProducts.map((product) => (
-          <div key={product._id} className="border border-gray-300 rounded-xl">
+          <div
+            key={product._id}
+            className="border border-gray-300 rounded-xl bg-white"
+          >
             <img
               className="h-[250px] w-full rounded-t-xl object-cover"
               src={product.images[0]}
               alt={product.name}
             />
-            <div className="px-4">
+            <div className="px-4  flex flex-col justify-baseline ">
               <p className="text-xl font-semibold mt-4">{product.name}</p>
               <div className="flex items-center gap-x-2 text-yellow-400 my-2">
                 {[...Array(5)].map((_, index) => (
@@ -113,7 +167,8 @@ const AllProducts = () => {
                   ${product.regular_price}
                 </del>
                 <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
-                  -{Math.round(
+                  -
+                  {Math.round(
                     ((product.regular_price - product.discount_price) /
                       product.regular_price) *
                       100
@@ -121,7 +176,7 @@ const AllProducts = () => {
                   %
                 </p>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center ">
                 <button className="border border-gray-400 px-4 py-1 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
                   Add to Cart
                 </button>
