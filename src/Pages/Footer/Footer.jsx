@@ -24,21 +24,21 @@ const Footer = () => {
           <div>
             <h2 className="text-xl font-bold">SM watch</h2>
             <p className="text-gray-600 mt-4">
-              Be the first to find out about exclusive deals, the latest Lookbooks trends. We're on a mission to build a
+              Be the first to find out about exclusive deals, the latest Logbooks trends. We're on a mission to build a
               better future where technology.
             </p>
           </div>
 
-          <div>
+          <div className=''>
             <h5 className="font-bold">Quick Links</h5>
             <ul className="mt-4 space-y-2">
               <li><a href="#!" className="text-gray-600 hover:text-gray-800">Home</a></li>
               <li><a href="#!" className="text-gray-600 hover:text-gray-800">About Us</a></li>
-              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Services</a></li>
+              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Products</a></li>
             </ul>
           </div>
 
-          <div>
+          <div className=''>
             <h5 className="font-bold">Social Media</h5>
             <ul className="mt-4 space-y-2">
               <li><a href="#!" className="text-gray-600 hover:text-gray-800">Facebook</a></li>
@@ -51,9 +51,9 @@ const Footer = () => {
           <div>
             <h5 className="font-bold">Job Info</h5>
             <ul className="mt-4 space-y-2">
-              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Select</a></li>
-              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Service</a></li>
-              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Payment</a></li>
+              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Terms & Conditions</a></li>
+              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Return Policy</a></li>
+              <li><a href="#!" className="text-gray-600 hover:text-gray-800">Refund Policy</a></li>
             </ul>
           </div>
 
@@ -69,14 +69,15 @@ const Footer = () => {
 
         <hr className="my-4 border-gray-500  w-full" />
 
-        <div className=" flex flex-col md:flex-row justify-between w-full items-center">
+        <div className=" flex flex-col md:flex-row justify-between w-full items-center ">
           <p className="text-gray-600 text-sm">Copyright &copy; Easy Frontend, All rights reserved</p>
-          <ul className="flex  space-x-4 mt-4 md:mt-0">
-            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYqQ19cWN84DvrRvaGW1Xhhk0YJJyoWBI1uFFpaV4YD7z4x8S6Ls5SSNJg_eS6_Z0QEs0&usqp=CAU" className='w-12' alt="" /></li>
+          <ul className="flex items-center space-x-4 mt-4 md:mt-0">
+            <li><img src="https://cdn.easyfrontend.com/pictures/logos/color-logo-8.png" className='w-12' alt="" /></li>
             <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgc9xW_t712-TgFMwJxWxmgiKfTiPjrazjjg&s" className='w-8' alt="" /></li>
-            <li><a href="#!" className="text-gray-600 hover:text-gray-800">Privacy</a></li>
+            <li><img src="https://cdn.worldvectorlogo.com/logos/bkash.svg" className='w-15' alt="" /></li>
+            <li><img src="https://cdn.easyfrontend.com/pictures/logos/color-logo-4.png" className='w-12' alt="" /></li>
+            <li><img src="https://cdn.easyfrontend.com/pictures/logos/color-logo-6.png" className='w-20' alt="" /></li>
             <li><a href="#!" className="text-gray-600 hover:text-gray-800">Security</a></li>
-            <li><a href="#!" className="text-gray-600 hover:text-gray-800">Terms</a></li>
           </ul>
         </div>
       </div>
