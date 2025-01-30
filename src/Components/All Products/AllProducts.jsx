@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { data } from "../../../public/data.js";
+import { Link } from "react-router-dom";
 
 const AllProducts = () => {
   const [filters, setFilters] = useState({
@@ -24,8 +25,7 @@ const AllProducts = () => {
     return (
       (filters.category.length === 0 ||
         filters.category.includes(product.category)) &&
-      (filters.brand.length === 0 ||
-        filters.brand.includes(product.brand)) &&
+      (filters.brand.length === 0 || filters.brand.includes(product.brand)) &&
       (filters.gender.length === 0 ||
         filters.gender.includes(product.gender)) &&
       (filters.price.length === 0 ||
@@ -44,7 +44,7 @@ const AllProducts = () => {
           Filters
         </h2>
         <div className="space-y-4">
-            {/* Price Filter */}
+          {/* Price Filter */}
           <div>
             <h3 className="font-semibold">Price</h3>
             {["0-100", "100-200", "200-500", "500-1000", "1000-5000"].map(
@@ -130,7 +130,6 @@ const AllProducts = () => {
               </label>
             ))}
           </div>
-
         </div>
       </div>
 
@@ -141,47 +140,49 @@ const AllProducts = () => {
             key={product._id}
             className="border border-gray-300 rounded-xl bg-white"
           >
-            <img
-              className="h-[250px] w-full rounded-t-xl object-cover"
-              src={product.images[0]}
-              alt={product.name}
-            />
-            <div className="px-4  flex flex-col justify-baseline ">
-              <p className="text-xl font-semibold mt-4">{product.name}</p>
-              <div className="flex items-center gap-x-2 text-yellow-400 my-2">
-                {[...Array(5)].map((_, index) => (
-                  <FaStar
-                    key={index}
-                    className={
-                      index < Math.round(product.rating)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
-                    }
-                  />
-                ))}
-                <p className="text-black">{product.rating}/5.0</p>
+            <Link to={`/watches/${product._id}`}>
+              <img
+                className="h-[250px] w-full rounded-t-xl object-cover"
+                src={product.images[0]}
+                alt={product.name}
+              />
+              <div className="px-4  flex flex-col justify-baseline ">
+                <p className="text-xl font-semibold mt-4">{product.name}</p>
+                <div className="flex items-center gap-x-2 text-yellow-400 my-2">
+                  {[...Array(5)].map((_, index) => (
+                    <FaStar
+                      key={index}
+                      className={
+                        index < Math.round(product.rating)
+                          ? "text-yellow-400"
+                          : "text-gray-300"
+                      }
+                    />
+                  ))}
+                  <p className="text-black">{product.rating}/5.0</p>
+                </div>
+                <div className="flex gap-x-3 justify-between items-center mb-5">
+                  <p className="text-xl font-bold">${product.discount_price}</p>
+                  <del className="text-xl font-semibold text-gray-400">
+                    ${product.regular_price}
+                  </del>
+                  <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
+                    -
+                    {Math.round(
+                      ((product.regular_price - product.discount_price) /
+                        product.regular_price) *
+                        100
+                    )}
+                    %
+                  </p>
+                </div>
+                <div className="flex justify-center ">
+                  <button className="border border-gray-400 px-4 py-1 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
+                    Add to Cart
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-x-3 justify-between items-center mb-5">
-                <p className="text-xl font-bold">${product.discount_price}</p>
-                <del className="text-xl font-semibold text-gray-400">
-                  ${product.regular_price}
-                </del>
-                <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
-                  -
-                  {Math.round(
-                    ((product.regular_price - product.discount_price) /
-                      product.regular_price) *
-                      100
-                  )}
-                  %
-                </p>
-              </div>
-              <div className="flex justify-center ">
-                <button className="border border-gray-400 px-4 py-1 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
