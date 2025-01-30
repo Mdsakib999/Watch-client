@@ -55,7 +55,7 @@ const AllProducts = () => {
                     className="mr-2"
                     onChange={() => handleFilterChange("price", range)}
                   />
-                  ${range}
+                  $ {range}
                 </label>
               )
             )}
