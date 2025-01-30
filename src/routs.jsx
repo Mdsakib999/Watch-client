@@ -6,6 +6,7 @@ import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import AllProducts from "./Components/All Products/AllProducts";
+import Contact from "./Pages/Contact/Contact";
 import Checkout from "./Pages/Checkout/Checkout";
 
 export const router = createBrowserRouter([
@@ -40,6 +41,14 @@ export const router = createBrowserRouter([
       {
         path: "/watches/:id",
         element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout></Checkout>,
       },
     ],
   },
