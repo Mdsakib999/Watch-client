@@ -55,7 +55,7 @@ const AllProducts = () => {
                     className="mr-2"
                     onChange={() => handleFilterChange("price", range)}
                   />
-                  ${range}
+                  $ {range}
                 </label>
               )
             )}
@@ -134,11 +134,11 @@ const AllProducts = () => {
       </div>
 
       {/* Products Section */}
-      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 ">
+      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-11">
         {filteredProducts.map((product) => (
           <div
             key={product._id}
-            className="border border-gray-300 rounded-xl bg-white"
+            className="border border-gray-300 rounded-xl bg-white max-h-[460px] "
           >
             <Link to={`/watches/${product._id}`}>
               <img

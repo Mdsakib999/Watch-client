@@ -35,6 +35,10 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
+        path: "/checkout",
+        element: <Checkout></Checkout>,
+      },
+      {
         path: "/watches/:id",
         element: <ProductDetails></ProductDetails>,
       },
