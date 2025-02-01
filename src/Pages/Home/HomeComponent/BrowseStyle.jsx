@@ -1,4 +1,8 @@
 import React from "react";
+import image8 from "../../../assets/Images/8.png";
+import image6 from "../../../assets/Images/6.png";
+import image12 from "../../../assets/Images/12.png";
+import image2 from "../../../assets/Images/2.png";
 
 const BrowseStyle = () => {
   return (
@@ -8,22 +12,22 @@ const BrowseStyle = () => {
       <div className="grid grid-cols-3 gap-4 px-20 ">
 
         <div className="col-span-2  bg-white mt-8 rounded-2xl">
-          <div className="flex justify-evenly">
+          <div className="flex justify-evenly ">
             <p className="text-3xl font-bold mt-4">Formal</p>
             <img
-              className="w-[250px]"
-              src="https://img.freepik.com/premium-vector/mechanical-watch-classic-design-realistic-wristwatch-luxury-fashion-object-men-white_87946-6616.jpg?w=360"
+              className="w-[280px]"
+              src={image8}
               alt=""
             />
           </div>
         </div>
 
         <div className=" bg-white mt-8 rounded-2xl ">
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly ">
             <p className="text-3xl font-bold mt-4 ml-4">Casual</p>
             <img
-              className="max-w-[300px]"
-              src="https://img.freepik.com/premium-photo/closeup-shot-modern-wristwatch-white-background_181624-57800.jpg"
+              className="max-w-[280px]"
+              src={image12}
               alt=""
             />
           </div>
@@ -37,8 +41,8 @@ const BrowseStyle = () => {
         <div className="flex justify-evenly">
             <p className="text-3xl font-bold mt-4 ml-4">Women</p>
             <img
-              className="max-w-[250px]"
-              src="https://img.freepik.com/free-photo/stylish-golden-watch-white-surface_181624-27078.jpg"
+              className="max-w-[280px]"
+              src={image6}
               alt=""
             />
           </div>
@@ -48,8 +52,8 @@ const BrowseStyle = () => {
           <div className="flex justify-evenly">
             <p className="text-3xl font-bold mt-4">Men</p>
             <img
-              className="w-[300px]"
-              src="https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1737807985~exp=1737811585~hmac=5beaa04771614566ac7e32b09704834a8569fd6300745cc184a0f38321de58fb&w=740"
+              className="w-[280px]"
+              src={image2}
               alt=""
             />
           </div>

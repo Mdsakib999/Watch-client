@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -105,7 +106,7 @@ const HomeProduct = () => {
       : products.filter((product) => product.gender === selectedGender);
 
   return (
-    <div className="my-10 px-10 pb-10 ">
+    <div className="mt-10 px-10 pb-10 ">
       <p className="text-center text-4xl font-semibold">OUR PRODUCT'S</p>
       <div className="flex gap-x-4 justify-center mt-7 mb-8 ">
         {["All", "Male", "Female"].map((gender) => (
@@ -127,7 +128,7 @@ const HomeProduct = () => {
       </div>
 
       <div className="mt-12 flex justify-center">
-        <button className="border flex items-center gap-x-2 px-4 py-2 rounded-lg font-semibold hover:bg-black hover:text-white">View All <FaArrowRightLong /></button>
+        <Link to="/allProduct" className=" flex items-center gap-x-2 px-7 py-3 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right">View All <FaArrowRightLong /></Link>
       </div>
     </div>
   );
