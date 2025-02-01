@@ -1,9 +1,22 @@
 import React from "react";
 
 const Checkout = () => {
+  // Sample product data
+  const products = [
+    { name: "Gradient Graphic T-shirt", price: 49.99 },
+    { name: "Checkered Shirt", price: 29.99 },
+    { name: "Skinny Fit Jeans", price: 39.99 },
+  ];
+
+  // Calculate subtotal
+  const subtotal = products.reduce((acc, product) => acc + product.price, 0);
+  const shipping = 5.0;
+  const tax = 8.0;
+  const total = subtotal + shipping + tax;
+
   return (
     <div className="min-h-screen bg-gray-100 py-8">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto lg:px-28">
         <h1 className="text-3xl font-bold text-center mb-8">Checkout</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -58,25 +71,37 @@ const Checkout = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-1">
             <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
+
+            {/* Product List */}
+            <div className="space-y-4 mb-6">
+              {products.map((product, index) => (
+                <div key={index} className="flex justify-between">
+                  <span>{product.name}</span>
+                  <span>${product.price.toFixed(2)}</span>
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-gray-300 pt-4"></div>
+            {/* Subtotal, Shipping, Tax, and Total */}
             <div className="space-y-4">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>$99.99</span>
+                <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>$5.00</span>
+                <span>${shipping.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Tax</span>
-                <span>$8.00</span>
+                <span>${tax.toFixed(2)}</span>
               </div>
               <div className="border-t border-gray-300 pt-4">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>$112.99</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -120,6 +145,7 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
+
             {/* Promo Code Section */}
             <div className="mt-6">
               <div className="flex gap-2">
@@ -128,14 +154,14 @@ const Checkout = () => {
                   className="flex-1 px-3 py-2 border border-gray-300 bg-gray-200 focus:outline-none focus:ring-1 focus:ring-black rounded-full"
                   placeholder="Enter promo code"
                 />
-                <button className="px-8 py-2 bg-black text-white rounded-full  focus:outline-none focus:ring-2 ">
+                <button className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-2">
                   Apply
                 </button>
               </div>
             </div>
 
             {/* Place Order Button */}
-            <button className="w-full mt-6 bg-black text-white py-3  rounded-full focus:outline-none focus:ring-2 ">
+            <button className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-2">
               Place Order
             </button>
           </div>
