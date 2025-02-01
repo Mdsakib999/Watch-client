@@ -43,7 +43,7 @@ const TopBrands = () => {
 
       <section className="ezy__clients3 light  bg--[#0b1727] text-zinc-900 dark:text-white">
         <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-4 b pl-16 mx-7 mt-5 justify-center items-center text-center ">
+          <div className="grid grid-cols-4  pl-16 mx-7 mt-5 justify-center items-center text-center ">
             {clientLogos.map((client, i) => (
               <img
                 src={client.logo}

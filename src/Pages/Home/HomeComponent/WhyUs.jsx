@@ -27,10 +27,10 @@ const WhyUs = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center py-10  px-12 ">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center py-20  px-12  ">
       {features.map((feature, index) => (
         <div key={index} className="flex flex-col items-center justify-center group ">
-          <div className="px-3 pt-3 pb-1 rounded-full border gr bg-gray-100  border-gray-400">
+          <div className="px-3 pt-3 pb-1 rounded-full border gr bg-gray-50 group-hover:bg-gray-100 border-gray-400">
             {feature.icon}
           </div>
           <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
