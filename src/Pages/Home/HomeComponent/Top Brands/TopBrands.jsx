@@ -1,10 +1,9 @@
 import React from "react";
 import "./TopBrands.css";
-import brand1 from "../../../../assets/Images/brand1.png";
 
 const clientLogos = [
   {
-    logo: brand1,
+    logo: "https://1000logos.net/wp-content/uploads/2017/12/Casio-Logo.png",
     alt: "",
   },
   {
