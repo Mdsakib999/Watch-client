@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { BsCartXFill } from "react-icons/bs";
 
 const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  // Mock state for sidebar visibility
-
   const [data, setData] = useState([
     {
       id: 1,
