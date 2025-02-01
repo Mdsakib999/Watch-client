@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import ImageGallery from "./ProductDetailsComponent/ImageGallery";
 import RenderStars from "./ProductDetailsComponent/RenderStars";
 import { data } from "../../../public/data";
-
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 const ProductDetails = () => {
   const { id } = useParams();
 
   const [activeTab, setActiveTab] = useState("details");
-
+  const [showFeatures, setShowFeatures] = useState(false);
   const product = data.find((item) => item._id === id);
 
   // Static FAQs (same for every product)
@@ -51,19 +51,31 @@ const ProductDetails = () => {
             </ul>
 
             {/* Features Section */}
-            <h3 className="text-xl font-bold mt-8 mb-4 text-gray-800">
-              Additional Features
-            </h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {product.product_details.features.map((feature, index) => (
-                <li
-                  key={index}
-                  className="flex items-start p-4 bg-gray-50 border border-gray-100 rounded-md "
-                >
-                  <span className="ml-2 text-gray-600">{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-8">
+              <button
+                className="flex items-center justify-start gap-5 w-full text-xl font-bold  text-gray-800 mb-4 focus:outline-none"
+                onClick={() => setShowFeatures(!showFeatures)}
+              >
+                Additional Features
+                {showFeatures ? (
+                  <FaChevronUp className="text-gray-500 text-md " />
+                ) : (
+                  <FaChevronDown className="text-gray-500 text-md " />
+                )}
+              </button>
+              {showFeatures && (
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {product.product_details.features.map((feature, index) => (
+                    <li
+                      key={index}
+                      className="flex items-start p-4 bg-gray-50 border border-gray-100 rounded-md"
+                    >
+                      <span className="ml-2 text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         );
       case "ratings":
@@ -121,6 +133,15 @@ const ProductDetails = () => {
                   ${product.regular_price.toFixed(2)}
                 </span>
               </p>
+              <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100 flex items-center">
+                -
+                {Math.round(
+                  ((product.regular_price - product.discount_price) /
+                    product.regular_price) *
+                    100
+                )}
+                %
+              </p>
             </div>
             <p className="text-gray-600 mb-4">{product.details}</p>
           </div>
@@ -137,7 +158,6 @@ const ProductDetails = () => {
           <div className="flex justify-between text-lg ">
             <p className=" px-4 py-2 rounded-4xl bg-gray-200">New & Boxed</p>
             <p className=" px-4 py-2 rounded-4xl bg-gray-200">
-              {" "}
               2 year Warrenty
             </p>
             <p className=" px-4 py-2 rounded-4xl bg-gray-200">100% Authentic</p>
