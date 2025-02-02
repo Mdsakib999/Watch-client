@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaStar, FaTimes } from "react-icons/fa";
 import { data } from "../../../public/data.js";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa6";
 
 const AllProducts = () => {
   useEffect(() => {
@@ -15,6 +16,8 @@ const AllProducts = () => {
     gender: [],
     price: [],
   });
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const handleFilterChange = (filterType, value) => {
     setFilters((prevFilters) => ({
@@ -41,10 +44,32 @@ const AllProducts = () => {
   });
 
   return (
-    <div className="flex px-4 bg-gray-50">
+    <div className="flex flex-col lg:flex-row lg:px-4 bg-gray-50 ">
+      <button
+        onClick={() => setIsFilterOpen(true)}
+        className={`lg:hidden fixed  top-14 left-4 border  cursor-pointer hover:text-white px-3 py-3 rounded-full shadow-lg hover:bg-gray-800 transition-colors ${
+          isFilterOpen ? "hidden" : ""
+        }`}
+      >
+        <FaArrowRight size={20} />
+      </button>
+
       {/* Filters Section */}
-      <div className="w-1/5 p-4  bg-white">
-        <h2 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300">
+      <div
+        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300 ${
+          isFilterOpen ? "translate-x-0" : "-translate-x-full"
+        } fixed inset-y-0 left-0 z-50 lg:relative lg:w-1/5 lg:translate-x-0`}
+      >
+        {isFilterOpen && (
+          <button
+            onClick={() => setIsFilterOpen(false)}
+            className="absolute top-5 left-48 lg:hidden text-red-600 hover:text-red-500"
+          >
+            <FaTimes size={24} />
+          </button>
+        )}
+
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 ">
           Filters
         </h2>
         <div className="space-y-4">
@@ -138,7 +163,7 @@ const AllProducts = () => {
       </div>
 
       {/* Products Section */}
-      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-4 py-11">
+      <div className="w-4/5 mt-4 md:mt-0 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-1 md:px-4 py-11 ">
         {filteredProducts.map((product) => (
           <div
             key={product._id}
@@ -146,7 +171,7 @@ const AllProducts = () => {
           >
             <Link to={`/watches/${product._id}`}>
               <img
-                className="h-[250px] w-full rounded-t-xl object-cover"
+                className="max-h-[250px]  w-full rounded-t-xl object-cover"
                 src={product.images[0]}
                 alt={product.name}
               />
@@ -181,7 +206,7 @@ const AllProducts = () => {
                   </p>
                 </div>
                 <div className="flex justify-center ">
-                  <button className="border border-gray-400 px-4 py-2 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
+                  <button className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
                     Add to Cart
                   </button>
                 </div>
