@@ -1,41 +1,40 @@
-import React from 'react';
+import React from "react";
 import "./TopBrands.css";
 
 const clientLogos = [
-	{
-		logo: "https://1000logos.net/wp-content/uploads/2017/12/Casio-Logo.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-2.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-3.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-4.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-5.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-6.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-7.png",
-		alt: "",
-	},
-	{
-		logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-8.png",
-		alt: "",
-	},
+  {
+    logo: "https://1000logos.net/wp-content/uploads/2017/12/Casio-Logo.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-2.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-3.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-4.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-5.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-6.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-7.png",
+    alt: "",
+  },
+  {
+    logo: "https://cdn.easyfrontend.com/pictures/logos/color-logo-8.png",
+    alt: "",
+  },
 ];
-
 
 const TopBrands = () => {
     return (
@@ -59,7 +58,7 @@ const TopBrands = () => {
 			</div>
 		</section>
         </div>
-    );
+  );
 };
 
 export default TopBrands;
