@@ -13,7 +13,7 @@ const Banner = () => {
                 {/* <button className='px-8 py-2 rounded-full bg-black font-semibold text-gray-200'>Shop Now</button> */}
 
                 <div className="mt-1 flex ">
-                        <Link to="/allProduct" className=" flex items-center gap-x-2 px-7 py-2 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#00d2ff] via-[#3873c5] to-[#00d2ff] bg-[length:200%_auto] rounded-full shadow-lg hover:bg-right">Shop now <FaArrowRightLong /></Link>
+                        <Link to="/allProduct" className=" flex items-center gap-x-2 px-7 py-2 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-full shadow-lg hover:bg-right">Shop now <FaArrowRightLong /></Link>
                       </div>
 
                 <div className='flex mt-8  text-center mb-4 lg:mb-0'>
@@ -35,7 +35,7 @@ const Banner = () => {
 
             <div>
                 {/* img */}
-                <img className=' w-[50%] mx-auto lg:w-full' src="https://img.freepik.com/premium-vector/realistic-watch-clock-black-face-silver-red-arrow-white-number-with-fabric-strap-isolated-vector_33869-4744.jpg?w=360" alt="" />
+                <img className=' w-[50%] mx-auto lg:w-full ' src="https://img.freepik.com/premium-vector/realistic-watch-clock-black-face-silver-red-arrow-white-number-with-fabric-strap-isolated-vector_33869-4744.jpg?w=360" alt="" />
             </div>
             
         </div>

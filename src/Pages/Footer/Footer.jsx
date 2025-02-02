@@ -21,7 +21,7 @@ const Footer = () => {
                 placeholder="Enter Email"
               />
 
-              <button className="px-8 py-4 text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right">
+              <button className="md:px-8 px-3 md:py-2 py-2 text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right">
                 Subscribe
               </button>
             </div>
@@ -123,7 +123,7 @@ const Footer = () => {
           <div>
             <h5 className="font-bold">Contact Us</h5>
             <ul className="mt-4 space-y-2">
-              <li>Sylhet, Bangladesh</li>
+              <li>California, United States.</li>
               <li>
                 <a href="#!" className="text-gray-600 hover:text-gray-800">
                   contact@easyfrontend.com
@@ -131,7 +131,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  +880 1633-154215
+                  +550 1633-154215
                 </a>
               </li>
             </ul>
