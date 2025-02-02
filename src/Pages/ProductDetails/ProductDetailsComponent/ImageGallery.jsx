@@ -16,7 +16,7 @@ const ImageGallery = ({ images }) => {
             key={id}
             className={`overflow-hidden rounded-lg bg-gray-100 cursor-pointer ${
               image === bigImage
-                ? "ring-2 ring-blue-500"
+                ? "ring-1 ring-black"
                 : "hover:opacity-80 transition-opacity"
             }`}
             onClick={() => handleThumbnailClick(image)}
@@ -24,7 +24,7 @@ const ImageGallery = ({ images }) => {
             <img
               src={image}
               alt={`Thumbnail ${id + 1}`}
-              className="h-30 w-30 object-cover object-center"
+              className="h-24 w-24 md:h-30 md:w-30 object-cover object-center"
             />
           </div>
         ))}

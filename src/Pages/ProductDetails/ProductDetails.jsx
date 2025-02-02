@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageGallery from "./ProductDetailsComponent/ImageGallery";
 import RenderStars from "./ProductDetailsComponent/RenderStars";
@@ -6,6 +6,10 @@ import { data } from "../../../public/data";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const ProductDetails = () => {
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("details");
   const [showFeatures, setShowFeatures] = useState(false);
@@ -113,7 +117,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Product Details - Full width on mobile, 50% on desktop */}
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2  flex flex-col justify-between">
           {/* Product Title */}
           <div>
             <h1 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -165,7 +169,7 @@ const ProductDetails = () => {
           <div className="border-t border-gray-200 my-4"></div>
 
           {/* Add to cart & quantity */}
-          <div className="mt-2 flex flex-col sm:flex-row items-center gap-4 w-full">
+          <div className="mt-2  flex flex-col sm:flex-row items-center gap-4 w-full">
             {/* Quantity Selector */}
             <div className="flex items-center justify-center w-30 md:w-40 h-10 overflow-hidden bg-gray-200 rounded-full py-3">
               <button

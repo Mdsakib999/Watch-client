@@ -1,10 +1,14 @@
 // src/AllProducts.js
-import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaStar, FaTimes } from "react-icons/fa";
 import { data } from "../../../public/data.js";
 import { Link } from "react-router-dom";
 
 const AllProducts = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const [filters, setFilters] = useState({
     category: [],
     brand: [],
