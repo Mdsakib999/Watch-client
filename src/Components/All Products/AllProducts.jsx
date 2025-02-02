@@ -134,11 +134,11 @@ const AllProducts = () => {
       </div>
 
       {/* Products Section */}
-      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-11">
+      <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-4 py-11">
         {filteredProducts.map((product) => (
           <div
             key={product._id}
-            className="border border-gray-300 rounded-xl bg-white max-h-[460px] "
+            className="border border-gray-300 rounded-xl bg-white max-h-[460px] hover:shadow-lg"
           >
             <Link to={`/watches/${product._id}`}>
               <img
@@ -177,7 +177,7 @@ const AllProducts = () => {
                   </p>
                 </div>
                 <div className="flex justify-center ">
-                  <button className="border border-gray-400 px-4 py-1 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
+                  <button className="border border-gray-400 px-4 py-2 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white">
                     Add to Cart
                   </button>
                 </div>

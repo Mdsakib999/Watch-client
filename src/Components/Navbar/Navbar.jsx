@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
+import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
 
@@ -15,14 +16,15 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 py-3 shadow-md">
+      <nav className="flex items-center justify-between px-6 py-3 shadow-md ">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold">
+        <FaBars className="lg:hidden" />
+        <Link to="/" className="text-xl lg:text-2xl font-bold">
           SMWATCH.CO
         </Link>
 
         {/* Navigation Items */}
-        <ul className="flex space-x-6 text-lg font-medium">
+        <ul className="lg:flex space-x-6 text-lg font-medium  hidden">
           <li className="relative group">
             <span className="cursor-pointer flex items-center gap-x-1">
               Category{" "}
@@ -42,7 +44,7 @@ const Navbar = () => {
         </ul>
 
         {/* Search Box */}
-        <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+        <div className="md:flex items-center bg-gray-100 rounded-full px-4 py-2 hidden ">
           <AiOutlineSearch className="text-gray-500" />
           <input
             type="text"
@@ -52,11 +54,15 @@ const Navbar = () => {
         </div>
 
         {/* Icons */}
-        <div className="flex space-x-4 text-xl">
-          <FaShoppingCart className="cursor-pointer" onClick={toggleSidebar} />
+        <div className="flex items-center space-x-3 text-xl">
+        <AiOutlineSearch className="cursor-pointer md:hidden" />
+          <FaShoppingCart className="cursor-pointer lg:text-3xl" onClick={toggleSidebar} />
           <Link to="/login">
-            <FaUser className="cursor-pointer" />
+            <FaUser className="cursor-pointer lg:hidden" />
           </Link>
+          <div className="hidden lg:block ">
+                  <Link to="/login" className=" px-5 pb-2 pt-1  font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right">Login </Link>
+                </div>
         </div>
       </nav>
 

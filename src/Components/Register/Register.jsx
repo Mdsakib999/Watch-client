@@ -23,7 +23,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="w-full max-w-md p-6 bg-gray-50 rounded-2xl shadow-lg">
+      <div className="w-full max-w-md p-6 bg-gray-50 rounded-2xl shadow-lg mx-4 md:mx-0">
         <h2 className="text-2xl font-semibold text-center text-gray-800">Register</h2>
         <form onSubmit={handleRegister} className="mt-6">
           <div className="mb-4">
@@ -102,7 +102,7 @@ const Register = () => {
         <p className="mt-4 text-center">Already have account? <Link className="text-red-500" to="/login">Login</Link> </p>
       </div>
       <div>
-            <img className="max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="" />
+            <img className="hidden lg:block max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="" />
         </div>
 
     </div>

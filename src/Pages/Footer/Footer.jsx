@@ -68,25 +68,25 @@ const Footer = () => {
             <h5 className="font-bold">Social Media</h5>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex items-center gap-x-2">
+                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
                 <FaFacebookSquare size={20} />
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex items-center gap-x-2">
+                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
                 <FaInstagramSquare size={20} />
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex items-center gap-x-2">
+                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
                 <FaLinkedin size={20} />
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex items-center gap-x-2">
+                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
                 <FaTwitterSquare size={20} />
                   Twitter
                 </a>

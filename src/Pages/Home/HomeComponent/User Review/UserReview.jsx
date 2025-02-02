@@ -93,10 +93,10 @@ const testimonials = [
 
 const UserReview = () => (
     <div className="home-customer md:w-[85%] mx-auto mb-20 pt-10  max-w-[1500px] ">
-    <p className="md:text-4xl text-3xl font-semibold mb-6">
+    <p className="md:text-4xl text-3xl font-semibold mb-6 text-center lg:text-left">
       Our Happy Customers
     </p>
-    <p className="md:w-[50%] w-[90%] mb-5 text-slate-500">
+    <p className="md:w-[50%] w-[90%] mb-5 text-slate-500 text-center lg:text-left">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor suscipit
       nemo voluptates quas adipisci accusantium facere delectus vero dignissimos
       doloribus.

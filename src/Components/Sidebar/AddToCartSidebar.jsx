@@ -12,16 +12,16 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     {
       id: 1,
       name: "Product 1",
-      price: 19.99,
+      price: 99.99,
       quantity: 1,
-      image: "https://via.placeholder.com/80",
+      image: "https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1738397812~exp=1738401412~hmac=ded31e873f93797991d8a0b04c5c8ef118271eb11c190df04c3ed89c9d901460&w=740",
     },
     {
       id: 2,
       name: "Product 2",
-      price: 29.99,
+      price: 299.99,
       quantity: 2,
-      image: "https://via.placeholder.com/80",
+      image: "https://img.freepik.com/free-psd/watch-isolated-transparent-background_191095-27096.jpg?t=st=1738397888~exp=1738401488~hmac=0ce341d923a75484543811a25dc1225d446a2ddcc63cfc663bcc1d6a459f2c9c&w=740",
     },
   ]);
 

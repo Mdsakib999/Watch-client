@@ -39,19 +39,19 @@ const clientLogos = [
 
 const TopBrands = () => {
     return (
-        <div className='b bg-black text-white py-12'>
+        <div className=' bg-black text-white py-12 '>
             <p className='text-center text-4xl font-semibold tex'>TOP BRANDS</p>
 
 
-            <section className="ezy__clients3 light  bg--[#0b1727] text-zinc-900 dark:text-white">
+            <section className="ezy__clients3 light text-zinc-900 dark:text-white ">
 			<div className="container px-4 mx-auto">
 	
-				<div className="grid grid-cols-4  pl-16 mx-7 mt-5 justify-center items-center text-center ">
+				<div className="grid grid-cols-2 lg:grid-cols-4  lg:pl-16 mx-7 mt-5 justify-center items-center text-center ">
 					{clientLogos.map((client, i) => (
 						<img
 							src={client.logo}
 							alt={client.alt}
-							className="max-h-[50px] h-auto max-w-full px-12  my-8"
+							className="max-h-[50px] h-auto max-w-full px-12 my-4 lg:my-8"
 							key={i}
 						/>
 					))}

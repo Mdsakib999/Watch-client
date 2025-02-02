@@ -16,9 +16,9 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen ">
         <div>
-            <img className="max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="" />
+            <img className="hidden lg:block max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="" />
         </div>
-      <div className="w-full max-w-sm p-6 bg-gray-50 rounded-2xl shadow-lg ">
+      <div className="w-full max-w-sm p-6 bg-gray-50 rounded-2xl shadow-lg mx-3 lg:mx-0">
         <h2 className="text-2xl font-semibold text-center text-gray-800">Login</h2>
         <form onSubmit={handleLogin} className="mt-6">
           <div className="mb-4">
