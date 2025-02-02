@@ -3,13 +3,29 @@ import React from "react";
 const Checkout = () => {
   // Sample product data
   const products = [
-    { name: "Gradient Graphic T-shirt", price: 49.99 },
-    { name: "Checkered Shirt", price: 29.99 },
-    { name: "Skinny Fit Jeans", price: 39.99 },
+    {
+      id: 1,
+      name: "Golden Watch",
+      price: 99.99,
+      quantity: 1,
+      image:
+        "https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1738397812~exp=1738401412~hmac=ded31e873f93797991d8a0b04c5c8ef118271eb11c190df04c3ed89c9d901460&w=740",
+    },
+    {
+      id: 2,
+      name: "Smart Watch",
+      price: 299.99,
+      quantity: 2,
+      image:
+        "https://img.freepik.com/free-psd/watch-isolated-transparent-background_191095-27096.jpg?t=st=1738397888~exp=1738401488~hmac=0ce341d923a75484543811a25dc1225d446a2ddcc63cfc663bcc1d6a459f2c9c&w=740",
+    },
   ];
 
   // Calculate subtotal
-  const subtotal = products.reduce((acc, product) => acc + product.price, 0);
+  const subtotal = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
   const shipping = 5.0;
   const tax = 8.0;
   const total = subtotal + shipping + tax;
@@ -78,8 +94,20 @@ const Checkout = () => {
             <div className="space-y-4 mb-6">
               {products.map((product, index) => (
                 <div key={index} className="flex justify-between">
-                  <span>{product.name}</span>
-                  <span>${product.price.toFixed(2)}</span>
+                  <div className="flex items-center gap-5">
+                    <img
+                      className="w-10 h-10 object-cover rounded"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                    <span>{product.name}</span>
+                    <span className="text-gray-600  text-sm">
+                      {" "}
+                      X {product.quantity}
+                    </span>
+                  </div>
+
+                  <span>${product.price.toFixed(2) * product.quantity}</span>
                 </div>
               ))}
             </div>
