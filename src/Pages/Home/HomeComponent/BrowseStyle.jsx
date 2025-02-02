@@ -6,7 +6,7 @@ import image2 from "../../../assets/Images/2.png";
 
 const BrowseStyle = () => {
   return (
-    <div className="my-10 mx-8 lg:mx-16 rounded-3xl bg-gray-100 py-12">
+    <div className="my-10 mx-4 md:mx8 lg:mx-16 rounded-3xl bg-gray-100 py-12">
       <p className="text-center text-2xl lg:text-4xl font-semibold tex">Browse By Style</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-10 lg:px-20 ">

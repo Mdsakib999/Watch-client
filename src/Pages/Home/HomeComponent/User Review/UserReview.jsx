@@ -96,7 +96,7 @@ const UserReview = () => (
     <p className="md:text-4xl text-3xl font-semibold mb-6 text-center lg:text-left">
       Our Happy Customers
     </p>
-    <p className="md:w-[50%] w-[90%] mb-5 text-slate-500 text-center lg:text-left">
+    <p className="md:w-[50%] md:mx-auto lg:mx-0 w-[90%] mb-5 text-slate-500 text-center lg:text-left">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor suscipit
       nemo voluptates quas adipisci accusantium facere delectus vero dignissimos
       doloribus.
