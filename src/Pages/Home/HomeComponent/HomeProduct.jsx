@@ -120,7 +120,9 @@ const HomeProduct = () => {
             key={gender}
             onClick={() => setSelectedGender(gender)}
             className={`px-5 font-semibold rounded-md border ${
-              selectedGender === gender ? "bg-black text-white py-1 border" : ""
+              selectedGender === gender
+                ? "bg-black bg-gradient-to-r from-[#03b8e1] to-[#112949]  text-white py-1 border"
+                : ""
             }`}
           >
             {gender === "All" ? "ALL" : gender.toUpperCase()}
@@ -136,7 +138,7 @@ const HomeProduct = () => {
       <div className="mt-12 flex justify-center">
         <Link
           to="/allProduct"
-          className=" flex items-center gap-x-2 px-7 py-3 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right"
+          className=" flex items-center gap-x-2 px-7 py-3 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right"
         >
           View All <FaArrowRightLong />
         </Link>
