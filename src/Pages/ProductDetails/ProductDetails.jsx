@@ -167,7 +167,7 @@ const ProductDetails = () => {
           {/* Add to cart & quantity */}
           <div className="mt-2 flex flex-col sm:flex-row items-center gap-4 w-full">
             {/* Quantity Selector */}
-            <div className="flex items-center justify-center w-full sm:w-40 h-10 overflow-hidden bg-gray-200 rounded-full py-3">
+            <div className="flex items-center justify-center w-30 md:w-40 h-10 overflow-hidden bg-gray-200 rounded-full py-3">
               <button
                 className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none text-3xl"
                 onClick={() => console.log("Decrease quantity")}
@@ -184,7 +184,7 @@ const ProductDetails = () => {
             </div>
             {/* Add to Cart Button */}
             <button
-              className="w-full sm:w-auto px-6 py-3 bg-black text-white font-md rounded-full focus:outline-none shadow-lg"
+              className="w-full sm:w-auto px-25 py-3 bg-black text-white font-md rounded-full focus:outline-none shadow-lg"
               onClick={() => console.log("Add to cart clicked")}
             >
               Add to Cart
