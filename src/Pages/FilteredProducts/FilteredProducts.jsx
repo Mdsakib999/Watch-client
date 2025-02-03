@@ -7,10 +7,11 @@ const FilteredProducts = () => {
   const [searchParams] = useSearchParams();
   const initialCategory = searchParams.get("category") || "";
   const initialGender = searchParams.get("gender") || "";
+  const initialBrand = searchParams.get("brand") || "";
 
   const [filters, setFilters] = useState({
     category: initialCategory ? [initialCategory] : [],
-    brand: [],
+    brand: initialBrand ? [initialBrand] : [],
     gender: initialGender ? [initialGender] : [],
     price: [],
   });
@@ -20,8 +21,9 @@ const FilteredProducts = () => {
       ...prevFilters,
       category: initialCategory ? [initialCategory] : prevFilters.category,
       gender: initialGender ? [initialGender] : prevFilters.gender,
+      brand: initialBrand ? [initialBrand] : prevFilters.brand,
     }));
-  }, [initialCategory, initialGender]);
+  }, [initialCategory, initialGender, initialBrand]);
 
   const filteredProducts = data.filter((product) => {
     return (
