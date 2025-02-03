@@ -38,7 +38,7 @@ const Navbar = () => {
           </li>
           <li className="cursor-pointer">On Sale</li>
           <li className="cursor-pointer">
-            <Link to="/allProduct">New Arrivals</Link>
+            <Link to="/allProducts">New Arrivals</Link>
           </li>
           <li className="cursor-pointer">
             <Link to="/brands">Brands</Link>
@@ -57,14 +57,22 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex items-center space-x-3 text-lg">
-        <AiOutlineSearch className="cursor-pointer md:hidden" />
-          <FaShoppingCart className="cursor-pointer lg:text-3xl" onClick={toggleSidebar} />
+          <AiOutlineSearch className="cursor-pointer md:hidden" />
+          <FaShoppingCart
+            className="cursor-pointer lg:text-3xl"
+            onClick={toggleSidebar}
+          />
           <Link to="/login">
             <FaUser className="cursor-pointer lg:hidden" />
           </Link>
           <div className="hidden lg:block ">
-                  <Link to="/login" className=" px-5 pb-2 pt-1  font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right">Login </Link>
-                </div>
+            <Link
+              to="/login"
+              className=" px-5 pb-2 pt-1  font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+            >
+              Login{" "}
+            </Link>
+          </div>
         </div>
       </nav>
 
