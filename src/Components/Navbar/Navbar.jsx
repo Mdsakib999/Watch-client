@@ -40,7 +40,9 @@ const Navbar = () => {
           <li className="cursor-pointer">
             <Link to="/allProduct">New Arrivals</Link>
           </li>
-          <li className="cursor-pointer">Brands</li>
+          <li className="cursor-pointer">
+            <Link to="/brands">Brands</Link>
+          </li>
         </ul>
 
         {/* Search Box */}
