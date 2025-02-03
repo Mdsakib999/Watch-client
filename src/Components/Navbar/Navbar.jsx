@@ -25,7 +25,7 @@ const Navbar = () => {
 
         {/* Navigation Items */}
         <ul className="lg:flex space-x-6 text-lg font-medium  hidden">
-          <li className="relative group">
+          {/* <li className="relative group">
             <span className="cursor-pointer flex items-center gap-x-1">
               Category{" "}
               <IoIosArrowDown className="mt-1 group-hover:rotate-180" />
@@ -35,14 +35,21 @@ const Navbar = () => {
               <li className="px-4 py-2 hover:bg-gray-100">Women</li>
               <li className="px-4 py-2 hover:bg-gray-100">Kids</li>
             </ul>
+          </li> */}
+          <li className="cursor-pointer">
+            <Link to="/allProduct">All Watch</Link>
           </li>
-          <li className="cursor-pointer">On Sale</li>
+          
           <li className="cursor-pointer">
             <Link to="/allProduct">New Arrivals</Link>
           </li>
           <li className="cursor-pointer">
             <Link to="/brands">Brands</Link>
           </li>
+          <li className="cursor-pointer">
+            <Link to="/onSale">On Sale</Link>
+          </li>
+          {/* <li className="cursor-pointer">On Sale</li> */}
         </ul>
 
         {/* Search Box */}

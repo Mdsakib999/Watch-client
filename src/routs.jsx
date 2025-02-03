@@ -10,6 +10,7 @@ import Contact from "./Pages/Contact/Contact";
 import Checkout from "./Pages/Checkout/Checkout";
 import FilteredProducts from "./Pages/FilteredProducts/FilteredProducts";
 import Brand from "./Pages/Brand/Brand";
+import OnSale from "./Pages/OnSale/OnSale";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/allProduct",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/onSale",
+        element: <OnSale></OnSale>,
       },
       // test
       {

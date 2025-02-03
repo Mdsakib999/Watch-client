@@ -206,7 +206,7 @@ const AllProducts = () => {
                   </p>
                 </div>
                 <div className="flex justify-center ">
-                  <button className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
+                  <button className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
                     Add to Cart
                   </button>
                 </div>
