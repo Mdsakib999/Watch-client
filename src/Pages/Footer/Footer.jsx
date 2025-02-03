@@ -3,7 +3,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -42,21 +42,33 @@ const Footer = () => {
             <h5 className="font-bold">Quick Links</h5>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Home
-                </a>
+                <Link to="/">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  About Us
-                </a>
+                <Link to="/about">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    About Us
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Products
-                </a>
+                <Link to="/contact">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Contact Us
+                  </a>
+                </Link>
               </li>
-              
+              <li>
+                <Link to="/allProducts">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Products
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -64,26 +76,38 @@ const Footer = () => {
             <h5 className="font-bold">Social Media</h5>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
-                <FaFacebookSquare size={20} />
+                <a
+                  href="#!"
+                  className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2"
+                >
+                  <FaFacebookSquare size={20} />
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
-                <FaInstagramSquare size={20} />
+                <a
+                  href="#!"
+                  className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2"
+                >
+                  <FaInstagramSquare size={20} />
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
-                <FaLinkedin size={20} />
+                <a
+                  href="#!"
+                  className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2"
+                >
+                  <FaLinkedin size={20} />
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2">
-                <FaTwitterSquare size={20} />
+                <a
+                  href="#!"
+                  className="text-gray-600 hover:text-gray-800 flex justify-center lg:justify-start items-center gap-x-2"
+                >
+                  <FaTwitterSquare size={20} />
                   Twitter
                 </a>
               </li>
@@ -94,24 +118,26 @@ const Footer = () => {
             <h5 className="font-bold">Job Info</h5>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Customer Support
-                </a>
+                <Link to="/termsAndConditions">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Terms & Conditions
+                  </a>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/returnPolicy">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Return Policy
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Terms & Conditions
-                </a>
-              </li>
-              <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Return Policy
-                </a>
-              </li>
-              <li>
-                <a href="#!" className="text-gray-600 hover:text-gray-800">
-                  Refund Policy
-                </a>
+                <Link to="/refundPolicy">
+                  <a href="#!" className="text-gray-600 hover:text-gray-800">
+                    Refund Policy
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -125,6 +151,7 @@ const Footer = () => {
                   contact@easyfrontend.com
                 </a>
               </li>
+
               <li>
                 <a href="#!" className="text-gray-600 hover:text-gray-800">
                   +550 1633-154215
@@ -176,7 +203,6 @@ const Footer = () => {
                 alt=""
               />
             </li>
-            {/* <li><a href="#!" className="text-gray-600 hover:text-gray-800">Security</a></li> */}
           </ul>
         </div>
       </div>
