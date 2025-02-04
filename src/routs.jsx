@@ -11,6 +11,9 @@ import Checkout from "./Pages/Checkout/Checkout";
 import FilteredProducts from "./Pages/FilteredProducts/FilteredProducts";
 import Brand from "./Pages/Brand/Brand";
 import OnSale from "./Pages/OnSale/OnSale";
+import ReturnPolicy from "./Pages/ReturnPolicy/ReturnPolicy";
+import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
+import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndCOnditions";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +33,7 @@ export const router = createBrowserRouter([
         element: <Brand></Brand>,
       },
       {
-        path: "/allProduct",
+        path: "/allProducts",
         element: <AllProducts></AllProducts>,
       },
       {
@@ -65,6 +68,18 @@ export const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout></Checkout>,
+      },
+      {
+        path: "/returnPolicy",
+        element: <ReturnPolicy></ReturnPolicy>,
+      },
+      {
+        path: "/refundPolicy",
+        element: <RefundPolicy></RefundPolicy>,
+      },
+      {
+        path: "/termsAndConditions",
+        element: <TermsAndConditions></TermsAndConditions>,
       },
     ],
   },
