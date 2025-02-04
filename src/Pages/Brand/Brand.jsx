@@ -69,16 +69,13 @@ const Brand = () => {
       <h1 className="text-4xl font-bold mb-8 text-center">Top Watch Brands</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
         {watchBrands.map((brand) => (
-          <Link to={`/products?brand=${brand.name}`}>
-            <div
-              key={brand.id}
-              className="relative group w-64 h-64 rounded-full overflow-hidden shadow-lg transition-transform hover:scale-110 transform cursor-pointer"
-            >
+          <Link to={`/products?brand=${brand.name}`} key={brand.id}>
+            <div className="relative group z-0  w-64 h-64 rounded-full overflow-hidden shadow-lg transition-transform hover:scale-110 transform cursor-pointer">
               {/* Brand Image */}
               <img
                 src={brand.image}
                 alt={brand.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover group z-0"
               />
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70 opacity-0 group-hover:opacity-100 transition-opacity"></div>

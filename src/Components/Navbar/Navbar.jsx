@@ -8,23 +8,33 @@ import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Track mobile menu state
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 py-3 shadow-md ">
-        {/* Logo */}
-        <FaBars className="lg:hidden" />
-        <Link to="/" className="text-xl lg:text-2xl font-bold">
-          SMWATCH.CO
-        </Link>
+      <nav className="flex items-center justify-between px-6 py-3 shadow-md z-50">
+        {/* Logo & Hamburger Icon */}
+        <div className="flex items-center space-x-4">
+          <FaBars
+            className="lg:hidden cursor-pointer text-xl"
+            onClick={toggleMobileMenu}
+          />
+          <Link to="/" className="text-xl lg:text-2xl font-bold">
+            SMWATCH.CO
+          </Link>
+        </div>
 
-        {/* Navigation Items */}
-        <ul className="lg:flex space-x-6 text-lg font-medium  hidden">
+        {/* Desktop Navigation */}
+        <ul className="lg:flex space-x-6 text-lg font-medium hidden">
           <li className="relative group">
             <span className="cursor-pointer flex items-center gap-x-1">
               Category{" "}
@@ -45,8 +55,8 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Search Box */}
-        <div className="md:flex items-center bg-gray-100 rounded-full px-4 py-2 hidden ">
+        {/* Search Box (Desktop) */}
+        <div className="md:flex items-center bg-gray-100 rounded-full px-4 py-2 hidden">
           <AiOutlineSearch className="text-gray-500" />
           <input
             type="text"
@@ -65,16 +75,57 @@ const Navbar = () => {
           <Link to="/login">
             <FaUser className="cursor-pointer lg:hidden" />
           </Link>
-          <div className="hidden lg:block ">
+          <div className="hidden lg:block">
             <Link
               to="/login"
-              className=" px-5 pb-2 pt-1  font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+              className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
             >
-              Login{" "}
+              Login
             </Link>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden fixed top-0 left-0 w-full h-screen bg-white shadow-md transform transition-transform duration-300 z-50 ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <button
+          className="absolute top-4 right-4 text-2xl"
+          onClick={toggleMobileMenu}
+        >
+          ✖
+        </button>
+        <ul className="flex flex-col items-center mt-20 space-y-6 text-lg font-medium z-50">
+          <li>
+            <Link to="/" onClick={toggleMobileMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/allProducts" onClick={toggleMobileMenu}>
+              New Arrivals
+            </Link>
+          </li>
+          <li>
+            <Link to="/brands" onClick={toggleMobileMenu}>
+              Brands
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={toggleMobileMenu}>
+              On Sale
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={toggleMobileMenu}>
+              Login
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       {/* AddToCartSidebar */}
       <AddToCartSidebar
