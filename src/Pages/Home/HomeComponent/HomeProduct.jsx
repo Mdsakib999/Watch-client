@@ -6,49 +6,6 @@ import { data } from "../../../../public/data";
 
 // const product = data.find((item) => item._id === id);
 const products = data.slice(0, 4);
-console.log(products);
-// const products = [
-//   {
-//     id: 1,
-//     name: "Vertical Ultra Man's GS",
-//     image:
-//       "https://img.freepik.com/premium-photo/closeup-shot-modern-wristwatch-white-background_181624-57800.jpg",
-//     rating: 4.0,
-//     price: 125,
-//     originalPrice: 254,
-//     gender: "Male",
-//   },
-//   {
-//     id: 2,
-//     name: "Elegant Women's Watch",
-//     image:
-//       "https://img.freepik.com/free-photo/stylish-golden-watch-white-surface_181624-27078.jpg",
-//     rating: 4.5,
-//     price: 200,
-//     originalPrice: 300,
-//     gender: "Female",
-//   },
-//   {
-//     id: 3,
-//     name: "Classic Men's Leather Watch",
-//     image:
-//       "https://img.freepik.com/premium-vector/mechanical-watch-classic-design-realistic-wristwatch-luxury-fashion-object-men-white_87946-6616.jpg?w=360",
-//     rating: 4.2,
-//     price: 150,
-//     originalPrice: 250,
-//     gender: "Male",
-//   },
-//   {
-//     id: 4,
-//     name: "Stylish Women's Smart Watch",
-//     image:
-//       "https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1737807985~exp=1737811585~hmac=5beaa04771614566ac7e32b09704834a8569fd6300745cc184a0f38321de58fb&w=740",
-//     rating: 4.8,
-//     price: 180,
-//     originalPrice: 280,
-//     gender: "Female",
-//   },
-// ];
 
 const calculateDiscountPercentage = (originalPrice, price) => {
   return Math.round(((originalPrice - price) / originalPrice) * 100);
@@ -137,7 +94,7 @@ const HomeProduct = () => {
 
       <div className="mt-12 flex justify-center">
         <Link
-          to="/allProduct"
+          to="/allProducts"
           className=" flex items-center gap-x-2 px-7 py-3 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right"
         >
           View All <FaArrowRightLong />
