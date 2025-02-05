@@ -40,10 +40,13 @@ const Navbar = () => {
               Category{" "}
               <IoIosArrowDown className="mt-1 group-hover:rotate-180" />
             </span>
-            <ul className="absolute top-6 -left-3 hidden bg-white shadow-md group-hover:block hover:block mt-2 rounded-lg px-2">
-              <li className="px-4 py-2 hover:bg-gray-100">Men</li>
-              <li className="px-4 py-2 hover:bg-gray-100">Women</li>
-              <li className="px-4 py-2 hover:bg-gray-100">Kids</li>
+            <ul className="absolute top-4 -left-3 hidden bg-white shadow-md group-hover:block hover:block mt-2 rounded-lg px-4 py-4">
+              <Link to={`/products?gender=Male`}>
+                <li className="px-4 py-2 hover:bg-gray-100">Men</li>
+              </Link>
+              <Link to={`/products?gender=Female`}>
+                <li className="px-4 py-2 hover:bg-gray-100">Women</li>
+              </Link>
             </ul>
           </li>
           <li className="cursor-pointer">On Sale</li>
