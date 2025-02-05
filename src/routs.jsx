@@ -10,6 +10,7 @@ import Contact from "./Pages/Contact/Contact";
 import Checkout from "./Pages/Checkout/Checkout";
 import FilteredProducts from "./Pages/FilteredProducts/FilteredProducts";
 import Brand from "./Pages/Brand/Brand";
+import OnSale from "./Pages/OnSale/OnSale";
 import ReturnPolicy from "./Pages/ReturnPolicy/ReturnPolicy";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
 import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndCOnditions";
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/allProducts",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/onSale",
+        element: <OnSale></OnSale>,
       },
       // test
       {

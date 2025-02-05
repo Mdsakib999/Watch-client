@@ -33,9 +33,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <ul className="lg:flex space-x-6 text-lg font-medium hidden">
-          <li className="relative group">
+        {/* Navigation Items */}
+        <ul className="lg:flex space-x-6 text-lg font-medium  hidden">
+          {/* <li className="relative group">
             <span className="cursor-pointer flex items-center gap-x-1">
               Category{" "}
               <IoIosArrowDown className="mt-1 group-hover:rotate-180" />
@@ -48,14 +48,21 @@ const Navbar = () => {
                 <li className="px-4 py-2 hover:bg-gray-100">Women</li>
               </Link>
             </ul>
+          </li> */}
+          <li className="cursor-pointer">
+            <Link to="/allProducts">All Watch</Link>
           </li>
-          <li className="cursor-pointer">On Sale</li>
+
           <li className="cursor-pointer">
             <Link to="/allProducts">New Arrivals</Link>
           </li>
           <li className="cursor-pointer">
             <Link to="/brands">Brands</Link>
           </li>
+          <li className="cursor-pointer">
+            <Link to="/onSale">On Sale</Link>
+          </li>
+          {/* <li className="cursor-pointer">On Sale</li> */}
         </ul>
 
         {/* Search Box (Desktop) */}
@@ -71,11 +78,13 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-3 text-lg">
           <AiOutlineSearch className="cursor-pointer md:hidden" />
-          <FaShoppingCart
-            className="cursor-pointer lg:text-3xl"
-            onClick={toggleSidebar}
-          />
-          <Link to="/login">
+          <div onClick={toggleSidebar} className="relative cursor-pointer ">
+            <FaShoppingCart className=" lg:text-3xl" />
+            <span className="absolute -top-3 -right-2.5 b px-1.5 bg-black text-white text-sm rounded-full">
+              1
+            </span>
+          </div>
+          <Link className="" to="/login">
             <FaUser className="cursor-pointer lg:hidden" />
           </Link>
           <div className="hidden lg:block">
