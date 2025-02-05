@@ -6,10 +6,11 @@ import { data } from "../../../public/data";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const ProductDetails = () => {
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("details");
   const [showFeatures, setShowFeatures] = useState(false);
@@ -173,15 +174,18 @@ const ProductDetails = () => {
             {/* Quantity Selector */}
             <div className="flex items-center justify-center w-30 md:w-40 h-10 overflow-hidden bg-gray-200 rounded-full py-3">
               <button
-                className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none text-3xl"
-                onClick={() => console.log("Decrease quantity")}
+                className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none text-3xl disabled:opacity-50"
+                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                disabled={quantity === 1}
               >
                 -
               </button>
-              <span className="flex-1 text-center text-lg font-medium">1</span>
+              <span className="flex-1 text-center text-lg font-medium">
+                {quantity}
+              </span>
               <button
                 className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none text-3xl"
-                onClick={() => console.log("Increase quantity")}
+                onClick={() => setQuantity((prev) => prev + 1)}
               >
                 +
               </button>

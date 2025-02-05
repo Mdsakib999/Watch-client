@@ -65,12 +65,16 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-3 text-lg">
           <AiOutlineSearch className="cursor-pointer md:hidden" />
+          <div onClick={toggleSidebar} className="relative cursor-pointer ">
           <FaShoppingCart
-            className="cursor-pointer lg:text-3xl"
-            onClick={toggleSidebar}
+            className=" lg:text-3xl"
+            
           />
-          <Link to="/login">
+          <span className="absolute -top-3 -right-2.5 b px-1.5 bg-black text-white text-sm rounded-full">1</span>
+          </div>
+          <Link className="" to="/login">
             <FaUser className="cursor-pointer lg:hidden" />
+            
           </Link>
           <div className="hidden lg:block ">
             <Link
