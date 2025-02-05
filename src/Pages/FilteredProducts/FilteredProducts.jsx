@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { data } from "../../../public/data.js";
 import { Link, useSearchParams } from "react-router-dom";
+//
+const categoryImages = {
+  Men: "https://images.unsplash.com/photo-1482954363933-4bed6bbea570?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  Women:
+    "https://images.unsplash.com/photo-1451477334999-a9321157a431?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  Casual:
+    "https://images.unsplash.com/photo-1495704907664-81f74a7efd9b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+};
 
 const FilteredProducts = () => {
   const [searchParams] = useSearchParams();
@@ -41,10 +49,50 @@ const FilteredProducts = () => {
   });
 
   return (
-    <div className="flex flex-col lg:flex-row lg:px-4 bg-gray-50  w-full ">
+    <div className="flex flex-col justify-center lg:flex-row lg:px-4 bg-gray-50  w-full ">
       {/* Filtered Products Section */}
-      <div className=" mt-4 md:mt-0 mx-auto flex justify-center">
-        <div className="w-4/5 mt-4 md:mt-0  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-1 md:px-4 py-11 ">
+      <div className=" mt-4 md:mt-0 mx-auto flex flex-col items-center justify-center ">
+        {/* test */}
+        <div className="relative w-screen">
+          {filters.category.length > 0 && (
+            <div className="relative w-screen">
+              <img
+                src={categoryImages.Casual}
+                alt=""
+                className="w-screen h-[300px] object-cover"
+              />
+              <span className="absolute top-30 left-1/2 transform -translate-x-1/2 text-white text-3xl font-bold bg-black/50 px-4 py-2 rounded-lg">
+                {filters.category.join(", ")}
+              </span>
+            </div>
+          )}
+          {filters.gender.length > 0 && (
+            <div className="relative w-screen">
+              <img
+                src={categoryImages.Women}
+                alt=""
+                className="w-screen h-[300px] object-cover"
+              />
+              <span className="absolute top-30 left-1/2 transform -translate-x-1/2 text-white text-3xl font-bold bg-black/50 px-4 py-2 rounded-lg">
+                {filters.gender.join(", ")}
+              </span>
+            </div>
+          )}
+          {filters.brand.length > 0 && (
+            <div className="relative w-screen">
+              <img
+                src={categoryImages.Men}
+                alt=""
+                className="w-screen h-[300px] object-cover"
+              />
+              <span className="absolute top-30 left-1/2 transform -translate-x-1/2 text-white text-3xl font-bold bg-black/50 px-4 py-2 rounded-lg">
+                {filters.brand.join(", ")}
+              </span>
+            </div>
+          )}
+        </div>
+
+        <div className="w-4/5 mt-4 md:mt-0  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-1 md:px-4 py-10">
           {filteredProducts.map((product) => (
             <div
               key={product._id}
