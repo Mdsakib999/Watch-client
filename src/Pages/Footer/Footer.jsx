@@ -165,7 +165,7 @@ const Footer = () => {
 
         <div className=" flex flex-col md:flex-row justify-between w-full items-center ">
           <p className="text-gray-600 text-sm">
-            Copyright &copy; Easy Frontend, All rights reserved
+            Copyright &copy; SM Watch, All rights reserved
           </p>
           <ul className="flex items-center space-x-4 mt-4 md:mt-0">
             <li>
