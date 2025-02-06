@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Checkout = () => {
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const handlePlaceOrder = () => {
+    // Here you can add logic to process the order (e.g., send data to a backend)
+    navigate("/confirmOrder"); // Redirect to ConfirmOrder page
+  };
+
   // Sample product data
   const products = [
     {
@@ -110,7 +119,7 @@ const Checkout = () => {
                     </span>
                   </div>
 
-                  <span>${product.price.toFixed(2) * product.quantity}</span>
+                  <span>${(product.price * product.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -177,22 +186,11 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* Promo Code Section */}
-            <div className="mt-6">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  className="flex-1 px-3 py-2 border border-gray-300 bg-gray-200 focus:outline-none focus:ring-1 focus:ring-black rounded-full"
-                  placeholder="Enter promo code"
-                />
-                <button className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-2">
-                  Apply
-                </button>
-              </div>
-            </div>
-
             {/* Place Order Button */}
-            <button className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-2">
+            <button
+              onClick={handlePlaceOrder}
+              className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-2"
+            >
               Place Order
             </button>
           </div>

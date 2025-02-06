@@ -14,6 +14,7 @@ import OnSale from "./Pages/OnSale/OnSale";
 import ReturnPolicy from "./Pages/ReturnPolicy/ReturnPolicy";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
 import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndCOnditions";
+import ConfirmOrder from "./Pages/ConfirmOrder/ConfirmOrder";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout></Checkout>,
+      },
+      {
+        path: "/confirmOrder",
+        element: <ConfirmOrder></ConfirmOrder>,
       },
       {
         path: "/returnPolicy",
