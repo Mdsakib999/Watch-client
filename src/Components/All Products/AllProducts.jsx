@@ -47,11 +47,11 @@ const AllProducts = () => {
     <div className="flex flex-col lg:flex-row lg:px-4 bg-gray-50 ">
       <button
         onClick={() => setIsFilterOpen(true)}
-        className={`lg:hidden fixed  top-14 left-4 border  cursor-pointer hover:text-white px-3 py-3 rounded-full shadow-lg hover:bg-gray-800 transition-colors ${
+        className={`lg:hidden fixed  top-14 left-4 border  cursor-pointer hover:text-white px-2 py-2 rounded-full shadow-lg hover:bg-gray-800 transition-colors ${
           isFilterOpen ? "hidden" : ""
         }`}
       >
-        <FaArrowRight size={20} />
+        <FaArrowRight />
       </button>
 
       {/* Filters Section */}

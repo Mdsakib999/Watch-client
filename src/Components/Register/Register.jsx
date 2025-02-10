@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const Register = () => {
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const { createUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -16,13 +21,31 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    
+    // Check if passwords match
     if (password !== confirmPassword) {
-      setError("Passwords do not match!");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Passwords do not match!',
+      });
       return;
     }
+
     setError("");
-    // Add registration logic here
-    console.log("Username:", username, "Email:", email, "Password:", password);
+    
+    // Call createUser function from AuthContext
+    createUser(email, password)
+      .then((userCredential) => {
+        // User registration successful
+        console.log("User registered:", userCredential.user);
+        navigate("/"); // Redirect to another page
+      })
+      .catch((err) => {
+        // Handle error if registration fails
+        setError(err.message);
+        console.error("Error registering user:", err.message);
+      });
   };
 
   return (
@@ -98,17 +121,18 @@ const Register = () => {
           {error && <p className="mb-4 text-sm text-red-500">{error}</p>}
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none"
+            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none cursor-pointer"
           >
             Register
           </button>
         </form>
-        <p className="mt-4 text-center">Already have account? <Link className="text-red-500" to="/login">Login</Link> </p>
+        <p className="mt-4 text-center">
+          Already have an account? <Link className="text-red-500" to="/login">Login</Link>
+        </p>
       </div>
       <div>
-            <img className="hidden lg:block max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="" />
-        </div>
-
+        <img className="hidden lg:block max-w-[500px] animate-pul" src="https://img.freepik.com/free-vector/modern-job-search-staff-hiring-online-recruitment-freelance-profession-applicant-studying-help-wanted-poster-freelancer-looking-orders_335657-317.jpg?t=st=1737959835~exp=1737963435~hmac=75354dd539a8f38a61af93bb9b2bcf056ae8c638ba590ef57c81d4184e3393c5&w=740" alt="Register Image" />
+      </div>
     </div>
   );
 };

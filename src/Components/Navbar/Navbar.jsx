@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaShoppingCart, FaUser, FaUserCircle } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaBars } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
+import { AuthContext } from "../../Provider/AuthProvider";
+
+
+
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Track mobile menu state
 
@@ -16,6 +22,14 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleLogout = () => {
+    if (user) {
+      logOut();
+    } else {
+      Navigate("/login");
+    }
   };
 
   return (
@@ -77,25 +91,62 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex items-center space-x-3 text-lg">
-          <AiOutlineSearch className="cursor-pointer md:hidden" />
-          <div onClick={toggleSidebar} className="relative cursor-pointer ">
-            <FaShoppingCart className=" lg:text-3xl" />
-            <span className="absolute -top-3 -right-2.5 b px-1.5 bg-black text-white text-sm rounded-full">
-              1
-            </span>
-          </div>
-          <Link className="" to="/login">
-            <FaUser className="cursor-pointer lg:hidden" />
-          </Link>
-          <div className="hidden lg:block">
-            <Link
-              to="/login"
-              className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
-            >
-              Login
-            </Link>
-          </div>
+  {/* Search Icon - Visible only on smaller screens */}
+  <AiOutlineSearch className="cursor-pointer md:hidden" />
+
+  {/* Shopping Cart with Badge */}
+  <div onClick={toggleSidebar} className="relative cursor-pointer">
+    <FaShoppingCart className="lg:text-3xl" />
+    <span className="absolute -top-3 -right-2.5 px-1 md:px-1.5 bg-black text-white text-xs md:text-sm rounded-full">
+      1
+    </span>
+  </div>
+
+  {/* Mobile Login Icon (Hidden on Larger Screens) */}
+  <Link to="/login" className="lg:hidden">
+    <FaUser className="cursor-pointer" />
+  </Link>
+
+  {/* Desktop User Profile/Login - Visible Only on Larger Screens */}
+  <div className="hidden lg:block">
+    {user ? (
+      <div className="dropdown dropdown-bottom dropdown-end">
+      {user ? (
+        <div className=" flex items-center gap-x-2">
+          <FaUserCircle
+            tabIndex={0}
+            role="button"
+            size={34}
+            className=" rounded-full cursor-pointer "
+          />
+
+              <button
+                onClick={handleLogout} // Correctly renamed to handleLogout
+                className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+              >
+                Logout
+              </button>
         </div>
+      ) : (
+        <button
+          onClick={googleSignIn} // Assuming googleSignIn for login
+          className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+        >
+          Log In
+        </button>
+      )}
+    </div>
+    ) : (
+      <Link
+        to="/login"
+        className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+      >
+        Login
+      </Link>
+    )}
+  </div>
+</div>
+
       </nav>
 
       {/* Mobile Menu */}
@@ -127,7 +178,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" onClick={toggleMobileMenu}>
+            <Link to="/onSale" onClick={toggleMobileMenu}>
               On Sale
             </Link>
           </li>

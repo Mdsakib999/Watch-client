@@ -92,12 +92,12 @@ const HomeProduct = () => {
         ))}
       </div>
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-12 flex justify-center group">
         <Link
           to="/allProducts"
           className=" flex items-center gap-x-2 px-7 py-3 font-semibold text-white uppercase transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right"
         >
-          View All <FaArrowRightLong />
+          View All <FaArrowRightLong className="" />
         </Link>
       </div>
     </div>
