@@ -56,9 +56,9 @@ const AllProducts = () => {
 
       {/* Filters Section */}
       <div
-        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300 ${
+        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300  ${
           isFilterOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 left-0 z-50 lg:relative lg:w-1/5 lg:translate-x-0`}
+        } fixed inset-y-0 left-0 z-20 lg:relative lg:w-1/5 lg:translate-x-0`}
       >
         {isFilterOpen && (
           <button

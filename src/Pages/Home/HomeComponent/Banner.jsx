@@ -1,4 +1,5 @@
 import React from "react";
+import CountUp from "react-countup";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
@@ -30,15 +31,21 @@ const Banner = () => {
 
         <div className="flex mt-8  text-center mb-4 lg:mb-0">
           <div className="pr-3 md:pr-10 border-r">
-            <p className="font-bold text-xl md:text-3xl">200+</p>
+          <p className="font-bold text-xl md:text-3xl bg-gradient-to-r from-[#03b8e1] via-[#0f2542] to-[#00c4f5] text-transparent bg-clip-text">
+  <CountUp start={0} end={100} duration={3.5} enableScrollSpy={true} separator="" />+
+</p>
             <p>International Brands</p>
           </div>
           <div className="px-3 md:px-10 border-r">
-            <p className="font-bold text-xl md:text-3xl">2000+</p>
+          <p className="font-bold text-xl md:text-3xl bg-gradient-to-r from-[#03b8e1] via-[#0f2542] to-[#00c4f5] text-transparent bg-clip-text">
+  <CountUp start={0} end={1500} duration={4} enableScrollSpy={true} separator="" />+
+</p>
             <p>High-quality Products</p>
           </div>
           <div className="pl-3 md:pl-10 ">
-            <p className="font-bold text-xl md:text-3xl">20000+</p>
+          <p className="font-bold text-xl md:text-3xl bg-gradient-to-r from-[#03b8e1] via-[#0f2542] to-[#00c4f5] text-transparent bg-clip-text">
+  <CountUp start={0} end={15000} duration={3.5} enableScrollSpy={true} separator="" />+
+</p>
             <p>Happy Customers</p>
           </div>
         </div>

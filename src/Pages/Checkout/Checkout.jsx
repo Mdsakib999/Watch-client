@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 const Checkout = () => {
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   // Sample product data
   const products = [
     {
@@ -137,6 +137,20 @@ const Checkout = () => {
               </div>
             </div>
 
+            {/* Promo Code Section */}
+            <div className="mt-6">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  className="flex-1 px-3 py-2 border border-gray-300 bg-gray-200 focus:outline-none focus:ring-1 focus:ring-black rounded-full"
+                  placeholder="Enter promo code"
+                />
+                <button className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-1 cursor-pointer">
+                  Apply
+                </button>
+              </div>
+            </div>
+
             {/* Payment Section */}
             <div className="mt-6">
               <h2 className="text-xl font-semibold mb-4">Payment</h2>
@@ -147,7 +161,7 @@ const Checkout = () => {
                   </label>
                   <input
                     type="text"
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     placeholder="1234 5678 9012 3456"
                   />
                 </div>
@@ -159,7 +173,7 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="MM/YY"
                     />
                   </div>
@@ -169,7 +183,7 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="123"
                     />
                   </div>
@@ -177,22 +191,8 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* Promo Code Section */}
-            <div className="mt-6">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  className="flex-1 px-3 py-2 border border-gray-300 bg-gray-200 focus:outline-none focus:ring-1 focus:ring-black rounded-full"
-                  placeholder="Enter promo code"
-                />
-                <button className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-2">
-                  Apply
-                </button>
-              </div>
-            </div>
-
             {/* Place Order Button */}
-            <button className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-2">
+            <button className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-1 cursor-pointer">
               Place Order
             </button>
           </div>

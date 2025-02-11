@@ -78,7 +78,7 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     <div
       className={`${
         isSidebarOpen
-          ? "fixed right-0 top-[50%] transform -translate-y-1/2 z-40"
+          ? "fixed right-0 top-[50%] transform -translate-y-1/2 z-50"
           : "fixed right-[-1000px] top-1/2 transform -translate-y-1/2 z-40"
       } overflow-hidden h-[90vh] md:h-[88%] w-full sm:w-[75%] md:w-[50%] lg:w-[35%] 2xl:w-[28%] transition-right duration-500 bg-white text-black rounded-md shadow-md`}
     >
@@ -90,7 +90,7 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             onClick={() => setIsSidebarOpen(false)}
             className="text-3xl cursor-pointer  "
           >
-            <RxCross2 className="p-2 text-gray-500 rounded-full border hover:text-gray-800" />
+            <RxCross2 className="p-2 text-gray-500 rounded-full border hover:text-red-500" />
           </span>
         </div>
 

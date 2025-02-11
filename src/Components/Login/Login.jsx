@@ -118,9 +118,9 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none cursor-pointer"
+            className="w-full px-4 py-2 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-lg shadow-lg hover:bg-right cursor-pointer"
           >
-            Log In
+            Login
           </button>
         </form>
         <p className="my-4 text-center">

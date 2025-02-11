@@ -64,7 +64,7 @@ const testimonials = [
   ];
 
   const TestimonialCard = ({ name, image, review }) => (
-    <div className="w-[90%] mx-auto md:w-full bg-gray-100  rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300 mt-3 mb-16">
+    <div className="w-[90%] mx-auto md:w-full bg-slate-100  rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300 mt-3 mb-16">
       <div className="px-6 md:px-12 py-5 md:pt-8 md:text-lg font-semibold font-mono leading-8 relative">
         <p className="text-center z-10 relative">{review}</p>
         <FaQuoteRight className="absolute text-8xl right-7 bottom-1 md:bottom-0 lg:right-10 lg:bottom-4 text-gray-300 opacity-70 z-0" />
@@ -72,7 +72,7 @@ const testimonials = [
       </div>
       <div className="flex items-center justify-center pb-4 ">
         <img
-          className="mr-2 w-[57px] h-[57px] rounded-full border-2 border-orange-500"
+          className="mr-2 w-[57px] h-[57px] rounded-full border-2 border-blue-700"
           src={image}
           alt={name}
         />
