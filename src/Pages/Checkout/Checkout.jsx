@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Checkout = () => {
+  const navigate = useNavigate(); // Initialize navigate
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const handlePlaceOrder = () => {
+    // Here you can add logic to process the order (e.g., send data to a backend)
+    navigate("/confirmOrder"); // Redirect to ConfirmOrder page
+  };
+
   // Sample product data
   const products = [
     {
@@ -110,7 +119,7 @@ const Checkout = () => {
                     </span>
                   </div>
 
-                  <span>${product.price.toFixed(2) * product.quantity}</span>
+                  <span>${(product.price * product.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
