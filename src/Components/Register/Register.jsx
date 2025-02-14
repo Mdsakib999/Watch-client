@@ -19,33 +19,58 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    
-    // Check if passwords match
+
     if (password !== confirmPassword) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Passwords do not match!',
+        icon: "error",
+        title: "Oops...",
+        text: "Passwords do not match!",
       });
       return;
     }
 
     setError("");
-    
-    // Call createUser function from AuthContext
-    createUser(email, password)
-      .then((userCredential) => {
-        // User registration successful
-        console.log("User registered:", userCredential.user);
-        navigate("/"); // Redirect to another page
-      })
-      .catch((err) => {
-        // Handle error if registration fails
-        setError(err.message);
-        console.error("Error registering user:", err.message);
+
+    try {
+      const userCredential = await createUser(email, password);
+      const newUser = {
+        name: username,
+        email: userCredential.user.email,
+        password: userCredential.user.password,
+        role: "user", // Replaced createdAt with role
+      };
+
+      // Send user data to the backend API
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
       });
+
+      const data = await response.json();
+
+      if (data.message === "user already existed") {
+        Swal.fire({
+          icon: "warning",
+          title: "User Already Exists",
+          text: "This email is already registered.",
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: "Your account has been created successfully!",
+        });
+        navigate("/");
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error("Error registering user:", err.message);
+    }
   };
 
   return (

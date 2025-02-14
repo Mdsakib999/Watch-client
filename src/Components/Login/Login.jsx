@@ -48,14 +48,37 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((result) => {
-        if (result.user) {
-          navigate(from, { replace: true });
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "User signed in successfully!",
-          });
-        }
+        const loggedUser = result.user;
+  
+        console.log(loggedUser);
+        const saveUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          image: loggedUser.photoURL,
+          role: "user",
+        };
+  
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // Redirect regardless of whether the user is new or existing
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Login Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+  
+            navigate("/"); // Redirect to the home page or desired route
+          })
+          .catch((error) => console.error("Error saving user:", error));
       })
       .catch((error) => {
         console.error(error.message);

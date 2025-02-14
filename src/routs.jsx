@@ -15,6 +15,12 @@ import ReturnPolicy from "./Pages/ReturnPolicy/ReturnPolicy";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
 import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndCOnditions";
 import ConfirmOrder from "./Pages/ConfirmOrder/ConfirmOrder";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import AddBrand from "./Pages/Dashboard/Admin/AddBrand";
+import AddProduct from "./Pages/Dashboard/Admin/AddProduct";
+import ManageProduct from "./Pages/Dashboard/Admin/ManageProduct";
+import ManageUsers from "./Pages/Dashboard/Admin/ManageUsers";
+import ManageBrand from "./Pages/Dashboard/Admin/ManageBrand";
 
 export const router = createBrowserRouter([
   {
@@ -88,4 +94,30 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "addBrand",
+        element: <AddBrand></AddBrand>
+      },
+      {
+        path: "manageBrand",
+        element: <ManageBrand></ManageBrand>
+      },
+      {
+        path: "addProduct",
+        element: <AddProduct></AddProduct>
+      },
+      {
+        path: "manageProduct",
+        element: <ManageProduct></ManageProduct>
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>
+      }
+    ]
+  }
 ]);

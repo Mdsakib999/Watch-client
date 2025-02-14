@@ -6,9 +6,7 @@ import { FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
 import { AuthContext } from "../../Provider/AuthProvider";
-
-
-
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -26,9 +24,27 @@ const Navbar = () => {
 
   const handleLogout = () => {
     if (user) {
-      logOut();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you really want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, Logout!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          logOut().then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Logged Out",
+              text: "You have been logged out successfully!",
+            });
+          });
+        }
+      });
     } else {
-      Navigate("/login");
+      navigate("/login");
     }
   };
 
@@ -76,6 +92,11 @@ const Navbar = () => {
           <li className="cursor-pointer">
             <Link to="/onSale">On Sale</Link>
           </li>
+          {user && (
+            <li className="cursor-pointer">
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          )}
           {/* <li className="cursor-pointer">On Sale</li> */}
         </ul>
 
@@ -91,62 +112,61 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex items-center space-x-3 text-lg">
-  {/* Search Icon - Visible only on smaller screens */}
-  <AiOutlineSearch className="cursor-pointer md:hidden" />
+          {/* Search Icon - Visible only on smaller screens */}
+          <AiOutlineSearch className="cursor-pointer md:hidden" />
 
-  {/* Shopping Cart with Badge */}
-  <div onClick={toggleSidebar} className="relative cursor-pointer">
-    <FaShoppingCart className="lg:text-3xl" />
-    <span className="absolute -top-3 -right-2.5 px-1 md:px-1.5 bg-black text-white text-xs md:text-sm rounded-full">
-      1
-    </span>
-  </div>
+          {/* Shopping Cart with Badge */}
+          <div onClick={toggleSidebar} className="relative cursor-pointer">
+            <FaShoppingCart className="lg:text-3xl" />
+            <span className="absolute -top-3 -right-2.5 px-1 md:px-1.5 bg-black text-white text-xs md:text-sm rounded-full">
+              1
+            </span>
+          </div>
 
-  {/* Mobile Login Icon (Hidden on Larger Screens) */}
-  <Link to="/login" className="lg:hidden">
-    <FaUser className="cursor-pointer" />
-  </Link>
+          {/* Mobile Login Icon (Hidden on Larger Screens) */}
+          <Link to="/login" className="lg:hidden">
+            <FaUser className="cursor-pointer" />
+          </Link>
 
-  {/* Desktop User Profile/Login - Visible Only on Larger Screens */}
-  <div className="hidden lg:block">
-    {user ? (
-      <div className="dropdown dropdown-bottom dropdown-end">
-      {user ? (
-        <div className=" flex items-center gap-x-2">
-          <FaUserCircle
-            tabIndex={0}
-            role="button"
-            size={34}
-            className=" rounded-full cursor-pointer "
-          />
+          {/* Desktop User Profile/Login - Visible Only on Larger Screens */}
+          <div className="hidden lg:block">
+            {user ? (
+              <div className="dropdown dropdown-bottom dropdown-end">
+                {user ? (
+                  <div className=" flex items-center gap-x-2">
+                    <FaUserCircle
+                      tabIndex={0}
+                      role="button"
+                      size={34}
+                      className=" rounded-full cursor-pointer "
+                    />
 
-              <button
-                onClick={handleLogout} // Correctly renamed to handleLogout
+                    <button
+                      onClick={handleLogout} // Correctly renamed to handleLogout
+                      className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={googleSignIn} // Assuming googleSignIn for login
+                    className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+                  >
+                    Log In
+                  </button>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
                 className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
               >
-                Logout
-              </button>
+                Login
+              </Link>
+            )}
+          </div>
         </div>
-      ) : (
-        <button
-          onClick={googleSignIn} // Assuming googleSignIn for login
-          className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
-        >
-          Log In
-        </button>
-      )}
-    </div>
-    ) : (
-      <Link
-        to="/login"
-        className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
-      >
-        Login
-      </Link>
-    )}
-  </div>
-</div>
-
       </nav>
 
       {/* Mobile Menu */}
