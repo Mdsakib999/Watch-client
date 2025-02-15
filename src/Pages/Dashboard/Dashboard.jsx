@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Outlet, Link, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -9,9 +9,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex justify-between h-screen">
       {/* Left Sidebar (25% width) */}
-      <div className="w-1/4 bg-gray-800 text-white p-4">
+      <div className="w-[300px] bg-gray-800 text-white p-4 fixed left-0 top-0 bottom-0">
         <h2 className="text-2xl font-semibold mb-6">Dashboard</h2>
         <ul className="space-y-4">
           <li>
@@ -67,7 +67,7 @@ const Dashboard = () => {
       </div>
 
       {/* Right Content (75% width) */}
-      <div className="w-3/4 p-4 bg-gray-100">
+      <div className="w-full p-4 md:ml-[300px] bg-gray-100">
         {/* Content of the Outlet will be rendered here */}
         <Outlet />
       </div>

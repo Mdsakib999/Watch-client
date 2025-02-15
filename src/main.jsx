@@ -4,12 +4,16 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routs.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
+import { Provider } from 'react-redux'
+import { store } from "./Redux/store.js";
 // import AuthProvider from "./context/AuthProvider"; 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider> {/* Wrap the entire app with AuthProvider */}
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider> {/* Wrap the entire app with AuthProvider */}
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>
 );
