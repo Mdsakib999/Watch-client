@@ -17,7 +17,7 @@ const Dashboard = () => {
           <li>
             <Link
               to="/dashboard/manageOrders"
-              className={`hover:text-blue-400 ${isActive('/dashboard/addBrand')}`}
+              className={`hover:text-blue-400 ${isActive('/dashboard/manageOrders')}`}
             >
               Manage Orders
             </Link>

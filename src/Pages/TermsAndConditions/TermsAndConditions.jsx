@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const TermsAndConditions = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto p-8 ">
       <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">

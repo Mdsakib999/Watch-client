@@ -76,7 +76,7 @@ const ManageUsers = () => {
               <td className="border border-gray-300 px-4 py-2">
                 <button
                   onClick={() => handleDelete(user.email)}
-                  className="bg-red-500 text-white py-1 px-4 rounded"
+                  className="bg-red-500 text-white py-1 px-4 rounded cursor-pointer"
                 >
                   Delete
                 </button>
