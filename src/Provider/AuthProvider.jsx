@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect } from "react";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -9,6 +11,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from 'axios';
 
 export const AuthContext = createContext(null);
 
@@ -46,9 +49,21 @@ const AuthProvider = ({ children }) => {
 
   // Monitor authentication state
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser); // Update user state when authentication state changes
-      setLoading(false); // Stop loading when state changes
+      // Stop loading when state changes
+      if (currentUser) {
+        console.log(currentUser);
+        const res = await axios.post(`http://localhost:5000/jwt`, { email: currentUser.email })
+        if (res.data) {
+          localStorage.setItem('auth', res.data)
+          setLoading(false);
+        }
+      }
+      else {
+        localStorage.removeItem('auth')
+        setLoading(false);
+      }
     });
 
     // Cleanup on unmount

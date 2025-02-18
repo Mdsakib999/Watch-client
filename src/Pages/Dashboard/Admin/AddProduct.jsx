@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useGetBrandQuery } from '../../../Redux/features/Admin/admin.api';
+import { useAddProductMutation, useGetBrandQuery } from '../../../Redux/features/Admin/admin.api';
+import { cloudinaryUploadMultiple } from '../../../utils/cloudinary';
 
 const AddProduct = () => {
     const { data: brandData = [] } = useGetBrandQuery()
-    console.log(brandData);
+    const [addProduct] = useAddProductMutation()
     const [product, setProduct] = useState({
         name: '',
         details: '',
@@ -40,30 +41,28 @@ const AddProduct = () => {
         e.preventDefault()
 
         try {
-            console.log(product);
-            // const response = await fetch('/api/products', {
-            //     method: 'POST',
-            //     body: formData,
-            // });
+            const uploadedImages = await cloudinaryUploadMultiple(product.images)
+            product.images = uploadedImages
 
-            // if (response.ok) {
-            //     alert('Product uploaded successfully!');
-            //     setProduct({
-            //         name: '',
-            //         details: '',
-            //         rating: 0,
-            //         brand: '',
-            //         images: [],
-            //         regular_price: 0,
-            //         discount_price: 0,
-            //         availability: 'In Stock',
-            //         category: '',
-            //         gender: 'Unisex',
-            //         productDetails: '',
-            //     });
-            // } else {
-            //     alert('Failed to upload product.');
-            // }
+            const response = await addProduct(product)
+            if (response.data) {
+                alert('Product uploaded successfully!');
+                setProduct({
+                    name: '',
+                    details: '',
+                    rating: 0,
+                    brand: '',
+                    images: [],
+                    regular_price: 0,
+                    discount_price: 0,
+                    availability: 'In Stock',
+                    category: '',
+                    gender: 'Unisex',
+                    productDetails: '',
+                });
+            } else {
+                alert('Failed to upload product.');
+            }
         } catch (error) {
             console.error('Error uploading product:', error);
             alert('An error occurred while uploading the product.');
@@ -138,6 +137,7 @@ const AddProduct = () => {
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             required
                         >
+                            <option value={''}>Choose one</option>
                             {
                                 brandData.map(item => <option key={item._id} value={item.name}>{item.name}</option>)
                             }
