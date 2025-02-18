@@ -16,6 +16,14 @@ const Dashboard = () => {
         <ul className="space-y-4">
           <li>
             <Link
+              to="/dashboard/manageOrders"
+              className={`hover:text-blue-400 ${isActive('/dashboard/addBrand')}`}
+            >
+              Manage Orders
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/dashboard/addBrand"
               className={`hover:text-blue-400 ${isActive('/dashboard/addBrand')}`}
             >

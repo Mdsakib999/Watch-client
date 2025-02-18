@@ -22,6 +22,7 @@ import ManageProduct from "./Pages/Dashboard/Admin/ManageProduct";
 import ManageUsers from "./Pages/Dashboard/Admin/ManageUsers";
 import ManageBrand from "./Pages/Dashboard/Admin/ManageBrand";
 import PrivetRoutes from "./routes/PrivetRoutes";
+import ManageOrders from "./Pages/Dashboard/Admin/ManageOrders";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,11 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <PrivetRoutes><Dashboard></Dashboard></PrivetRoutes>,
     children: [
+      {
+        path: "manageOrders",
+        element: <ManageOrders></ManageOrders>
+
+      },
       {
         path: "addBrand",
         element: <AddBrand></AddBrand>
