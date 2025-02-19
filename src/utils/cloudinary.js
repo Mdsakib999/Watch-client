@@ -13,7 +13,7 @@ const cloudinaryUpload = async (imageFile) => {
     formData
   );
 
-  return response.data;
+  return response.data.secure_url;
 };
 
 const cloudinaryUploadMultiple = async (files) => {

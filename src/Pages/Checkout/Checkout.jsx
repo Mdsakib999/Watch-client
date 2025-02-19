@@ -58,7 +58,7 @@ const Checkout = () => {
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="John"
                 />
               </div>
@@ -69,7 +69,7 @@ const Checkout = () => {
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="123 Main St"
                 />
               </div>
@@ -80,7 +80,7 @@ const Checkout = () => {
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="New York"
                 />
               </div>
@@ -91,7 +91,7 @@ const Checkout = () => {
                 </label>
                 <input
                   type="tel"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="+1 123 456 7890"
                 />
               </div>
@@ -115,7 +115,7 @@ const Checkout = () => {
                     <span>{product.name}</span>
                     <span className="text-gray-600  text-sm">
                       {" "}
-                      X {product.quantity}
+                  {product.price}    X {product.quantity}
                     </span>
                   </div>
 

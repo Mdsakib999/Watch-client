@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FiLogIn } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -117,16 +118,37 @@ const Navbar = () => {
 
           {/* Shopping Cart with Badge */}
           <div onClick={toggleSidebar} className="relative cursor-pointer">
-            <FaShoppingCart className="lg:text-3xl" />
+            <FaShoppingCart className=" lg:text-3xl" />
             <span className="absolute -top-3 -right-2.5 px-1 md:px-1.5 bg-black text-white text-xs md:text-sm rounded-full">
               1
             </span>
           </div>
 
           {/* Mobile Login Icon (Hidden on Larger Screens) */}
-          <Link to="/login" className="lg:hidden">
-            <FaUser className="cursor-pointer" />
-          </Link>
+
+          {user ? (
+            <Link to="/" className="lg:hidden group">
+              <div className="hidden group-hover:block absolute top-7 right-0 mt-2 w-40 bg-slate-100 shadow-lg rounded-md p-2">
+                <Link
+                  to="/dashboard"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-200"
+                >
+                  Logout
+                </button>
+              </div>
+              <FaUserCircle className="cursor-pointer" />
+            </Link>
+          ) : (
+            <Link to="/login" className="lg:hidden">
+              <FiLogIn className="cursor-pointer text-xl" />
+            </Link>
+          )}
 
           {/* Desktop User Profile/Login - Visible Only on Larger Screens */}
           <div className="hidden lg:block">
@@ -134,16 +156,33 @@ const Navbar = () => {
               <div className="dropdown dropdown-bottom dropdown-end">
                 {user ? (
                   <div className=" flex items-center gap-x-2">
+                    <div className=" group">
                     <FaUserCircle
                       tabIndex={0}
                       role="button"
                       size={34}
-                      className=" rounded-full cursor-pointer "
+                      className=" rounded-full cursor-pointer  "
                     />
+
+                    <div className="hidden group-hover:block absolute top-10 right-20 mt-2 w-40 bg-slate-100 shadow-lg rounded-md p-2">
+                      <Link
+                        to="/dashboard"
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                      >
+                        Dashboard
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-200"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                    </div>
 
                     <button
                       onClick={handleLogout} // Correctly renamed to handleLogout
-                      className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+                      className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right cursor-pointer"
                     >
                       Logout
                     </button>
@@ -151,7 +190,7 @@ const Navbar = () => {
                 ) : (
                   <button
                     onClick={googleSignIn} // Assuming googleSignIn for login
-                    className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right"
+                    className="px-5 pb-2 pt-1 font-semibold text-white transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] rounded-md shadow-lg hover:bg-right "
                   >
                     Log In
                   </button>

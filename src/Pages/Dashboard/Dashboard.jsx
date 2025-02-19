@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className="flex justify-between h-screen">
       {/* Left Sidebar (25% width) */}
-      <div className="w-[300px] bg-gray-800 text-white p-4 fixed left-0 top-0 bottom-0">
+      <div className="w-[300px] bg-gray-800 text-white p-4  fixed left-0 top-0 bottom-0">
         <h2 className="text-2xl font-semibold mb-6">Dashboard</h2>
         <ul className="space-y-4">
           <li>

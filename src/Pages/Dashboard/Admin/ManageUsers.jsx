@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from 'react';
+
 import Swal from 'sweetalert2';
+import { useGetAllUsersQuery, useRoleChangeMutation } from '../../../Redux/features/Admin/admin.api';
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    // Fetch users from the backend
-    fetch('http://localhost:5000/users')
-      .then((res) => res.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.error("Error fetching users:", err));
-  }, []);
-
+  const [userRoleChange,] = useRoleChangeMutation()
+  const { data: userData } = useGetAllUsersQuery()
+  const users = userData || []
   // Handle user deletion with confirmation
   const handleDelete = (email) => {
     // Show confirmation dialog
@@ -32,7 +26,7 @@ const ManageUsers = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               // Remove the user from the state if deletion was successful
-              setUsers(users.filter((user) => user.email !== email));
+              // setUsers(users.filter((user) => user.email !== email));
               Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -53,6 +47,28 @@ const ManageUsers = () => {
       }
     });
   };
+  const handleRoleChange = (data) => {
+    console.log(data);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are You want to Role Change',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await userRoleChange(data)
+        if (res.data) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Oops...',
+            text: 'User Role Update Successfully',
+          });
+        }
+      }
+    })
+  }
 
   return (
     <div>
@@ -73,13 +89,31 @@ const ManageUsers = () => {
               <td className="border border-gray-300 px-4 py-2">{user.name}</td>
               <td className="border border-gray-300 px-4 py-2">{user.email}</td>
               <td className="border border-gray-300 px-4 py-2">{user.role}</td>
-              <td className="border border-gray-300 px-4 py-2">
+              <td className="border border-gray-300 px-4 py-2 flex justify-center gap-x-4">
+                <select
+                  id="role"
+                  name="role"
+                  defaultValue={user.role}
+                  onChange={(e) => {
+                    const data = {
+                      id: user._id,
+                      data: { role: e.target.value }
+                    }
+                    handleRoleChange(data)
+                  }}
+                  className="mt-1 block w-ful px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+                  required
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
                 <button
                   onClick={() => handleDelete(user.email)}
                   className="bg-red-500 text-white py-1 px-4 rounded cursor-pointer"
                 >
                   Delete
                 </button>
+
               </td>
             </tr>
           ))}
