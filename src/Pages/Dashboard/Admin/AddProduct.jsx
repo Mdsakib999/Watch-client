@@ -278,6 +278,7 @@ const AddProduct = () => {
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
                             required
                         >
+                            <option value="">Select a Gender</option>
                             <option value="Unisex">Unisex</option>
                             <option value="Men">Men</option>
                             <option value="Women">Women</option>

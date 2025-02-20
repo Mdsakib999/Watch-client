@@ -1,19 +1,11 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGetAllProductQuery } from "../../../Redux/features/Admin/admin.api";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDeleteProductMutation, useGetAllProductQuery } from "../../../Redux/features/Admin/admin.api";
+import Swal from "sweetalert2";
 
 const ManageProduct = () => {
-
-    // const navigate = useNavigate();
-    // const { data: categoriesData = [] } = useQuery({
-    //     queryKey: ['category',],
-    //     queryFn: async () => {
-    //         const res = await axiosNotSecure.get(`/category`);
-    //         return res.data;
-    //     },
-    // });
-    const categoryOptions = [].map(item => ({ option: item.category }))
+    const [deleteProduct] = useDeleteProductMutation()
 
     // State variables
     const [page, setPage] = useState(1);
@@ -25,23 +17,6 @@ const ManageProduct = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [category, setCategory] = useState('');
 
-    // const categories = categoriesData.map(item => {
-    //     const str = item?.category.split(' ')
-    //         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    //         .join(' ');
-    //     return { option: str, value: item?.category }
-    // })
-
-
-    // const { data: products = [], refetch, isLoading } = useQuery({
-    //     queryKey: ['product', page, limit, sortBy, sortOrder, search, minPrice, maxPrice, category],
-    //     queryFn: async () => {
-    //         const res = await axiosNotSecure.get(`/product`, {
-    //             params: { page, limit, sortBy, sortOrder, search, minPrice, maxPrice, category }
-    //         });
-    //         return res.data;
-    //     },
-    // });
     const params = [
         { name: "page", value: page },
         { name: 'limit', value: limit },
@@ -53,21 +28,31 @@ const ManageProduct = () => {
         { name: 'category', value: category },
         { name: 'brand', value: category },
     ]
-    const { data: productData, isLoading } = useGetAllProductQuery(params)
+    const { data: productData, isLoading, refetch } = useGetAllProductQuery(params)
     const products = productData?.data || []
     // const { totalResults, totalPages, currentPage, pageSize } = productData?.pagination
 
     const handleDelete = async (id) => {
-        const isDelete = confirm('Do You want to Delete Product')
-        // if (isDelete) {
-
-        //     const res = await axiosNotSecure.delete(`/productDelete/${id}`);
-        //     if (res) {
-        //         toast.success('Product Deleted Successfully ')
-        //         refetch();
-        //     }
-        // }
-
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are You want to Delete Product',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await deleteProduct(id)
+                if (res.data) {
+                    refetch()
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Oops...',
+                        text: 'Product Delete Successfully',
+                    });
+                }
+            }
+        })
 
     };
 
@@ -137,11 +122,13 @@ const ManageProduct = () => {
                 />
                 <select value={category} onChange={handleCategoryChange} className="border px-4 py-2 rounded">
                     <option value="">All Categories</option>
-                    {categoryOptions?.map((cat) => (
-                        <option key={cat} value={cat.option}>
-                            {cat.option}
-                        </option>
-                    ))}
+                    <option value="Casual">Casual</option>
+                    <option value="Formal">Formal</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Luxury">Luxury</option>
+                    <option value="Smartwatch">Smartwatch</option>
+                    <option value="Vintage">Vintage</option>
+                    <option value="Others">Others</option>
                 </select>
             </div>
 
@@ -154,8 +141,8 @@ const ManageProduct = () => {
                             <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Price</th>
                             <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Category</th>
                             <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Brand</th>
-                            <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Published</th>
-                            <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Status</th>
+                            {/* <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Published</th> */}
+                            {/* <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Status</th> */}
                             <th className="py-2 px-4 border-b-2 border-gray-200 text-left text-sm font-semibold text-gray-700">Actions</th>
                         </tr>
                     </thead>
@@ -173,33 +160,25 @@ const ManageProduct = () => {
                                         <td className="py-2 px-4 border-b border-gray-200">${product.regular_price}</td>
                                         <td className="py-2 px-4 border-b border-gray-200">{product.category}</td>
                                         <td className="py-2 px-4 border-b border-gray-200">{product.brand || "none"}</td>
-                                        <td className="py-2 px-4 border-b border-gray-200">
-                                            {/* <Switch
-                                                checked={product.status === 'active'}
-                                                onChange={() => togglePublished(product._id)}
-                                                className={`${product.status === 'active' ? 'bg-green-500' : 'bg-gray-300'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none`}
-                                            >
-                                                <span className="sr-only">Publish Toggle</span>
-                                                <span
-                                                    className={`${product.status === 'active' ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}
-                                                />
-                                            </Switch> */}
+                                        {/* <td className="py-2 px-4 border-b border-gray-200">
+
                                             <input
                                                 id="switch-link"
                                                 type="checkbox"
                                                 defaultChecked={product.availability == 'In Stock'}
                                                 className="appearance-none relative inline-block rounded-full w-12 h-6 cursor-pointer before:inline-block before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-full before:bg-stone-200 before:transition-colors before:duration-200 before:ease-in after:absolute after:top-2/4 after:left-0 after:-translate-y-2/4 after:w-6 after:h-6 after:border after:border-stone-200 after:bg-white after:rounded-full checked:after:translate-x-full after:transition-all after:duration-200 after:ease-in disabled:opacity-50 disabled:cursor-not-allowed dark:after:bg-white checked:before:bg-stone-800 checked:after:border-stone-800"
                                             />
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-gray-200">
+                                        </td> */}
+                                        {/* <td className="py-2 px-4 border-b border-gray-200">
                                             <p className={`text-sm ${product.availability === 'In Stock' ? 'text-green-500' : 'text-red-500'}`}>
                                                 {product.availability === 'In Stock' ? 'Published' : 'Unpublished'}
                                             </p>
-                                        </td>
+                                        </td> */}
                                         <td className="py-[16px] px-4 flex border-b border-gray-200">
-                                            <button
+                                            <Link
+                                                to={`/dashboard/edit-product/${product._id}`}
                                                 // onClick={() => handleEdit(product._id)}
-                                                className="mr-2 bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 transition duration-200">Edit</button>
+                                                className="mr-2 bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 transition duration-200">Edit</Link>
                                             <button onClick={() => handleDelete(product._id)} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-200">Delete</button>
                                         </td>
                                     </tr>
