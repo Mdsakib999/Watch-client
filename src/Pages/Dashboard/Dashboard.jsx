@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useGetAllUsersQuery } from '../../Redux/features/Admin/admin.api';
+import Loading from '../../Components/Loading/Loading';
 
 const Dashboard = () => {
   // Get the authenticated user from AuthProvider
@@ -16,7 +17,7 @@ const Dashboard = () => {
   const matchedUser = users.find((u) => u.email === user?.email);
 
   // Handle loading and error states
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div> <Loading></Loading> </div>;
   if (error) return <div>Error loading user data</div>;
 
   // Retrieve the user's role from the matched database record
@@ -49,7 +50,7 @@ const Dashboard = () => {
   return (
     <div className="flex justify-between h-screen">
       {/* Left Sidebar */}
-      <div className="w-[300px] bg-gray-800 text-white p-4 fixed left-0 top-0 bottom-0 bb">
+      <div className="w-[300px] bg-gray-800 text-white p-4 fixed left-0 top-0 bottom-0 ">
         <h2 className="text-2xl font-semibold mb-4 pb-2 border-b">Dashboard</h2>
         <ul className="space-y-4">
           {routesToRender.map((route) => (

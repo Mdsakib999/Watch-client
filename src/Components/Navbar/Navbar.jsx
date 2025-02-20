@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { FaShoppingCart, FaUser, FaUserCircle } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
+import "./Navbar.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +9,7 @@ import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FiLogIn } from "react-icons/fi";
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -52,7 +54,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 py-3 shadow-md z-50 sticky top-0 bg-white/20 backdrop-blur-lg border border-white/30 ">
+      <nav className="flex items-center justify-between px-6 py-3 shadow-md z-50 sticky top-0 bg-white/30 backdrop-blur-lg border border-white/30 ">
         {/* Logo & Hamburger Icon */}
         <div className="flex items-center space-x-4">
           <FaBars
@@ -80,21 +82,21 @@ const Navbar = () => {
               </Link>
             </ul>
           </li> */}
-          <li className="cursor-pointer">
+          <li className="cursor-pointer nav_a">
             <Link to="/allProducts">All Watch</Link>
           </li>
 
-          <li className="cursor-pointer">
+          <li className="cursor-pointer nav_a">
             <Link to="/allProducts">New Arrivals</Link>
           </li>
-          <li className="cursor-pointer">
+          <li className="cursor-pointer nav_a">
             <Link to="/brands">Brands</Link>
           </li>
-          <li className="cursor-pointer">
+          <li className="cursor-pointer nav_a">
             <Link to="/onSale">On Sale</Link>
           </li>
           {user && (
-            <li className="cursor-pointer">
+            <li className="cursor-pointer nav_a">
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}

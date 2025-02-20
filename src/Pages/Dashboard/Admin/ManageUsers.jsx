@@ -71,8 +71,8 @@ const ManageUsers = () => {
   }
 
   return (
-    <div>
-      <p className='text-3xl font-semibold text-center mt-3 mb-5'>Here are all users:</p>
+    <div className='px-4'>
+      <p className='text-3xl font-semibold text-center mt-3 mb-5 '>Here are all users:</p>
 
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
@@ -89,7 +89,7 @@ const ManageUsers = () => {
               <td className="border border-gray-300 px-4 py-2">{user.name}</td>
               <td className="border border-gray-300 px-4 py-2">{user.email}</td>
               <td className="border border-gray-300 px-4 py-2">{user.role}</td>
-              <td className="border border-gray-300 px-4 py-2 flex justify-center gap-x-4">
+              <td className="border border-gray-300 px-4 py-2 flex justify-center gap-x-4 ">
                 <select
                   id="role"
                   name="role"
