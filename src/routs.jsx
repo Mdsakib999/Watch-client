@@ -23,6 +23,7 @@ import ManageUsers from "./Pages/Dashboard/Admin/ManageUsers";
 import ManageBrand from "./Pages/Dashboard/Admin/ManageBrand";
 import PrivetRoutes from "./routes/PrivetRoutes";
 import ManageOrders from "./Pages/Dashboard/Admin/ManageOrders";
+import OrderHistory from "./Pages/Dashboard/User/OrderHistory";
 
 export const router = createBrowserRouter([
   {
@@ -124,6 +125,10 @@ export const router = createBrowserRouter([
       {
         path: "manageUsers",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "myOrders",
+        element: <OrderHistory></OrderHistory>
       }
     ]
   }
