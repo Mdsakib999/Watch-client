@@ -71,8 +71,8 @@ const ManageUsers = () => {
   }
 
   return (
-    <div>
-      <p className='text-3xl font-semibold text-center mt-3 mb-5'>Here are all users:</p>
+    <div className='px-4'>
+      <p className='text-3xl font-semibold text-center mt-3 mb-5 '>Here are all users:</p>
 
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
@@ -89,7 +89,7 @@ const ManageUsers = () => {
               <td className="border border-gray-300 px-4 py-2">{user.name}</td>
               <td className="border border-gray-300 px-4 py-2">{user.email}</td>
               <td className="border border-gray-300 px-4 py-2">{user.role}</td>
-              <td className="border border-gray-300 px-4 py-2 flex gap-2">
+              <td className="border border-gray-300 px-4 py-2 flex justify-center gap-x-4 ">
                 <select
                   id="role"
                   name="role"
@@ -101,7 +101,7 @@ const ManageUsers = () => {
                     }
                     handleRoleChange(data)
                   }}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-ful px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
                   required
                 >
                   <option value="user">User</option>
@@ -109,7 +109,7 @@ const ManageUsers = () => {
                 </select>
                 <button
                   onClick={() => handleDelete(user.email)}
-                  className="bg-red-500 text-white py-1 px-4 rounded"
+                  className="bg-red-500 text-white py-1 px-4 rounded cursor-pointer"
                 >
                   Delete
                 </button>

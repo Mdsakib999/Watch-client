@@ -257,7 +257,7 @@ const AddProduct = () => {
                             <option value="Sports">Sports</option>
                             <option value="Luxury">Luxury</option>
                             <option value="Smartwatch">Smartwatch</option>
-                            <option value="Vintage">Vintage</option>
+                            {/* <option value="Vintage">Vintage</option> */}
                             <option value="Others">Others</option>
                         </select>
                     </div>

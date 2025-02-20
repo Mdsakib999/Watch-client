@@ -97,7 +97,7 @@ const ManageBrand = () => {
   };
 
   return (
-    <div>
+    <div className=' bg-gray-50 pb-20 px-5'>
       <p className='text-3xl font-semibold text-center mt-3 mb-5'>Manage All Brands</p>
       <table className="table-auto border-collapse border border-gray-300 w-full text-center">
         <thead>
