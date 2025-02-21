@@ -13,6 +13,10 @@ const categoryImages = {
 };
 
 const FilteredProducts = () => {
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const [searchParams] = useSearchParams();
 
   const initialCategory = searchParams.get("category") || "";
