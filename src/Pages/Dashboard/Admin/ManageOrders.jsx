@@ -2,7 +2,7 @@ import React from 'react';
 
 const ManageOrders = () => {
     return (
-        <div className='px-5 '>
+        <div className='px-5 overflow-x-auto'>
             <p className='text-3xl font-semibold mt-5 text-center mb-8'>Manage Orders</p>
 
             <div>

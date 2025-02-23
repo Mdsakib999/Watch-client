@@ -100,13 +100,13 @@ const ManageProduct = () => {
     return (
         <div className="container mx-auto p-6 bg-white text-black shadow-lg min-h-screen rounded-md">
             <h2 className="text-2xl font-bold mb-6 text-center">Manage Products</h2>
-            <div className="mb-4 flex justify-between items-center">
+            <div className="mb-4 md:flex justify-between items-center">
                 <input
                     type="text"
                     placeholder="Search"
                     value={search}
                     onChange={handleSearchChange}
-                    className="border px-4 py-2 rounded"
+                    className="border px-4 py-2 rounded mb-3 md:mb-0"
                 />
                 <div>
                     <label className="mr-2">Sort by:</label>
@@ -120,7 +120,7 @@ const ManageProduct = () => {
                     </select>
                 </div>
             </div>
-            <div className="mb-4 flex justify-between items-center">
+            <div className="mb-4  lg:flex justify-between items-center">
                 <input
                     type="number"
                     placeholder="Min Price"
@@ -133,7 +133,7 @@ const ManageProduct = () => {
                     placeholder="Max Price"
                     value={maxPrice}
                     onChange={handleMaxPriceChange}
-                    className="border px-4 py-2 rounded mr-2"
+                    className="border px-4 py-2 rounded mr-2 my-2 md:my-0"
                 />
                 <select value={category} onChange={handleCategoryChange} className="border px-4 py-2 rounded">
                     <option value="">All Categories</option>
@@ -207,7 +207,7 @@ const ManageProduct = () => {
                         {/* </div> */}
                     </tbody>
                 </table>
-                <div className="flex justify-between items-end  mt-4 gap-4">
+                <div className="flex justify-between items-end  mt-4 gap-4 ">
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

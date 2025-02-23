@@ -115,7 +115,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="font-bold">Job Info</h5>
+            <h5 className="font-bold">Useful Links</h5>
             <ul className="mt-4 space-y-2">
               <li>
                 <Link to="/termsAndConditions">
