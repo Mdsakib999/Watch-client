@@ -4,6 +4,9 @@ import ImageGallery from "./ProductDetailsComponent/ImageGallery";
 import RenderStars from "./ProductDetailsComponent/RenderStars";
 import { data } from "../../../public/data";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useGetProductQuery } from "../../Redux/features/Admin/admin.api";
+import { addToDb2 } from './../../utils/setLocalStorage';
+import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
   useEffect(() => {
@@ -12,10 +15,11 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  console.log(id);
   const [activeTab, setActiveTab] = useState("details");
   const [showFeatures, setShowFeatures] = useState(false);
-  const product = data.find((item) => item._id === id);
-
+  // const product = data.find((item) => item._id === id);
+  const { data: product = {}, isLoading } = useGetProductQuery(id)
   // Static FAQs (same for every product)
   const faqs = [
     {
@@ -31,7 +35,27 @@ const ProductDetails = () => {
       answer: "Yes, this watch is water-resistant up to 10 Bar.",
     },
   ];
-
+  const handleAddToCart = (data) => {
+    const discountedPrice = data.discount_price
+      ? Number(data.regular_price) - (Number(data.regular_price) * Number(data.discount_price)) / 100
+      : Number(data.regular_price);
+    const displayPrice = Math.round(discountedPrice);
+    const cartData = {
+      productId: data._id,
+      image: data.images[0],
+      price: displayPrice,
+      quantity,
+      name: data.name,
+    };
+    addToDb2(cartData);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Add To Cart ",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
   const renderContent = () => {
     switch (activeTab) {
       case "details":
@@ -41,7 +65,7 @@ const ProductDetails = () => {
             <h2 className="text-2xl font-bold mb-6 text-gray-800">
               Product Details
             </h2>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Object.entries(product.product_details).map(([key, value]) => (
                 <li
                   key={key}
@@ -53,10 +77,10 @@ const ProductDetails = () => {
                   <span className="text-gray-600 ml-2">{value}</span>
                 </li>
               ))}
-            </ul>
+            </ul> */}
 
             {/* Features Section */}
-            <div className="mt-8">
+            {/* <div className="mt-8">
               <button
                 className="flex items-center justify-start gap-5 w-full text-xl font-bold text-gray-800 mb-4 focus:outline-none"
                 onClick={() => setShowFeatures(!showFeatures)}
@@ -80,7 +104,7 @@ const ProductDetails = () => {
                   ))}
                 </ul>
               )}
-            </div>
+            </div> */}
           </div>
         );
       case "ratings":
@@ -108,13 +132,16 @@ const ProductDetails = () => {
         return null;
     }
   };
+  if (isLoading) {
+    return <div>Loading..</div>
+  }
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col lg:flex-row my-10 gap-8">
         {/* Image Gallery - Full width on mobile, 50% on desktop */}
         <div className="w-full lg:w-1/2">
-          <ImageGallery images={product.images} />
+          <ImageGallery images={product?.images} />
         </div>
 
         {/* Product Details - Full width on mobile, 50% on desktop */}
@@ -133,22 +160,26 @@ const ProductDetails = () => {
             {/* Pricing */}
             <div className="mb-6 flex flex-wrap gap-5">
               <p className="text-3xl lg:text-4xl font-bold">
-                ${product.discount_price.toFixed(2)}
+                ${
+                  Math.round(product.discount_price
+                    ? Number(product.regular_price) - (Number(product.regular_price) * Number(product.discount_price)) / 100
+                    : Number(product.regular_price))
+                }
               </p>
-              <p className="text-3xl lg:text-4xl font-semibold">
-                <span className="line-through text-gray-400">
-                  ${product.regular_price.toFixed(2)}
-                </span>
-              </p>
-              <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100 flex items-center">
-                -
-                {Math.round(
-                  ((product.regular_price - product.discount_price) /
-                    product.regular_price) *
-                    100
-                )}
-                %
-              </p>
+              {
+                product.discount_price && <p className="text-3xl lg:text-4xl font-semibold">
+                  <span className="line-through text-gray-400">
+                    ${product.regular_price}
+                  </span>
+                </p>
+              }
+              {
+                product.discount_price && <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100 flex items-center">
+                  -
+                  {product.discount_price}
+                  %
+                </p>
+              }
             </div>
             <p className="text-gray-600 mb-4">{product.details}</p>
           </div>
@@ -193,7 +224,7 @@ const ProductDetails = () => {
             {/* Add to Cart Button */}
             <button
               className="w-full sm:w-auto px-25 py-3 bg-black text-white font-md rounded-full focus:outline-none shadow-lg"
-              onClick={() => console.log("Add to cart clicked")}
+              onClick={() => handleAddToCart(product)}
             >
               Add to Cart
             </button>
@@ -205,31 +236,28 @@ const ProductDetails = () => {
       <div className="mt-10">
         <div className="flex flex-col sm:flex-row justify-around border-b border-gray-200 text-xl font-light">
           <button
-            className={`px-6 py-2 ${
-              activeTab === "details"
-                ? "border-b-2 border-black font-semibold"
-                : "text-gray-500"
-            }`}
+            className={`px-6 py-2 ${activeTab === "details"
+              ? "border-b-2 border-black font-semibold"
+              : "text-gray-500"
+              }`}
             onClick={() => setActiveTab("details")}
           >
             Product Details
           </button>
           <button
-            className={`px-4 py-2 ${
-              activeTab === "ratings"
-                ? "border-b-2 border-black font-semibold"
-                : "text-gray-500"
-            }`}
+            className={`px-4 py-2 ${activeTab === "ratings"
+              ? "border-b-2 border-black font-semibold"
+              : "text-gray-500"
+              }`}
             onClick={() => setActiveTab("ratings")}
           >
             Ratings & Reviews
           </button>
           <button
-            className={`px-4 py-2 ${
-              activeTab === "faqs"
-                ? "border-b-2 border-black font-semibold"
-                : "text-gray-500"
-            }`}
+            className={`px-4 py-2 ${activeTab === "faqs"
+              ? "border-b-2 border-black font-semibold"
+              : "text-gray-500"
+              }`}
             onClick={() => setActiveTab("faqs")}
           >
             FAQs

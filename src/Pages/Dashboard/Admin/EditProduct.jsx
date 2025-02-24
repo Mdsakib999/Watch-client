@@ -11,7 +11,7 @@ import { useGetBrandQuery, useGetProductQuery, useUpdateProductMutation } from '
 const EditProduct = () => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const { data: productData = [] } = useGetProductQuery(id)
+    const { data: productData = {} } = useGetProductQuery(id)
     const [updateProduct] = useUpdateProductMutation()
     const [formData, setFormData] = useState({
         name: '',
