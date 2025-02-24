@@ -1,47 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { BsCartXFill } from "react-icons/bs";
+import { addToDb, getShoppingCart, removeFromDb, removeOneFromDb } from "../../utils/setLocalStorage";
 
 const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [data, setData] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      price: 99.99,
-      quantity: 1,
-      image: "https://img.freepik.com/free-vector/smart-watch-realistic-image-black_1284-11873.jpg?t=st=1738397812~exp=1738401412~hmac=ded31e873f93797991d8a0b04c5c8ef118271eb11c190df04c3ed89c9d901460&w=740",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 299.99,
-      quantity: 2,
-      image: "https://img.freepik.com/free-psd/watch-isolated-transparent-background_191095-27096.jpg?t=st=1738397888~exp=1738401488~hmac=0ce341d923a75484543811a25dc1225d446a2ddcc63cfc663bcc1d6a459f2c9c&w=740",
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = () => {
+      const localData = getShoppingCart();
+      setData(localData);
+    };
+    // Add event listener for "shopping-cart-updated"
+    window.addEventListener("shopping-cart-updated", fetchData);
+
+    // Call fetchData initially
+    fetchData();
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener("shopping-cart-updated", fetchData);
+    };
+  }, []);
 
   // Handle adding an item to the cart
   const handleAddToCart = (product) => {
-    const updatedData = data.map((item) =>
-      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setData(updatedData);
-    console.log(product, "Added to Cart");
+    addToDb(product)
   };
 
   // Handle removing one quantity of an item from the cart
   const handleRemoveCart = (product) => {
-    const updatedData = data.map((item) =>
-      item.id === product.id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    setData(updatedData);
-    console.log(product, "One item removed from Cart");
+    removeOneFromDb(product)
   };
 
   // Handle deleting an item entirely from the cart
@@ -55,8 +47,7 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
       confirmButtonText: "YES",
     }).then((result) => {
       if (result.isConfirmed) {
-        const updatedData = data.filter((item) => item.id !== product.id);
-        setData(updatedData);
+        removeFromDb(product)
         Swal.fire({
           title: "Product Removed",
           text: "Product removed from cart successfully.",
@@ -76,11 +67,10 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
   return (
     <div
-      className={`${
-        isSidebarOpen
-          ? "fixed right-0 top-[50%] transform -translate-y-1/2 z-50"
-          : "fixed right-[-1000px] top-1/2 transform -translate-y-1/2 z-40"
-      } overflow-hidden h-[90vh] md:h-[88%] w-full sm:w-[75%] md:w-[50%] lg:w-[35%] 2xl:w-[28%] transition-right duration-500 bg-white text-black rounded-md shadow-md`}
+      className={`${isSidebarOpen
+        ? "fixed right-0 top-[50%] transform -translate-y-1/2 z-50"
+        : "fixed right-[-1000px] top-1/2 transform -translate-y-1/2 z-40"
+        } overflow-hidden h-[90vh] md:h-[88%] w-full sm:w-[75%] md:w-[50%] lg:w-[35%] 2xl:w-[28%] transition-right duration-500 bg-white text-black rounded-md shadow-md`}
     >
       <div className="flex flex-col h-full">
         {/* Sidebar Header */}
@@ -110,7 +100,7 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                   />
                   <div className="flex flex-col">
                     <p className="font-medium">{item.name}</p>
-                    <p className="text-gray-600">Tk {item.price.toFixed(2)}</p>
+                    <p className="text-gray-600">Tk {item.price}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">

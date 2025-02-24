@@ -23,7 +23,10 @@ import ManageUsers from "./Pages/Dashboard/Admin/ManageUsers";
 import ManageBrand from "./Pages/Dashboard/Admin/ManageBrand";
 import PrivetRoutes from "./routes/PrivetRoutes";
 import ManageOrders from "./Pages/Dashboard/Admin/ManageOrders";
+import EditProduct from "./Pages/Dashboard/Admin/EditProduct";
 import OrderHistory from "./Pages/Dashboard/User/OrderHistory";
+import AddCoupon from "./Pages/Dashboard/Admin/AddCoupon";
+import ManageCoupon from "./Pages/Dashboard/Admin/ManageCoupon";
 
 export const router = createBrowserRouter([
   {
@@ -123,8 +126,20 @@ export const router = createBrowserRouter([
         element: <ManageProduct></ManageProduct>
       },
       {
+        path: "edit-product/:id",
+        element: <EditProduct></EditProduct>
+      },
+      {
         path: "manageUsers",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "coupon",
+        element: <AddCoupon></AddCoupon>
+      },
+      {
+        path: "manageCoupon",
+        element: <ManageCoupon></ManageCoupon>
       },
       {
         path: "myOrders",

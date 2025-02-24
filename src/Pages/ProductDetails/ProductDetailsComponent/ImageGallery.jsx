@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 
 const ImageGallery = ({ images }) => {
-  const [bigImage, setBigImage] = useState(images[0]);
+  console.log(images);
+  const [bigImage, setBigImage] = useState(images[0] || '');
 
   const handleThumbnailClick = (image) => {
     setBigImage(image);
@@ -11,19 +13,18 @@ const ImageGallery = ({ images }) => {
     <div className="grid gap-6 lg:grid-cols-5">
       {/* Thumbnails */}
       <div className="order-last flex gap-4 overflow-x-scroll no-scrollbar lg:order-none lg:flex-col p-1">
-        {images.map((image, id) => (
+        {images?.map((image, index) => (
           <div
-            key={id}
-            className={`overflow-hidden rounded-lg bg-gray-100 cursor-pointer ${
-              image === bigImage
-                ? "ring-1 ring-black"
-                : "hover:opacity-80 transition-opacity"
-            }`}
+            key={index}
+            className={`overflow-hidden rounded-lg bg-gray-100 cursor-pointer ${image === bigImage
+              ? "ring-1 ring-black"
+              : "hover:opacity-80 transition-opacity"
+              }`}
             onClick={() => handleThumbnailClick(image)}
           >
             <img
               src={image}
-              alt={`Thumbnail ${id + 1}`}
+              alt={`Thumbnail ${index + 1}`}
               className="h-24 w-24 md:h-30 md:w-30 object-cover object-center"
             />
           </div>

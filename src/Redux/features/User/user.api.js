@@ -8,7 +8,13 @@ const userApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    confirmOrder: builder.mutation({
+      query: () => ({
+        url: "/create-payment-intent",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useGetMeQuery } = userApi;
+export const { useGetMeQuery, useConfirmOrderMutation } = userApi;
