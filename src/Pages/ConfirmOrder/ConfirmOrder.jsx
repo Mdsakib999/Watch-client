@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsCheckCircle } from "react-icons/bs"; // Heroicons for the success icon
 
 const ConfirmOrder = () => {
   const navigate = useNavigate();
+
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -36,7 +40,7 @@ const ConfirmOrder = () => {
         {/* Action Buttons */}
         <button
           onClick={() => navigate("/")}
-          className="mt-6 w-full bg-black text-white py-3 rounded-full font-medium hover:bg-gray-900 transition duration-300"
+          className="mt-6 w-full bg-black text-white py-3 rounded-full font-medium hover:bg-gray-900 transition duration-300 cursor-pointer"
         >
           Go to Homepage
         </button>

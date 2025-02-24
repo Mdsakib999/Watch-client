@@ -60,13 +60,13 @@ const AllProducts = () => {
 
       {/* Filters Section */}
       <div
-        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300  ${isFilterOpen ? "translate-x-0" : "-translate-x-full"
+        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300 mt-12 lg:mt-0 h-auto ${isFilterOpen ? "translate-x-0" : "-translate-x-full"
           } fixed inset-y-0 left-0 z-20 lg:relative lg:w-1/5 lg:translate-x-0`}
       >
         {isFilterOpen && (
           <button
             onClick={() => setIsFilterOpen(false)}
-            className="absolute top-5 left-48 lg:hidden text-red-600 hover:text-red-500"
+            className="absolute top-5 left-48 lg:hidden text-red-600 hover:text-red-500 cursor-pointer"
           >
             <FaTimes size={24} />
           </button>

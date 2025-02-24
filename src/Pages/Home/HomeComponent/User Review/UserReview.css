@@ -8,14 +8,14 @@
   }
   
   .home-customer .swiper-pagination-bullet {
-    background-color: #ff0000;
+    background-color: #191717;
     
     /* border: 2px solid; */
   }
   
   /* Custom CSS for Swiper pagination bullets when active */
   .swiper-pagination-bullet-active {
-    background-color: #ff5100;
+    background-color: #100601;
     
     /* border: 2px solid; */
   }

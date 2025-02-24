@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className="lg:flex  justify-evenly items-center mt-2 pb-10">
       <div className="lg:w-[60%] mt-5 lg:mt-0 px-4 lg:px-0">
-        <p className="lg:w-[80%] md:mb-7 mb-4 text-3xl md:text-5xl font-bold font-serif">
+        <p className="lg:w-[80%] md:mb-7 mb-4 text-3xl md:text-5xl font-bold font-serif  leading-10 md:leading-16">
           FIND WATCHES THAT MATCHES YOUR STYLE
         </p>
 

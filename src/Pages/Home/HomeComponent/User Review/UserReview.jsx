@@ -72,7 +72,7 @@ const testimonials = [
       </div>
       <div className="flex items-center justify-center pb-4 ">
         <img
-          className="mr-2 w-[57px] h-[57px] rounded-full border-2 border-blue-700"
+          className="mr-2 w-[57px] h-[57px] rounded-full border-2 border-gray-400"
           src={image}
           alt={name}
         />

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate
 import { deleteDB, getShoppingCart } from "../../utils/setLocalStorage";
 import Swal from "sweetalert2";
 import { useConfirmOrderMutation, useGetMeQuery } from "../../Redux/features/User/user.api";
 import { toast } from 'sonner';
+import { axios } from 'axios';
+
 const Checkout = () => {
   const navigate = useNavigate(); // Initialize navigate
   const { data: userData = {} } = useGetMeQuery()
@@ -132,6 +134,8 @@ const Checkout = () => {
       console.log(res.data);
 
 
+
+
       if (res?.data) {
         setCouponDisCountTk(res.data.discount); // Update the discount state
       }
@@ -146,9 +150,9 @@ const Checkout = () => {
       <div className="container mx-auto lg:px-28">
         <h1 className="text-3xl font-bold text-center mb-8">Checkout</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  px-4 md:px-0">
           {/* Shipping Details Form */}
-          <div className="lg:col-span-1 bg-white p-6 rounded-lg shadow-md">
+          <div className="lg:col-span-1 bg-white p-6 rounded-lg shadow-md ">
             <h2 className="text-xl font-semibold mb-6">Shipping Details</h2>
             <form className="space-y-4">
               <div>
@@ -340,8 +344,10 @@ const Checkout = () => {
             </div>
 
             {/* Place Order Button */}
-            <button onClick={handlePlaceOrder} className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-1 cursor-pointer">
-              Place Order
+            <button className="w-full mt-6 bg-black text-white py-3 rounded-full focus:outline-none focus:ring-1 cursor-pointer">
+              <Link to="/confirmOrder">
+                Place Order
+              </Link>
             </button>
           </div>
         </div>
