@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAddProductMutation, useGetBrandQuery } from '../../../Redux/features/Admin/admin.api';
 import { cloudinaryUploadMultiple } from '../../../utils/cloudinary';
+import WriteDescription from '../../../Components/WriteDescription';
 
 const AddProduct = () => {
     const { data: brandData = [] } = useGetBrandQuery()
     const [addProduct] = useAddProductMutation()
+    const [value, setValue] = useState('');
     const [product, setProduct] = useState({
         name: '',
         details: '',
@@ -18,7 +20,12 @@ const AddProduct = () => {
         gender: 'Unisex',
         productDetails: '',
     });
-
+    useEffect(() => {
+        setProduct((prevFormData) => ({
+            ...prevFormData,
+            productDetails: value,
+        }));
+    }, [value]);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProduct((prev) => ({
@@ -301,6 +308,7 @@ const AddProduct = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
               required
             /> */}
+                        <WriteDescription setValue={setValue} value={value} />
                     </div>
 
                     {/* Submit Button */}

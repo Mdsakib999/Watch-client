@@ -5,6 +5,8 @@ import { data } from "../../../public/data.js";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { useGetAllProductQuery } from "../../Redux/features/Admin/admin.api.js";
+import { addToDb } from "../../utils/setLocalStorage.js";
+import Swal from "sweetalert2";
 
 const AllProducts = () => {
   useEffect(() => {
@@ -47,6 +49,27 @@ const AllProducts = () => {
         }))
     );
   });
+  const handelAddToCart = (data) => {
+    const discountedPrice = data.discount_price
+      ? Number(data.regular_price) - (Number(data.regular_price) * Number(data.discount_price)) / 100
+      : Number(data.regular_price);
+    const displayPrice = Math.round(discountedPrice);
+    const cartData = {
+      productId: data._id,
+      image: data.images[0],
+      price: displayPrice,
+      quantity: 1,
+      name: data.name,
+    };
+    addToDb(cartData);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Add To Cart ",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 
   return (
     <div className="flex flex-col lg:flex-row lg:px-4 bg-gray-50 ">
@@ -211,9 +234,9 @@ const AllProducts = () => {
                   }
                 </div>
                 <div className="flex justify-center ">
-                  <button className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
+                  <Link to={''} onClick={() => handelAddToCart(product)} className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
                     Add to Cart
-                  </button>
+                  </Link>
                 </div>
               </div>
             </Link>
