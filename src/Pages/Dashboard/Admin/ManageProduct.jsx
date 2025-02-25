@@ -47,8 +47,8 @@ const ManageProduct = () => {
                     refetch()
                     Swal.fire({
                         icon: 'success',
-                        title: 'Oops...',
-                        text: 'Product Delete Successfully',
+                        title: 'Deleted',
+                        text: 'Product Deleted Successfully',
                     });
                 }
             }
@@ -83,7 +83,7 @@ const ManageProduct = () => {
     // }
 
     return (
-        <div className="container mx-auto p-6 bg-white text-black shadow-lg min-h-screen rounded-md">
+        <div className="container mx-auto p-6 bg-white text-black shadow-lg min-h-screen rounded-md ">
             <h2 className="text-2xl font-bold mb-6 text-center">Manage Products</h2>
             <div className="mb-4 md:flex justify-between items-center">
                 <input
@@ -179,7 +179,7 @@ const ManageProduct = () => {
                                                 to={`/dashboard/edit-product/${product._id}`}
                                                 // onClick={() => handleEdit(product._id)}
                                                 className="mr-2 bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 transition duration-200">Edit</Link>
-                                            <button onClick={() => handleDelete(product._id)} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-200">Delete</button>
+                                            <button onClick={() => handleDelete(product._id)} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-200 cursor-pointer">Delete</button>
                                         </td>
                                     </tr>
                                 ))}

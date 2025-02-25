@@ -36,9 +36,7 @@ const ProductDetails = () => {
     },
   ];
   const handleAddToCart = (data) => {
-    const discountedPrice = data.discount_price
-      ? Number(data.regular_price) - (Number(data.regular_price) * Number(data.discount_price)) / 100
-      : Number(data.regular_price);
+    const discountedPrice = data.discount_price;
     const displayPrice = Math.round(discountedPrice);
     const cartData = {
       productId: data._id,
@@ -158,29 +156,30 @@ const ProductDetails = () => {
               </p>
             </div>
             {/* Pricing */}
-            <div className="mb-6 flex flex-wrap gap-5">
-              <p className="text-3xl lg:text-4xl font-bold">
-                ${
-                  Math.round(product.discount_price
-                    ? Number(product.regular_price) - (Number(product.regular_price) * Number(product.discount_price)) / 100
-                    : Number(product.regular_price))
-                }
-              </p>
-              {
-                product.discount_price && <p className="text-3xl lg:text-4xl font-semibold">
-                  <span className="line-through text-gray-400">
-                    ${product.regular_price}
-                  </span>
-                </p>
-              }
-              {
-                product.discount_price && <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100 flex items-center">
-                  -
-                  {product.discount_price}
-                  %
-                </p>
-              }
-            </div>
+            <div className="flex gap-x-10  items-center mb-5">
+                  <p className="md:text-3xl text-xl font-bold ">
+                    ${product.discount_price}
+                  </p>
+
+                  {product.regular_price && (
+                    <del className="text-xl font-semibold text-gray-400">
+                      ${product.regular_price}
+                    </del>
+                  )}
+
+                  {product.discount_price && product.regular_price && (
+                    <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
+                      -
+                      {Math.round(
+                        ((Number(product.regular_price) -
+                          Number(product.discount_price)) /
+                          Number(product.regular_price)) *
+                          100
+                      )}
+                      %
+                    </p>
+                  )}
+                </div>
             <p className="text-gray-600 mb-4">{product.details}</p>
           </div>
 

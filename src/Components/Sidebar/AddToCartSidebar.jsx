@@ -87,11 +87,13 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto px-4 py-4 ">
           {data.length > 0 ? (
-            data.map((item) => (
+            data.map((item) => ( 
               <div
+              
                 key={item.id}
                 className="flex justify-between mt-8 items-center"
               >
+                {console.log(item)}
                 <div className="flex items-center gap-3 w-[50%]">
                   <img
                     className="w-20 h-20 object-cover rounded"

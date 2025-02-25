@@ -19,7 +19,9 @@ const AllProducts = () => {
     gender: [],
     price: [],
   });
-  const { data: productData, isLoading } = useGetAllProductQuery([{ name: 'limit', value: 100000 }])
+  const { data: productData, isLoading } = useGetAllProductQuery([
+    { name: "limit", value: 100000 },
+  ]);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -32,7 +34,7 @@ const AllProducts = () => {
     }));
   };
   if (isLoading) {
-    return <div>Loading..</div>
+    return <div>Loading..</div>;
   }
   console.log(productData);
   const filteredProducts = productData?.data?.filter((product) => {
@@ -51,8 +53,7 @@ const AllProducts = () => {
   });
   const handelAddToCart = (data) => {
     const discountedPrice = data.discount_price
-      ? Number(data.regular_price) - (Number(data.regular_price) * Number(data.discount_price)) / 100
-      : Number(data.regular_price);
+      
     const displayPrice = Math.round(discountedPrice);
     const cartData = {
       productId: data._id,
@@ -67,24 +68,26 @@ const AllProducts = () => {
       icon: "success",
       title: "Add To Cart ",
       showConfirmButton: false,
-      timer: 1500
+      timer: 1500,
     });
-  }
+  };
 
   return (
     <div className="flex flex-col lg:flex-row lg:px-4 bg-gray-50 ">
       <button
         onClick={() => setIsFilterOpen(true)}
-        className={`lg:hidden fixed  top-14 left-4 border  cursor-pointer hover:text-white px-2 py-2 rounded-full shadow-lg hover:bg-gray-800 transition-colors ${isFilterOpen ? "hidden" : ""
-          }`}
+        className={`lg:hidden fixed  top-14 left-4 border  cursor-pointer hover:text-white px-2 py-2 rounded-full shadow-lg hover:bg-gray-800 transition-colors ${
+          isFilterOpen ? "hidden" : ""
+        }`}
       >
         <FaArrowRight />
       </button>
 
       {/* Filters Section */}
       <div
-        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300 mt-12 lg:mt-0 h-auto ${isFilterOpen ? "translate-x-0" : "-translate-x-full"
-          } fixed inset-y-0 left-0 z-20 lg:relative lg:w-1/5 lg:translate-x-0`}
+        className={`w-3/5 md:w-2/5 lg:w-1/5 p-4 lg:block bg-white transition-transform duration-300 mt-12 lg:mt-0 h-auto ${
+          isFilterOpen ? "translate-x-0" : "-translate-x-full"
+        } fixed inset-y-0 left-0 z-20 lg:relative lg:w-1/5 lg:translate-x-0`}
       >
         {isFilterOpen && (
           <button
@@ -102,18 +105,23 @@ const AllProducts = () => {
           {/* Price Filter */}
           <div>
             <h3 className="font-semibold">Price</h3>
-            {["0-100", "100-200", "200-500", "500-1000", "1000-5000", "10000-20000"].map(
-              (range) => (
-                <label key={range} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    className="mr-2"
-                    onChange={() => handleFilterChange("price", range)}
-                  />
-                  $ {range}
-                </label>
-              )
-            )}
+            {[
+              "0-100",
+              "100-200",
+              "200-500",
+              "500-1000",
+              "1000-5000",
+              "10000-20000",
+            ].map((range) => (
+              <label key={range} className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handleFilterChange("price", range)}
+                />
+                $ {range}
+              </label>
+            ))}
           </div>
 
           {/* Brand */}
@@ -131,10 +139,11 @@ const AllProducts = () => {
               ].map((brand) => (
                 <button
                   key={brand}
-                  className={`px-4 py-1 rounded-full border ${filters.brand.includes(brand)
-                    ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
-                    : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
-                    }  transition-colors`}
+                  className={`px-4 py-1 rounded-full border ${
+                    filters.brand.includes(brand)
+                      ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
+                      : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
+                  }  transition-colors`}
                   onClick={() => handleFilterChange("brand", brand)}
                 >
                   {brand}
@@ -157,10 +166,11 @@ const AllProducts = () => {
               ].map((category) => (
                 <button
                   key={category}
-                  className={`px-4 py-1 rounded-full border ${filters.category.includes(category)
-                    ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
-                    : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
-                    }  transition-colors`}
+                  className={`px-4 py-1 rounded-full border ${
+                    filters.category.includes(category)
+                      ? "bg-black text-white border-black hover:bg-gray-800" // Selected style
+                      : "bg-gray-50 text-black border-gray-300 hover:bg-gray-100" // Default style
+                  }  transition-colors`}
                   onClick={() => handleFilterChange("category", category)}
                 >
                   {category}
@@ -215,26 +225,35 @@ const AllProducts = () => {
                   <p className="text-black">{product.rating}/5.0</p>
                 </div>
                 <div className="flex gap-x-3 justify-between items-center mb-5">
-                  <p className="text-xl font-bold">${
-                    Math.round(product.discount_price
-                      ? Number(product.regular_price) - (Number(product.regular_price) * Number(product.discount_price)) / 100
-                      : Number(product.regular_price))
-                  }</p>
-                  {
-                    product.discount_price && <del className="text-xl font-semibold text-gray-400">
+                  <p className="text-xl font-bold ">
+                    ${product.discount_price}
+                  </p>
+
+                  {product.regular_price && (
+                    <del className="text-xl font-semibold text-gray-400">
                       ${product.regular_price}
                     </del>
-                  }
-                  {
-                    product.discount_price && <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
+                  )}
+
+                  {product.discount_price && product.regular_price && (
+                    <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
                       -
-                      {product.discount_price}
+                      {Math.round(
+                        ((Number(product.regular_price) -
+                          Number(product.discount_price)) /
+                          Number(product.regular_price)) *
+                          100
+                      )}
                       %
                     </p>
-                  }
+                  )}
                 </div>
                 <div className="flex justify-center ">
-                  <Link to={''} onClick={() => handelAddToCart(product)} className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right">
+                  <Link
+                    to={""}
+                    onClick={() => handelAddToCart(product)}
+                    className=" border-gray-400 px-4 py-2 mb-4 rounded-lg font-semibold text-white  transition-all duration-500 bg-gradient-to-r from-[#03b8e1] via-[#112949] to-[#00c4f5] bg-[length:200%_auto] shadow-lg hover:bg-right"
+                  >
                     Add to Cart
                   </Link>
                 </div>

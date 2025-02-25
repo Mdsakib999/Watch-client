@@ -122,8 +122,8 @@ const EditProduct = () => {
     }
 
     return (
-        <form onSubmit={onSubmit} className="max-w-lg md:max-w-5xl mx-auto p-6 text-black bg-white shadow-lg rounded-md">
-            <h2 className="text-2xl font-bold mb-6 text-center">Edit Vape Product</h2>
+        <form onSubmit={onSubmit} className="max-w-lg md:max-w-5xl mx-auto p-6 text-black bg-white shadow-lg rounded-md my-6 ">
+            <h2 className="text-2xl font-bold mb-6 text-center">Edit Watch Info</h2>
 
             {/* Product Name */}
             <div className="mb-4">
@@ -201,7 +201,7 @@ const EditProduct = () => {
 
             {/* Price */}
             <div className="mb-4">
-                <label htmlFor="regular_price" className="block text-gray-700 font-semibold mb-2">Price</label>
+                <label htmlFor="regular_price" className="block text-gray-700 font-semibold mb-2">Regular Price</label>
                 <input
                     type="number"
                     id="regular_price"
@@ -214,7 +214,7 @@ const EditProduct = () => {
 
             {/* Discount Price */}
             <div className="mb-4">
-                <label htmlFor="discount_price" className="block text-gray-700 font-semibold mb-2">Discount Price in %</label>
+                <label htmlFor="discount_price" className="block text-gray-700 font-semibold mb-2">Discount Price</label>
                 <input
                     type="number"
                     id="discount_price"
@@ -310,7 +310,7 @@ const EditProduct = () => {
             <div className="flex justify-center">
                 <button
                     type="submit"
-                    className="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                    className=" p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 cursor-pointer lg:w-[30%]"
                     disabled={isLoading}
                 >
                     {isLoading ? <FaSpinner className="animate-spin text-center w-full" /> : 'Update Product'}

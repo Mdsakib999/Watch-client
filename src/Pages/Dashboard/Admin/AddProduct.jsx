@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { useAddProductMutation, useGetBrandQuery } from '../../../Redux/features/Admin/admin.api';
 import { cloudinaryUploadMultiple } from '../../../utils/cloudinary';
 import WriteDescription from '../../../Components/WriteDescription';
+import { FaSpinner } from 'react-icons/fa';
 
 const AddProduct = () => {
     const { data: brandData = [] } = useGetBrandQuery()
     const [addProduct] = useAddProductMutation()
+    const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('');
     const [product, setProduct] = useState({
         name: '',
@@ -13,8 +15,8 @@ const AddProduct = () => {
         rating: 0,
         brand: '',
         images: [],
-        regular_price: 0,
-        discount_price: 0,
+        regular_price: '',
+        discount_price: '',
         availability: 'In Stock',
         category: '',
         gender: 'Unisex',
@@ -196,7 +198,7 @@ const AddProduct = () => {
                             value={product.regular_price}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
-                            required
+
                         />
                     </div>
 
@@ -312,12 +314,14 @@ const AddProduct = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <div>
+                    <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="lg:w-[30%] bg-indigo-600 text-white py-3 px-4 font-semibold cursor-pointer rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            disabled={isLoading}
                         >
-                            Upload Product
+                            
+                            {isLoading ? <FaSpinner className="animate-spin text-center w-full" /> : 'Upload Product'}
                         </button>
                     </div>
                 </form>
