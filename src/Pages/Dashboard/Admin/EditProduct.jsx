@@ -6,11 +6,13 @@ import { FaSpinner } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { HiMiniXCircle } from 'react-icons/hi2';
 import { useGetBrandQuery, useGetProductQuery, useUpdateProductMutation } from '../../../Redux/features/Admin/admin.api';
+import WriteDescription from '../../../Components/WriteDescription';
 
 
 const EditProduct = () => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
+    const [value, setValue] = useState('');
     const { data: productData = {} } = useGetProductQuery(id)
     const [updateProduct] = useUpdateProductMutation()
     const [formData, setFormData] = useState({
@@ -27,10 +29,20 @@ const EditProduct = () => {
         productDetails: '',
     });
     console.log(formData.brand);
+
     const [content, setContent] = useState('');
     const [isImagesChange, setIsImagesChange] = useState(false);
     const [imagesUrl, setImagesUrl] = useState([]);
 
+    useEffect(() => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            productDetails: value,
+        }));
+    }, [value]);
+
+
+    console.log(productData);
     const { data: brandData = [] } = useGetBrandQuery()
 
     useEffect(() => {
@@ -74,7 +86,7 @@ const EditProduct = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         const { images, regular_price, discount_price } = formData;
-
+        console.log(formData);
 
         try {
             setIsLoading(true);
@@ -288,6 +300,10 @@ const EditProduct = () => {
                     <option value="In Stock">In Stock</option>
                     <option value="Out of Stock">Out of Stock</option>
                 </select>
+            </div>
+            <div className="mb-4">
+                <label htmlFor="status" className="block text-gray-700 font-semibold mb-2">Description</label>
+                <WriteDescription setValue={setValue} value={value} />
             </div>
 
             {/* Submit Button */}
