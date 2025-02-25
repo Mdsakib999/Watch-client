@@ -80,21 +80,21 @@ const ManageCoupon = () => {
                                 <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700">Coupon Text</th>
                                 <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700 ">Expire Date</th>
                                 <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700">Countdown</th>
-                                <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700">Discount (Tk)</th>
+                                <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700">Discount </th>
                                 <th className="px-4 py-2 border text-center text-sm font-medium text-gray-700">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {coupons?.length > 0 ? (
                                 coupons?.map((coupon, index) => (
-                                    <tr key={coupon._id} className="hover:bg-orange-50">
+                                    <tr key={coupon._id} className="hover:bg-gray-50">
                                         <td className="px-4 py-2 border text-sm text-gray-800">{index + 1}</td>
                                         <td className="px-4 py-2 text-center border text-gray-800">{coupon.couponText}</td>
                                         <td className="px-4 py-2 text-center border text-sm text-gray-800">{new Date(coupon.expireDate).toLocaleString()}</td>
                                         <td className="px-4 py-2 border text-center text-sm text-gray-800">
                                             {timeLeft[coupon._id] || "Loading..."}
                                         </td>
-                                        <td className="px-4 py-2 text-center border text-gray-800">{coupon.discountTk}</td>
+                                        <td className="px-4 py-2 text-center border text-gray-800">{coupon.discountTk} $</td>
                                         <td className="px-4 py-2 border text-center">
                                             <button
                                                 onClick={() => handleDelete(coupon._id)}

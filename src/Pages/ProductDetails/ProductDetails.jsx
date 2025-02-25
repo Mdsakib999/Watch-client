@@ -223,7 +223,7 @@ const ProductDetails = () => {
             </div>
             {/* Add to Cart Button */}
             <button
-              className="w-full sm:w-auto px-25 py-3 bg-black text-white font-md rounded-full focus:outline-none shadow-lg"
+              className="w-full sm:w-auto px-25 py-3 bg-black text-white font-md rounded-full focus:outline-none shadow-lg cursor-pointer"
               onClick={() => handleAddToCart(product)}
             >
               Add to Cart

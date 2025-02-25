@@ -53,7 +53,7 @@ const AddBrand = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white border border-gray-300 shadow-md rounded-md mt-12">
+    <div className="max-w-md mx-auto p-4 bg-white border border-gray-300 shadow-md rounded-md mt-12 ">
       <h2 className="text-2xl font-semibold text-center mb-4">Add New Brand</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

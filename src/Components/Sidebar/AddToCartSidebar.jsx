@@ -149,7 +149,7 @@ const AddToCartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               setIsSidebarOpen(false);
               navigate("checkout");
             }}
-            className="w-full bg-black font-semibold mt-3 text-white py-3 text-xl rounded-full"
+            className="w-full bg-black font-semibold mt-3 text-white py-3 text-xl rounded-full cursor-pointer"
           >
             Checkout
           </button>

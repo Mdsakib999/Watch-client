@@ -71,7 +71,7 @@ const ManageUsers = () => {
   }
 
   return (
-    <div className='px-4'>
+    <div className='px-4 min-h-screen'>
       <p className='text-3xl font-semibold text-center mt-3 mb-5 '>Here are all users:</p>
 
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">

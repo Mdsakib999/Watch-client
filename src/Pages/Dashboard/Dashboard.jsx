@@ -42,7 +42,7 @@ const Dashboard = () => {
     location.pathname === path ? 'text-blue-400 font-semibold' : '';
 
   return (
-    <div className="flex h-screen">
+    <div className="flex ">
       {/* Sidebar Toggle Button */}
       <button
         onClick={() => setIsDashboardOpen(true)}
@@ -83,7 +83,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="w-full bg-gray-100 ">
+      <div className="w-full bg-gray-100 min-h-screen">
         <Outlet />
       </div>
     </div>

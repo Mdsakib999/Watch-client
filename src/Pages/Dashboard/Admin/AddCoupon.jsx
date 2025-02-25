@@ -54,18 +54,18 @@ const AddCoupon = () => {
 
     };
     return (
-        <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <Toaster />
-            <div className="bg-black border-2  p-8 rounded-2xl shadow-xl w-full max-w-md">
+            <div className="bg-white text-black border border-gray-400 p-8 rounded-2xl shadow-xl w-full max-w-md ">
                 <h2 className="text-2xl font-semibold text-orange-600 text-center mb-6">
                     🎟️ Create New Coupon
                 </h2>
-                <form onSubmit={handleSubmit} className="space-y-6 text-white">
+                <form onSubmit={handleSubmit} className="space-y-6 text-black">
                     {/* Coupon Text */}
                     <div>
                         <label
                             htmlFor="couponText"
-                            className="block text-sm font-medium text-gray-100 mb-1"
+                            className="block text-sm font-medium text-black mb-1"
                         >
                             Coupon Text
                         </label>
@@ -85,7 +85,7 @@ const AddCoupon = () => {
                     <div>
                         <label
                             htmlFor="expireDate"
-                            className="block text-sm font-medium text-gray-100 mb-1"
+                            className="block text-sm font-medium text-black mb-1"
                         >
                             Expire Date
                         </label>
@@ -95,7 +95,7 @@ const AddCoupon = () => {
                             onChange={handleDateChange}
                             options={{ dateFormat: "Y-m-d H:i" }}
                             placeholder="Enter Coupon date & time"
-                            className="w-full px-4 py-3 border  border-gray-300 rounded-lg focus:ring-1 focus:ring-orange-500 focus:border-none focus:outline-none"
+                            className="w-full px-4 py-3 border  border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-none focus:outline-none"
                         />
                     </div>
 
@@ -103,9 +103,9 @@ const AddCoupon = () => {
                     <div>
                         <label
                             htmlFor="discountTk"
-                            className="block text-sm font-medium text-gray-100 mb-1"
+                            className="block text-sm font-medium text-black mb-1"
                         >
-                            Discount Amount (Tk)
+                            Discount Amount 
                         </label>
                         <input
                             type="number"
@@ -114,7 +114,7 @@ const AddCoupon = () => {
                             value={couponData.discountTk}
                             onChange={handleChange}
                             placeholder="Enter discount amount"
-                            className="w-full px-4 py-3  border border-gray-300 rounded-lg focus:ring-1 focus:ring-orange-500 focus:border-none focus:outline-none"
+                            className="w-full px-4 py-3  border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-none focus:outline-none"
                             required
                         />
                     </div>
@@ -123,7 +123,7 @@ const AddCoupon = () => {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-orange-500 text-center font-semibold text-white py-3 rounded-lg shadow-md hover:bg-orange-600 hover:shadow-lg transition duration-300"
+                        className="w-full bg-blue-500 text-center font-semibold text-white py-3 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition duration-300"
                     >
                         {isLoading ? (
                             <div className="flex items-center justify-center space-x-2">
