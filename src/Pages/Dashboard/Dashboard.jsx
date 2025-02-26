@@ -26,7 +26,7 @@ const Dashboard = () => {
     { path: '/dashboard/addProduct', label: 'Add Product' },
     { path: '/dashboard/manageProduct', label: 'Manage Product' },
     { path: '/dashboard/manageUsers', label: 'Manage Users' },
-    { path: '/dashboard/coupon', label: 'Coupon' },
+    { path: '/dashboard/coupon', label: 'Add Coupon' },
     { path: '/dashboard/manageCoupon', label: 'Manage Coupon' },
     { path: '/', label: 'Home' },
   ];

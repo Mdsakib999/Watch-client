@@ -157,7 +157,7 @@ const ManageProduct = () => {
                                             <img src={product.images[0]} alt={product.name} className="w-12 h-12 object-cover rounded" />
                                         </td>
                                         <td className="py-2 px-4 border-b border-gray-200">{product.name}</td>
-                                        <td className="py-2 px-4 border-b border-gray-200">${product.regular_price}</td>
+                                        <td className="py-2 px-4 border-b border-gray-200">${product.discount_price}</td>
                                         <td className="py-2 px-4 border-b border-gray-200">{product.category}</td>
                                         <td className="py-2 px-4 border-b border-gray-200">{product.brand || "none"}</td>
                                         {/* <td className="py-2 px-4 border-b border-gray-200">

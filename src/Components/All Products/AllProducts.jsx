@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useGetAllProductQuery } from "../../Redux/features/Admin/admin.api.js";
 import { addToDb } from "../../utils/setLocalStorage.js";
 import Swal from "sweetalert2";
+import Loading from "../Loading/Loading.jsx";
 
 const AllProducts = () => {
   useEffect(() => {
@@ -34,7 +35,7 @@ const AllProducts = () => {
     }));
   };
   if (isLoading) {
-    return <div>Loading..</div>;
+    return <div> <Loading></Loading> </div>;
   }
   console.log(productData);
   const filteredProducts = productData?.data?.filter((product) => {
@@ -135,6 +136,7 @@ const AllProducts = () => {
                 "Timex",
                 "Tissot",
                 "MVMT",
+                "Omega",
                 "Garmin",
               ].map((brand) => (
                 <button

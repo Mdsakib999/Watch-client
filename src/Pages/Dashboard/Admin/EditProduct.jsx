@@ -7,10 +7,12 @@ import { useParams } from 'react-router-dom';
 import { HiMiniXCircle } from 'react-icons/hi2';
 import { useGetBrandQuery, useGetProductQuery, useUpdateProductMutation } from '../../../Redux/features/Admin/admin.api';
 import WriteDescription from '../../../Components/WriteDescription';
+import { useNavigate } from 'react-router-dom';
 
 
 const EditProduct = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('');
     const { data: productData = {} } = useGetProductQuery(id)
@@ -25,7 +27,7 @@ const EditProduct = () => {
         discount_price: 0,
         availability: 'In Stock',
         category: '',
-        gender: 'Unisex',
+        gender: '',
         productDetails: '',
     });
     console.log(formData.brand);
@@ -107,6 +109,7 @@ const EditProduct = () => {
             if (res) {
                 setIsLoading(false);
                 setIsImagesChange(false);
+                navigate('/dashboard/manageProduct');
                 // refetch();
             }
             // const res = await axiosNotSecure.patch(`/product/${id}`, updatedFormData);
@@ -122,7 +125,7 @@ const EditProduct = () => {
     }
 
     return (
-        <form onSubmit={onSubmit} className="max-w-lg md:max-w-5xl mx-auto p-6 text-black bg-white shadow-lg rounded-md my-6 ">
+        <form onSubmit={onSubmit} className="max-w-lg md:max-w-5xl mx-auto px-12 py-6  text-black bg-white shadow-lg rounded-md my-6 ">
             <h2 className="text-2xl font-bold mb-6 text-center">Edit Watch Info</h2>
 
             {/* Product Name */}
@@ -133,7 +136,7 @@ const EditProduct = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
             </div>
             <div className="mb-4">
@@ -143,26 +146,26 @@ const EditProduct = () => {
                     name="details"
                     value={formData.details}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
             </div>
 
             {/* Product Description */}
-            <div className="mb-4">
+            {/* <div className="mb-4">
                 <label htmlFor="description" className="block text-gray-700 font-semibold mb-2">Product Description</label>
-                {/* <JoditEditor
+                <JoditEditor
                     value={content}
                     tabIndex={6}
                     onBlur={newContent => setContent(newContent)}
                     onChange={newContent => { }}
-                /> */}
-            </div>
+                />
+            </div> */}
 
             {/* Gallery Images */}
-            <div className="mb-4">
+            <div className="mb-4 ">
                 <label htmlFor="images" className="block text-gray-700 font-semibold mb-2">Gallery Images</label>
                 {!isImagesChange ? (
-                    <div className="flex gap-2 relative">
+                    <div className="flex gap-2 relative ">
                         {imagesUrl?.map((item, index) => (
                             <div key={index} className="">
                                 <img src={item} className="w-20 h-20 object-cover rounded" alt={`Gallery ${index + 1}`} />
@@ -172,7 +175,7 @@ const EditProduct = () => {
                             onClick={() => setIsImagesChange(true)}
                             className="text-black bg-white rounded-full cursor-pointer p-1"
                         >
-                            <HiMiniXCircle size={20} />
+                            <HiMiniXCircle size={22} />
                         </span>
                     </div>
                 ) : (
@@ -183,7 +186,7 @@ const EditProduct = () => {
                             type="file"
                             name="images"
                             onChange={handleFileChange}
-                            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         />
                         <button
                             onClick={() => {
@@ -208,7 +211,7 @@ const EditProduct = () => {
                     name="regular_price"
                     value={formData.regular_price}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
             </div>
 
@@ -235,15 +238,15 @@ const EditProduct = () => {
                 <select
                     name="gender"
                     id="gender"
-                    value={productData.gender}
+                    value={formData.gender}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                     required
                 >
                     <option value="">Select a Gender</option>
                     <option value="Unisex">Unisex</option>
-                    <option value="Men">Men</option>
-                    <option value="Women">Women</option>
+                    <option value="Male">Men</option>
+                    <option value="Female">Women</option>
                 </select>
             </div>
             {/* Category */}
@@ -254,7 +257,7 @@ const EditProduct = () => {
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                     <option value="" disabled>Select a category</option>
                     <option value="Casual">Casual</option>
@@ -275,7 +278,7 @@ const EditProduct = () => {
                     value={formData.brand}
                     defaultValue={productData.brand}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                     <option value="" disabled>Select a Brand</option>
                     {brandData.map((item, index) => (
@@ -294,7 +297,7 @@ const EditProduct = () => {
                     name="status"
                     value={formData.availability}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                     <option value="" disabled>Select A Availability</option>
                     <option value="In Stock">In Stock</option>

@@ -3,10 +3,9 @@ import {
   useGetMeQuery,
 } from "../../Redux/features/User/user.api";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteDB, getShoppingCart } from "../../utils/setLocalStorage";
 import { toast } from "sonner";
-import axios from "axios";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -22,6 +21,10 @@ const Checkout = () => {
     name: "",
     city: "",
   });
+  // New state for payment details
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCvv] = useState("");
 
   useEffect(() => {
     if (userData) {
@@ -46,9 +49,11 @@ const Checkout = () => {
     };
   }, []);
 
-  const validateFields = () => {
-    let tempErrors = {};
+  // Combined validation for shipping and payment fields
+  const validateAllFields = () => {
+    const tempErrors = {};
 
+    // Shipping validations
     if (!userLocation.name.trim()) tempErrors.name = "Name is required.";
     if (!userLocation.location.trim())
       tempErrors.location = "Address is required.";
@@ -58,6 +63,12 @@ const Checkout = () => {
     } else if (!/^\d+$/.test(userLocation.contactNo)) {
       tempErrors.contactNo = "Phone number must be number.";
     }
+
+    // Payment validations
+    if (!cardNumber.trim()) tempErrors.cardNumber = "Card Number is required.";
+    if (!expirationDate.trim())
+      tempErrors.expirationDate = "Expiration Date is required.";
+    if (!cvv.trim()) tempErrors.cvv = "CVV is required.";
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -73,7 +84,7 @@ const Checkout = () => {
     subtotal + shipping + tax - (couponDisCountTk && Number(couponDisCountTk));
 
   const handlePlaceOrder = async () => {
-    if (!validateFields()) {
+    if (!validateAllFields()) {
       return;
     }
     try {
@@ -90,12 +101,14 @@ const Checkout = () => {
         totalAmount: total.toString(),
         ...(userData?._id && { userId: userData?._id }),
         ...(couponDisCountTk && { discount: couponDisCountTk }),
+        // Optionally, you could include payment details here if needed:
+        // payment: { cardNumber, expirationDate, cvv }
       };
       const res = await confirmOrder(orderData);
       if (res?.data) {
         setCouponDisCountTk("");
         deleteDB();
-        navigate("/confirm-checkout", { state: res?.data });
+        navigate("/confirmOrder", { state: res?.data });
         toast.success("Order placed successfully!");
       } else {
         toast.error(res.error.data.message);
@@ -152,9 +165,10 @@ const Checkout = () => {
                       alt={product?.name}
                     />
                     <div className="flex-1">
-                      <span>
-                        {product?.name} x {product?.quantity}
-                      </span>
+                      <span>{product?.name}</span>
+                      <p className="text-gray-600">
+                        $ {product?.price} x {product?.quantity}
+                      </p>
                     </div>
                     <span>
                       ${(product?.price * product?.quantity).toFixed(2)}
@@ -196,7 +210,7 @@ const Checkout = () => {
                   placeholder="Enter promo code"
                 />
                 <button
-                  onClick=""
+                  onClick={() => {}}
                   className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-1 cursor-pointer"
                 >
                   Apply
@@ -214,9 +228,16 @@ const Checkout = () => {
                   </label>
                   <input
                     type="text"
+                    value={cardNumber}
+                    onChange={(e) => setCardNumber(e.target.value)}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     placeholder="1234 5678 9012 3456"
                   />
+                  {errors.cardNumber && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.cardNumber}
+                    </p>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -226,9 +247,16 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
+                      value={expirationDate}
+                      onChange={(e) => setExpirationDate(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="MM/YY"
                     />
+                    {errors.expirationDate && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.expirationDate}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
@@ -236,9 +264,14 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="123"
                     />
+                    {errors.cvv && (
+                      <p className="text-red-500 text-xs mt-1">{errors.cvv}</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -253,7 +286,9 @@ const Checkout = () => {
                   : "bg-black cursor-pointer"
               }`}
             >
+              <Link to="/confirmOrder">
               Place Order
+              </Link>
             </button>
           </div>
         </div>

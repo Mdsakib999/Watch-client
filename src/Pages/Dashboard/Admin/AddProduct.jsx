@@ -3,6 +3,7 @@ import { useAddProductMutation, useGetBrandQuery } from '../../../Redux/features
 import { cloudinaryUploadMultiple } from '../../../utils/cloudinary';
 import WriteDescription from '../../../Components/WriteDescription';
 import { FaSpinner } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AddProduct = () => {
     const { data: brandData = [] } = useGetBrandQuery()
@@ -19,7 +20,7 @@ const AddProduct = () => {
         discount_price: '',
         availability: 'In Stock',
         category: '',
-        gender: 'Unisex',
+        gender: '',
         productDetails: '',
     });
     useEffect(() => {
@@ -46,37 +47,59 @@ const AddProduct = () => {
         }
     };
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true); // Start loading
+    
         try {
-            const uploadedImages = await cloudinaryUploadMultiple(product.images)
-            product.images = uploadedImages
-
-            const response = await addProduct(product)
+            const uploadedImages = await cloudinaryUploadMultiple(product.images);
+            product.images = uploadedImages;
+    
+            const response = await addProduct(product);
             if (response.data) {
-                alert('Product uploaded successfully!');
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Product uploaded successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                });
+    
                 setProduct({
                     name: '',
                     details: '',
                     rating: 0,
                     brand: '',
                     images: [],
-                    regular_price: 0,
-                    discount_price: 0,
+                    regular_price: '',
+                    discount_price: '',
                     availability: 'In Stock',
                     category: '',
-                    gender: 'Unisex',
+                    gender: '',
                     productDetails: '',
                 });
             } else {
-                alert('Failed to upload product.');
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to upload product.',
+                    icon: 'error',
+                    confirmButtonText: 'Try Again',
+                });
             }
         } catch (error) {
             console.error('Error uploading product:', error);
-            alert('An error occurred while uploading the product.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'An error occurred while uploading the product.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        } finally {
+            setIsLoading(false); // Stop loading
         }
     };
+    
 
     return (
         <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
@@ -289,8 +312,8 @@ const AddProduct = () => {
                         >
                             <option value="">Select a Gender</option>
                             <option value="Unisex">Unisex</option>
-                            <option value="Men">Men</option>
-                            <option value="Women">Women</option>
+                            <option value="Male">Men</option>
+                            <option value="Female">Women</option>
                         </select>
                     </div>
 
@@ -317,7 +340,7 @@ const AddProduct = () => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="lg:w-[30%] bg-indigo-600 text-white py-3 px-4 font-semibold cursor-pointer rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="lg:w-[30%] bg-indigo-600 text-white py-3 px-4 font-semibold cursor-pointer rounded-md hover:bg-indigo-700 focus:outline-none  focus:ring-offset-2"
                             disabled={isLoading}
                         >
                             
