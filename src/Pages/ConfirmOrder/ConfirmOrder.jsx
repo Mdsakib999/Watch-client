@@ -14,7 +14,7 @@ const ConfirmOrder = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg text-center">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg text-center ">
         <BsCheckCircle className="h-16 w-16 text-green-500 mx-auto" />
         <h1 className="text-2xl font-bold text-gray-800 mt-4">
           Order Confirmed!
@@ -24,7 +24,7 @@ const ConfirmOrder = () => {
         </p>
 
         {/* Order Details */}
-        <div className="mt-6 border-t border-gray-300 pt-4 text-left">
+        <div className="mt-6 border-t border-gray-300 pt-4 text-left ">
           <h2 className="text-lg font-semibold">Order Summary</h2>
           <div className="mt-2 text-gray-600">
             <p>
@@ -34,8 +34,13 @@ const ConfirmOrder = () => {
               <span className="font-medium">Total Amount:</span> ${orderInfo.totalAmount}
             </p>
             <p>
-              <span className="font-medium">Shipping To:</span> 123 Main St, New
-              York
+              <span className="font-medium">Name: </span> {orderInfo.userLocation.name}
+            </p>
+            <p>
+              <span className="font-medium">Contact Number: </span> {orderInfo.userLocation.contactNo}
+            </p>
+            <p>
+              <span className="font-medium">Address: {orderInfo.userLocation.location}, {orderInfo.userLocation.city} </span>
             </p>
           </div>
         </div>
