@@ -14,7 +14,26 @@ const userApi = baseApi.injectEndpoints({
         method: "POST",
       }),
     }),
+    createOrder: builder.mutation({
+      query: (payload) => ({
+        url: "/order",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    validCoupon: builder.mutation({
+      query: (payload) => ({
+        url: "/validCoupon",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
-export const { useGetMeQuery, useConfirmOrderMutation } = userApi;
+export const {
+  useGetMeQuery,
+  useConfirmOrderMutation,
+  useValidCouponMutation,
+  useCreateOrderMutation,
+} = userApi;

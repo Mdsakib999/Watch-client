@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BsCheckCircle } from "react-icons/bs"; // Heroicons for the success icon
 
 const ConfirmOrder = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+  console.log(location);
+  const orderInfo = location.state
 
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -25,10 +28,10 @@ const ConfirmOrder = () => {
           <h2 className="text-lg font-semibold">Order Summary</h2>
           <div className="mt-2 text-gray-600">
             <p>
-              <span className="font-medium">Order ID:</span> #123456
+              <span className="font-medium">Order ID:</span> {orderInfo.orderId}
             </p>
             <p>
-              <span className="font-medium">Total Amount:</span> $XXX.XX
+              <span className="font-medium">Total Amount:</span> ${orderInfo.totalAmount}
             </p>
             <p>
               <span className="font-medium">Shipping To:</span> 123 Main St, New
