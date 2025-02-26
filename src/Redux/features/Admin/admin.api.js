@@ -84,6 +84,22 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["coup"],
     }),
 
+    getAllOrders: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((item) => {
+            params.append(item.name, item.value);
+          });
+        }
+        return {
+          url: `/orders`,
+          method: "GET",
+          params,
+        };
+      },
+      invalidatesTags: ["coup"],
+    }),
     deleteCoupon: builder.mutation({
       query: (id) => ({
         url: `/coupon/${id}`,
@@ -106,4 +122,5 @@ export const {
   usePostCouponMutation,
   useGetAllCouponQuery,
   useDeleteCouponMutation,
+  useGetAllOrdersQuery,
 } = adminApi;

@@ -1,16 +1,20 @@
 import {
   useConfirmOrderMutation,
+  useCreateOrderMutation,
   useGetMeQuery,
+  useValidCouponMutation,
 } from "../../Redux/features/User/user.api";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteDB, getShoppingCart } from "../../utils/setLocalStorage";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const [couponValidation] = useValidCouponMutation()
   const { data: userData = {} } = useGetMeQuery();
-  const [confirmOrder] = useConfirmOrderMutation();
+  // const [confirmOrder] = useConfirmOrderMutation();
+  const [createOrder] = useCreateOrderMutation()
   const [products, setProducts] = useState([]);
   const [couponDisCountTk, setCouponDisCountTk] = useState("");
   const [couponText, setCouponText] = useState("");
@@ -65,12 +69,12 @@ const Checkout = () => {
     }
 
     // Payment validations
-    if (!cardNumber.trim()) tempErrors.cardNumber = "Card Number is required.";
-    if (!expirationDate.trim())
-      tempErrors.expirationDate = "Expiration Date is required.";
-    if (!cvv.trim()) tempErrors.cvv = "CVV is required.";
+    // if (!cardNumber.trim()) tempErrors.cardNumber = "Card Number is required.";
+    // if (!expirationDate.trim())
+    //   tempErrors.expirationDate = "Expiration Date is required.";
+    // if (!cvv.trim()) tempErrors.cvv = "CVV is required.";
 
-    setErrors(tempErrors);
+    // setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
@@ -85,9 +89,10 @@ const Checkout = () => {
 
   const handlePlaceOrder = async () => {
     if (!validateAllFields()) {
-      return;
+      return
     }
     try {
+      console.log('click');
       const product = products.map((item) => ({
         productId: item.productId,
         nicotineStrength: item.nicotineStrength,
@@ -104,7 +109,8 @@ const Checkout = () => {
         // Optionally, you could include payment details here if needed:
         // payment: { cardNumber, expirationDate, cvv }
       };
-      const res = await confirmOrder(orderData);
+      const res = await createOrder(orderData);
+      console.log(res.data);
       if (res?.data) {
         setCouponDisCountTk("");
         deleteDB();
@@ -118,9 +124,35 @@ const Checkout = () => {
       toast.error("Failed to place order. Please try again.");
     }
   };
+  const applyCoupon = async () => {
+    if (Number(total) < 1000) {
+      return toast.error("Must minimum product price 1000");
+    }
+    const id = toast.loading('Loading..')
+
+    try {
+      // Optionally, set a loading state here
+      // const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/validCoupon`, { couponText });
+      const res = await couponValidation({ couponText })
+
+      if (res?.data) {
+        toast.success("Coupon applied successfully!", { id });
+        setCouponDisCountTk(res.data.discount); // Update the discount state
+      }
+      if (res.error) {
+        console.log(res.error);
+        toast.error(res.error.data.message, { id })
+      }
+
+    } catch (error) {
+      console.error("Error applying coupon:", error);
+      toast.error(error?.response?.data?.message || "Failed to apply coupon. Please try again.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
+      <Toaster />
       <div className="container mx-auto lg:px-28">
         <h1 className="text-3xl font-bold text-center mb-8">Checkout</h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 md:px-0">
@@ -210,7 +242,8 @@ const Checkout = () => {
                   placeholder="Enter promo code"
                 />
                 <button
-                  onClick={() => {}}
+                  disabled={!couponText}
+                  onClick={() => applyCoupon()}
                   className="px-8 py-2 bg-black text-white rounded-full focus:outline-none focus:ring-1 cursor-pointer"
                 >
                   Apply
@@ -279,16 +312,15 @@ const Checkout = () => {
 
             <button
               onClick={handlePlaceOrder}
-              disabled={products?.length === 0}
-              className={`w-full mt-6 py-3 rounded-full text-white ${
-                products?.length === 0
-                  ? "bg-gray-600 cursor-not-allowed "
-                  : "bg-black cursor-pointer"
-              }`}
+              disabled={products?.length == 0}
+              className={`w-full mt-6 py-3 rounded-full text-white ${products?.length === 0
+                ? "bg-gray-600 cursor-not-allowed "
+                : "bg-black cursor-pointer"
+                }`}
             >
-              <Link to="/confirmOrder">
+              {/* <Link to="/confirmOrder"> */}
               Place Order
-              </Link>
+              {/* </Link> */}
             </button>
           </div>
         </div>
