@@ -28,6 +28,13 @@ const userApi = baseApi.injectEndpoints({
         body: payload,
       }),
     }),
+    getCustomerOrder: builder.query({
+      query: () => ({
+        url: "/customerOrder",
+        method: "GET",
+      }),
+      providesTags: ["order"],
+    }),
   }),
 });
 
@@ -36,4 +43,5 @@ export const {
   useConfirmOrderMutation,
   useValidCouponMutation,
   useCreateOrderMutation,
+  useGetCustomerOrderQuery,
 } = userApi;
