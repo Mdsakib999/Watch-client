@@ -98,7 +98,22 @@ const adminApi = baseApi.injectEndpoints({
           params,
         };
       },
-      invalidatesTags: ["coup"],
+      providesTags: ["order"],
+    }),
+    updateOrder: builder.mutation({
+      query: (payload) => ({
+        url: `/order/${payload.id}`,
+        method: "PATCH",
+        body: payload.data,
+      }),
+      invalidatesTags: ["order"],
+    }),
+    deleteOrder: builder.mutation({
+      query: (id) => ({
+        url: `/order/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["order"],
     }),
     deleteCoupon: builder.mutation({
       query: (id) => ({
@@ -123,4 +138,6 @@ export const {
   useGetAllCouponQuery,
   useDeleteCouponMutation,
   useGetAllOrdersQuery,
+  useUpdateOrderMutation,
+  useDeleteOrderMutation,
 } = adminApi;

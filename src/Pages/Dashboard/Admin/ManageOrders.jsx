@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { TfiReload } from "react-icons/tfi";
 // import LoadingComponent from "../../../components/LoadingComponent";
-import { useGetAllOrdersQuery } from "../../../Redux/features/Admin/admin.api";
+import { useDeleteOrderMutation, useGetAllOrdersQuery, useUpdateOrderMutation } from "../../../Redux/features/Admin/admin.api";
 import Loading from './../../../Components/Loading/Loading';
 
 const ManageOrders = () => {
   const [status, setStatus] = useState('')
   const [search, setSearch] = useState('')
   const { data: orders = [], isLoading: orderLoading } = useGetAllOrdersQuery([{ name: "status", value: status }, { name: "search", value: search }])
+  const [updateOrder] = useUpdateOrderMutation()
+  const [deleteOrder] = useDeleteOrderMutation()
 
   // const { data: orders = [], refetch, isLoading: orderLoading } = useQuery({
   //   queryKey: ['orders', status, search], // Unique query key
@@ -42,7 +44,9 @@ const ManageOrders = () => {
   const handleUpdateStatus = async () => {
     const status = updatedStatus;
     const data = { orderStatus: status };
-    const res = await axiosNotSecure.patch(`/order/${selectedOrder._id}`, data);
+    // const res = await axiosNotSecure.patch(`/order/${selectedOrder._id}`, data);
+    const payload = { id: selectedOrder._id, data }
+    const res = await updateOrder(payload)
     console.log(res);
     // const res = await updateOrder(data);
 
@@ -55,7 +59,7 @@ const ManageOrders = () => {
   const handleDeleteOrder = async (id) => {
     const isDelete = confirm('Do You Want to Delete Order')
     if (isDelete) {
-      const res = await axiosNotSecure.delete(`/order/${id}`);
+      const res = await deleteOrder(id)
       if (res.data) {
         // refetch()
       }
@@ -66,7 +70,7 @@ const ManageOrders = () => {
 
   const handleClick = async () => {
     setIsLoading(true);
-    await refetch();  // Wait for refetch to complete
+    // await refetch();  // Wait for refetch to complete
     setIsLoading(false);
   };
 
