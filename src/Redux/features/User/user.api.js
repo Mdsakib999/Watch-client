@@ -20,6 +20,7 @@ const userApi = baseApi.injectEndpoints({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["order"],
     }),
     validCoupon: builder.mutation({
       query: (payload) => ({

@@ -16,6 +16,7 @@ const EditProduct = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('');
     const { data: productData = {} } = useGetProductQuery(id)
+    console.log(productData);
     const [updateProduct] = useUpdateProductMutation()
     const [formData, setFormData] = useState({
         name: '',
@@ -37,12 +38,17 @@ const EditProduct = () => {
     const [imagesUrl, setImagesUrl] = useState([]);
 
     useEffect(() => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            productDetails: value,
-        }));
+        setFormData((prev) => ({ ...prev, productDetails: value }));
     }, [value]);
 
+
+    // const handleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    // };
 
     console.log(productData);
     const { data: brandData = [] } = useGetBrandQuery()
@@ -50,20 +56,20 @@ const EditProduct = () => {
     useEffect(() => {
         if (productData) {
             setFormData({
-                name: productData.name,
-                details: productData.details,
-                rating: productData.rating,
-                brand: productData.brand,
-                images: productData.images,
-                regular_price: productData.regular_price,
-                discount_price: productData.discount_price,
-                availability: productData.availability,
-                category: productData.category,
-                gender: productData.gender,
-                productDetails: productData.productDetails,
+                name: productData.name || '',
+                details: productData.details || '',
+                rating: productData.rating || 0,
+                brand: productData.brand || '',
+                images: productData.images || [],
+                regular_price: productData.regular_price || 0,
+                discount_price: productData.discount_price || 0,
+                availability: productData.availability || 'In Stock',
+                category: productData.category || '',
+                gender: productData.gender || '',
+                productDetails: productData.productDetails || '',
             });
-            setContent(productData.description);
-            setImagesUrl(productData.images);
+            setValue(productData.productDetails || '');
+            setImagesUrl(productData.images || []);
         }
     }, [productData]);
 
@@ -109,7 +115,7 @@ const EditProduct = () => {
             if (res) {
                 setIsLoading(false);
                 setIsImagesChange(false);
-                navigate('/dashboard/manageProduct');
+                // navigate('/dashboard/manageProduct');
                 // refetch();
             }
             // const res = await axiosNotSecure.patch(`/product/${id}`, updatedFormData);
