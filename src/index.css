@@ -1,9 +1,9 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
-.b{
+.b {
   border: 2px solid;
 }
-.bb{
+.bb {
   border: 2px solid red;
 }
-

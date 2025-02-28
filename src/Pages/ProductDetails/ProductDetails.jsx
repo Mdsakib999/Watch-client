@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageGallery from "./ProductDetailsComponent/ImageGallery";
 import RenderStars from "./ProductDetailsComponent/RenderStars";
-import { data } from "../../../public/data";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import parse from "html-react-parser";
+// import { data } from "../../../public/data";
+// import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useGetProductQuery } from "../../Redux/features/Admin/admin.api";
 import { addToDb2 } from './../../utils/setLocalStorage';
 import Swal from 'sweetalert2';
@@ -63,6 +64,10 @@ const ProductDetails = () => {
             <h2 className="text-2xl font-bold mb-6 text-gray-800">
               Product Details
             </h2>
+            {/* <div className="prose md:prose-lg lg:prose-xl" dangerouslySetInnerHTML={{ __html: product.productDetails }} /> */}
+            <div className="prose  prose-slate	 max-w-none	">
+              <div className="p-4">{parse(product.productDetails)}</div>
+            </div>
             {/* <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Object.entries(product.product_details).map(([key, value]) => (
                 <li
@@ -157,29 +162,29 @@ const ProductDetails = () => {
             </div>
             {/* Pricing */}
             <div className="flex gap-x-10  items-center mb-5">
-                  <p className="md:text-3xl text-xl font-bold ">
-                    ${product.discount_price}
-                  </p>
+              <p className="md:text-3xl text-xl font-bold ">
+                ${product.discount_price}
+              </p>
 
-                  {product.regular_price && (
-                    <del className="text-xl font-semibold text-gray-400">
-                      ${product.regular_price}
-                    </del>
-                  )}
+              {product.regular_price && (
+                <del className="text-xl font-semibold text-gray-400">
+                  ${product.regular_price}
+                </del>
+              )}
 
-                  {product.discount_price && product.regular_price && (
-                    <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
-                      -
-                      {Math.round(
-                        ((Number(product.regular_price) -
-                          Number(product.discount_price)) /
-                          Number(product.regular_price)) *
-                          100
-                      )}
-                      %
-                    </p>
+              {product.discount_price && product.regular_price && (
+                <p className="text-red-500 font-semibold px-2 rounded-full bg-red-100">
+                  -
+                  {Math.round(
+                    ((Number(product.regular_price) -
+                      Number(product.discount_price)) /
+                      Number(product.regular_price)) *
+                    100
                   )}
-                </div>
+                  %
+                </p>
+              )}
+            </div>
             <p className="text-gray-600 mb-4">{product.details}</p>
           </div>
 
