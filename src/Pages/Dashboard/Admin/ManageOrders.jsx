@@ -8,7 +8,7 @@ import Loading from './../../../Components/Loading/Loading';
 const ManageOrders = () => {
   const [status, setStatus] = useState('')
   const [search, setSearch] = useState('')
-  const { data: orders = [], isLoading: orderLoading } = useGetAllOrdersQuery([{ name: "status", value: status }, { name: "search", value: search }])
+  const { data: orders = [], isLoading: orderLoading, refetch } = useGetAllOrdersQuery([{ name: "status", value: status }, { name: "search", value: search }])
   const [updateOrder] = useUpdateOrderMutation()
   const [deleteOrder] = useDeleteOrderMutation()
 
@@ -70,7 +70,7 @@ const ManageOrders = () => {
 
   const handleClick = async () => {
     setIsLoading(true);
-    // await refetch();  // Wait for refetch to complete
+    await refetch();  // Wait for refetch to complete
     setIsLoading(false);
   };
 

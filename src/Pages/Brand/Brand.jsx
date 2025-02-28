@@ -66,19 +66,19 @@ import { Link } from "react-router-dom";
 const Brand = () => {
   const [brands, setBrands] = useState([]);
 
-    useEffect(() => {
-      // Fetch all brands from the backend
-      fetch('http://localhost:5000/brands')
-        .then((response) => response.json())
-        .then((data) => setBrands(data))
-        .catch((error) => console.error('Error fetching brands:', error));
-    }, []);
+  useEffect(() => {
+    // Fetch all brands from the backend
+    fetch('http://localhost:5000/brands')
+      .then((response) => response.json())
+      .then((data) => setBrands(data))
+      .catch((error) => console.error('Error fetching brands:', error));
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
       <h1 className="text-4xl font-bold mb-16 text-center">Top Watch Brands</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
-        {brands.map((brand) => (
+        {brands?.map((brand) => (
           <Link to={`/products?brand=${brand.name}`} key={brand.id}>
             <div className="relative group z-0  w-64 h-64 rounded-full overflow-hidden shadow-lg transition-transform hover:scale-110 transform cursor-pointer">
               {/* Brand Image */}

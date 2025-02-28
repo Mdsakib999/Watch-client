@@ -31,6 +31,7 @@ const adminApi = baseApi.injectEndpoints({
         url: `/product/${id}`,
         method: "GET",
       }),
+      providesTags: ["adminProduct"],
     }),
     updateProduct: builder.mutation({
       query: (args) => ({
