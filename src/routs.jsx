@@ -13,7 +13,7 @@ import Brand from "./Pages/Brand/Brand";
 import OnSale from "./Pages/OnSale/OnSale";
 import ReturnPolicy from "./Pages/ReturnPolicy/ReturnPolicy";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
-import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndCOnditions";
+import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndConditions";
 import ConfirmOrder from "./Pages/ConfirmOrder/ConfirmOrder";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddBrand from "./Pages/Dashboard/Admin/AddBrand";
