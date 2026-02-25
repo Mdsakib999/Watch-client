@@ -1,12 +1,24 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { BiSolidPhoneCall } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { BiSolidPhoneCall } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Success!',
+      text: 'Your message has been sent successfully.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+    e.target.reset();
+  };
 
   return (
     <div className="relative ">
@@ -27,7 +39,7 @@ const Contact = () => {
           <div className="text-2xl font-bold mb-6 text-center  ">
             Get In Touch
           </div>
-          <form action="#" className="w-full ">
+          <form onSubmit={handleSubmit} className="w-full ">
             <div className="flex flex-wrap -mx-2 mb-6">
               <div className="w-full md:w-1/2 px-2 mb-4 md:mb-0">
                 <input
