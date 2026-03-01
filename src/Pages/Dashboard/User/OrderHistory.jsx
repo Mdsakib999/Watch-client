@@ -79,9 +79,9 @@ const OrderHistory = () => {
             </span>
           </div>
           <div className="mt-4 space-y-4">
-            {order?.products.map((product) => (
+            {order?.product?.map((product, index) => (
               <div
-                key={product.id}
+                key={product?.productId?._id || index}
                 className="flex items-center justify-between border-b border-gray-300 pb-3 last:border-none "
               >
                 <div className="flex items-center gap-4">

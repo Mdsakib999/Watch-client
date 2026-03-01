@@ -5,13 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBEuLiEFer8CC6stIMORgxAdzWud4QH9Rw",
-  authDomain: "sm-watch-e016c.firebaseapp.com",
-  projectId: "sm-watch-e016c",
-  storageBucket: "sm-watch-e016c.firebasestorage.app",
-  messagingSenderId: "836367070026",
-  appId: "1:836367070026:web:02f4a10f44cdfbb3f787b3"
+  apiKey: "AIzaSyAZpXHMSn0xggvCgRT3NtQ3oPiP5whaQ8U",
+  authDomain: "weartick-dd7b6.firebaseapp.com",
+  projectId: "weartick-dd7b6",
+  storageBucket: "weartick-dd7b6.firebasestorage.app",
+  messagingSenderId: "600300820181",
+  appId: "1:600300820181:web:496818f902b256d271345c"
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
