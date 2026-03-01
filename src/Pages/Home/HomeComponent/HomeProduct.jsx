@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { FaStar, FaArrowRightLong } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { FaArrowRightLong, FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { addToDb } from "../../../utils/setLocalStorage";
 import Swal from "sweetalert2";
+import { addToDb } from "../../../utils/setLocalStorage";
 
 const HomeProduct = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,9 @@ const HomeProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/product");
+        const response = await fetch(
+          "https://new-watch-server.vercel.app/product",
+        );
         const data = await response.json();
 
         // Ensure the response has a 'data' array
@@ -79,7 +81,7 @@ const HomeProduct = () => {
 const ProductCard = ({ product }) => {
   const discountPercentage = calculateDiscountPercentage(
     product.regular_price,
-    product.discount_price
+    product.discount_price,
   );
 
   // Handle Add to Cart Function
@@ -135,7 +137,7 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="flex justify-center">
             <Link
-            to={""}
+              to={""}
               onClick={() => handelAddToCart(product)}
               className="border border-gray-400 px-4 py-1 mb-4 flex justify-center rounded-lg font-semibold hover:bg-white bg-black hover:text-black text-white"
             >

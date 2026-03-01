@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const About = () => {
   useEffect(() => {
@@ -13,14 +13,14 @@ const About = () => {
             About Us
           </h1>
           <p className="text-lg text-gray-400 pt-3 lg:w-[80%]">
-            Welcome to [SMWATCH.CO], where quality meets convenience. We are
+            Welcome to WearTick Ltd, where quality meets convenience. We are
             dedicated to delivering top-notch products and exceptional customer
             experiences.
           </p>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <img
-            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1288&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1542496658-e33a69766adfa?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="About Us"
             className="w-full h-[550px] rounded-lg shadow-lg object-cover"
           />
@@ -31,9 +31,9 @@ const About = () => {
       <div className="max-w-4xl mx-auto p-8 text-gray-700">
         <h2 className="text-3xl font-semibold text-center">Our Story</h2>
         <p className="mt-4 text-lg text-center py-10">
-          Founded in [Year], [Your Brand Name] started with a mission to provide
-          high-quality, affordable products to customers worldwide. Our passion
-          for excellence drives us to curate the best items while ensuring a
+          Founded in 2023, WearTick Ltd started with a mission to provide
+          high-quality, premium timepieces to customers worldwide. Our passion
+          for excellence drives us to curate the best watches while ensuring a
           seamless shopping experience.
         </p>
       </div>
@@ -71,7 +71,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto p-8 text-gray-700">
         <h2 className="text-3xl font-semibold text-center">Our Vision</h2>
         <p className="mt-4 text-lg text-center py-10">
-          At [SMWATCH.CO], we envision a future where shopping is effortless and
+          At WearTick Ltd, we envision a future where shopping for luxury timepieces is effortless and
           enjoyable. Our goal is to create an online marketplace that values
           trust, transparency, and customer satisfaction above all.
         </p>

@@ -1,4 +1,3 @@
-import React from "react";
 import CountUp from "react-countup";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -11,11 +10,9 @@ const Banner = () => {
           FIND WATCHES THAT MATCHES YOUR STYLE
         </p>
 
-        <p className="lg:w-[90%] mb-8">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-          sapiente nobis quo, dicta eum, praesentium rem consequatur voluptatum
-          odio nisi, id illum facere quam! Quaerat perspiciatis quo odio itaque
-          consequatur!
+        <p className="lg:w-[90%] mb-8 text-gray-400">
+          Discover our exclusive collection of luxury timepieces designed to elevate your everyday look. 
+          Crafted with precision and elegance, find the perfect watch that speaks to your unique aesthetic.
         </p>
 
         {/* <button className='px-8 py-2 rounded-full bg-black font-semibold text-gray-200'>Shop Now</button> */}

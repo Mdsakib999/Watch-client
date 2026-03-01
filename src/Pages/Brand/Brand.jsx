@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // Sample data for watch brands with specific images
 // const watchBrands = [
@@ -68,10 +68,10 @@ const Brand = () => {
 
   useEffect(() => {
     // Fetch all brands from the backend
-    fetch('http://localhost:5000/brands')
+    fetch("https://new-watch-server.vercel.app/brands")
       .then((response) => response.json())
       .then((data) => setBrands(data))
-      .catch((error) => console.error('Error fetching brands:', error));
+      .catch((error) => console.error("Error fetching brands:", error));
   }, []);
 
   return (

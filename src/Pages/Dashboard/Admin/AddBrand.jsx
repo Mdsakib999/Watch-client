@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddBrand = () => {
-  const [brandName, setBrandName] = useState('');
-  const [brandImageURL, setBrandImageURL] = useState('');
+  const [brandName, setBrandName] = useState("");
+  const [brandImageURL, setBrandImageURL] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +15,10 @@ const AddBrand = () => {
     };
 
     // Send the brand data to the backend
-    fetch('http://localhost:5000/brands', {
-      method: 'POST',
+    fetch("https://new-watch-server.vercel.app/brands", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newBrand),
     })
@@ -26,28 +26,28 @@ const AddBrand = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Brand added successfully!',
+            position: "top-end",
+            icon: "success",
+            title: "Brand added successfully!",
             showConfirmButton: false,
             timer: 1500,
           });
-          setBrandName('');
-          setBrandImageURL('');
+          setBrandName("");
+          setBrandImageURL("");
         } else {
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'There was an error adding the brand.',
+            icon: "error",
+            title: "Oops...",
+            text: "There was an error adding the brand.",
           });
         }
       })
       .catch((err) => {
-        console.error('Error:', err);
+        console.error("Error:", err);
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'There was an error sending the data.',
+          icon: "error",
+          title: "Oops...",
+          text: "There was an error sending the data.",
         });
       });
   };
@@ -57,7 +57,9 @@ const AddBrand = () => {
       <h2 className="text-2xl font-semibold text-center mb-4">Add New Brand</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Brand Name</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Brand Name
+          </label>
           <input
             type="text"
             value={brandName}
@@ -67,7 +69,9 @@ const AddBrand = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Brand Image URL</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Brand Image URL
+          </label>
           <input
             type="text"
             value={brandImageURL}

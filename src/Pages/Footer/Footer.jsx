@@ -1,8 +1,4 @@
-import React from "react";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaTwitterSquare } from "react-icons/fa";
+import { FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -165,7 +161,7 @@ const Footer = () => {
 
         <div className=" flex flex-col md:flex-row justify-between w-full items-center ">
           <p className="text-gray-600 text-sm">
-            Copyright &copy; SM Watch, All rights reserved
+            Copyright &copy; WearTick Ltd, All rights reserved
           </p>
           <ul className="flex items-center space-x-4 mt-4 md:mt-0">
             <li>

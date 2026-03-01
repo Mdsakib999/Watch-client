@@ -1,49 +1,48 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {
+    FaQuoteLeft,
+    FaQuoteRight,
+    FaRegStarHalfStroke,
+    FaStar,
+} from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "./UserReview.css";
-import {
-  FaQuoteRight,
-  FaQuoteLeft,
-  FaRegStarHalfStroke,
-  FaStar,
-} from "react-icons/fa6";
-import { Pagination, Autoplay } from "swiper/modules";
 
 
 const testimonials = [
     {
       id: 1,
-      name: "Acton Musk",
+      name: "Michael R.",
       image:
         "https://cdn.easyfrontend.com/pictures/testimonial/testimonial_square_1.jpeg",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "The build quality is phenomenal. I wear this watch every day and get constant compliments! Highly recommended for watch enthusiasts.",
     },
     {
       id: 2,
-      name: "De Jong",
+      name: "Sarah Jenkins",
       image:
-        "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/newscms/2016_19/1534611/160512-kim-jong-un-mn-1120.JPG",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "Absolutely stunning detail and craftsmanship. The purchasing process was seamless and delivery was surprisingly fast.",
     },
     {
       id: 3,
-      name: "Cristoper Res",
+      name: "Christoper Nolan",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjlxr0kGZUyK3Gc8Wz4Ew2Oslvs7uFO2eqoys0dZBFM5Z7uTbsJkY-9zHpoZIybY4oBw&usqp=CAU",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "A premium timepiece that feels luxurious without the exorbitant price tag. It pairs perfectly with both casual and formal wear.",
     },
     {
       id: 4,
-      name: "Justion Deo",
+      name: "Justin Doe",
       image:
-        "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/323100/323155.png",
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "I bought this as a gift for my father and he hasn't taken it off since. The elegant design truly speaks for itself.",
     },
     {
       id: 5,
@@ -51,15 +50,15 @@ const testimonials = [
       image:
         "https://i.pinimg.com/736x/1c/32/87/1c328761cabc0700ea58ef00a35845d3.jpg",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "Exceeded all my expectations. The customer service team was also very responsive to my inquiries prior to purchasing.",
     },
     {
       id: 6,
       name: "Davis Julia",
       image:
-        "https://lh3.googleusercontent.com/proxy/fDzBMad_F6MuY0oZc3RGlZa_Ull7ThFGRavtflCFLeqB2Rz7oE9hwd-1eN7hKg74YhIkOTRJzrPCCnQAgj8Jy6ROhl-K7sau",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       review:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis reiciendis neque! Sunt asperiores architecto quibusdam itaque aut necessitatibus voluptate.",
+        "Beautiful watch! It keeps perfect time and the strap is surprisingly comfortable all day long. A fantastic purchase.",
     },
   ];
 
@@ -97,9 +96,7 @@ const UserReview = () => (
       Our Happy Customers
     </p>
     <p className="md:w-[50%] md:mx-auto lg:mx-0 w-[90%] mb-5 text-slate-500 text-center lg:text-left">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor suscipit
-      nemo voluptates quas adipisci accusantium facere delectus vero dignissimos
-      doloribus.
+      Discover why so many watch enthusiasts trust WearTick Ltd. Read authentic reviews from our satisfied clients about their premium timepiece experience.
     </p>
     <Swiper
       slidesPerView={2}
