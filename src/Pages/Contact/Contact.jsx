@@ -119,7 +119,7 @@ const Contact = () => {
           <div className="p-4 flex items-center gap-x-3 ">
             <MdEmail className="lg:text-5xl text-4xl text-black  border rounded-full p-2 " />
             <p className="lg:text-xl ">
-            contact@smwatch.com
+            contact@weartick.com
               {/* <br /> Chittagong, Bangladesh. */}
             </p>
           </div>

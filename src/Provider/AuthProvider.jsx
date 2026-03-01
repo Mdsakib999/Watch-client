@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
-import axios from 'axios';
 
 export const AuthContext = createContext(null);
 
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider).finally(() =>
-      setLoading(false)
+      setLoading(false),
     );
   };
 
@@ -54,14 +54,18 @@ const AuthProvider = ({ children }) => {
       // Stop loading when state changes
       if (currentUser) {
         console.log(currentUser);
-        const res = await axios.post(`http://localhost:5000/jwt`, { email: currentUser.email })
+        const res = await axios.post(
+          `https://new-watch-server.vercel.app/jwt`,
+          {
+            email: currentUser.email,
+          },
+        );
         if (res.data) {
-          localStorage.setItem('auth', res.data)
+          localStorage.setItem("auth", res.data);
           setLoading(false);
         }
-      }
-      else {
-        localStorage.removeItem('auth')
+      } else {
+        localStorage.removeItem("auth");
         setLoading(false);
       }
     });
@@ -77,7 +81,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     user, // Provide user state to the context
     loading,
-    signIn
+    signIn,
   };
 
   return (

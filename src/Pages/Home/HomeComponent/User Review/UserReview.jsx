@@ -96,7 +96,7 @@ const UserReview = () => (
       Our Happy Customers
     </p>
     <p className="md:w-[50%] md:mx-auto lg:mx-0 w-[90%] mb-5 text-slate-500 text-center lg:text-left">
-      Discover why so many watch enthusiasts trust SM Watch. Read authentic reviews from our satisfied clients about their premium timepiece experience.
+      Discover why so many watch enthusiasts trust WearTick Ltd. Read authentic reviews from our satisfied clients about their premium timepiece experience.
     </p>
     <Swiper
       slidesPerView={2}

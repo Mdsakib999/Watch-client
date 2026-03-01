@@ -1,26 +1,28 @@
-
-import Swal from 'sweetalert2';
-import { useGetAllUsersQuery, useRoleChangeMutation } from '../../../Redux/features/Admin/admin.api';
+import Swal from "sweetalert2";
+import {
+  useGetAllUsersQuery,
+  useRoleChangeMutation,
+} from "../../../Redux/features/Admin/admin.api";
 
 const ManageUsers = () => {
-  const [userRoleChange,] = useRoleChangeMutation()
-  const { data: userData } = useGetAllUsersQuery()
-  const users = userData || []
+  const [userRoleChange] = useRoleChangeMutation();
+  const { data: userData } = useGetAllUsersQuery();
+  const users = userData || [];
   // Handle user deletion with confirmation
   const handleDelete = (email) => {
     // Show confirmation dialog
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'This user will be deleted permanently!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "This user will be deleted permanently!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
         // If confirmed, delete the user
-        fetch(`http://localhost:5000/users/${email}`, {
-          method: 'DELETE',
+        fetch(`https://new-watch-server.vercel.app/users/${email}`, {
+          method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
@@ -28,9 +30,9 @@ const ManageUsers = () => {
               // Remove the user from the state if deletion was successful
               // setUsers(users.filter((user) => user.email !== email));
               Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'User deleted successfully!',
+                position: "top-end",
+                icon: "success",
+                title: "User deleted successfully!",
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -39,9 +41,9 @@ const ManageUsers = () => {
           .catch((err) => {
             console.error("Error deleting user:", err);
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'There was an issue deleting the user.',
+              icon: "error",
+              title: "Oops...",
+              text: "There was an issue deleting the user.",
             });
           });
       }
@@ -50,29 +52,31 @@ const ManageUsers = () => {
   const handleRoleChange = (data) => {
     console.log(data);
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Are You want to Role Change',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "Are You want to Role Change",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: "Yes",
+      cancelButtonText: "Cancel",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await userRoleChange(data)
+        const res = await userRoleChange(data);
         if (res.data) {
           Swal.fire({
-            icon: 'success',
-            title: 'Oops...',
-            text: 'User Role Update Successfully',
+            icon: "success",
+            title: "Oops...",
+            text: "User Role Update Successfully",
           });
         }
       }
-    })
-  }
+    });
+  };
 
   return (
-    <div className='px-4 min-h-screen'>
-      <p className='text-3xl font-semibold text-center mt-3 mb-5 '>Here are all users:</p>
+    <div className="px-4 min-h-screen">
+      <p className="text-3xl font-semibold text-center mt-3 mb-5 ">
+        Here are all users:
+      </p>
 
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
@@ -97,9 +101,9 @@ const ManageUsers = () => {
                   onChange={(e) => {
                     const data = {
                       id: user._id,
-                      data: { role: e.target.value }
-                    }
-                    handleRoleChange(data)
+                      data: { role: e.target.value },
+                    };
+                    handleRoleChange(data);
                   }}
                   className="mt-1 block w-ful px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
                   required
@@ -113,7 +117,6 @@ const ManageUsers = () => {
                 >
                   Delete
                 </button>
-
               </td>
             </tr>
           ))}

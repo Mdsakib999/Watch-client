@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { FaShoppingCart, FaUser, FaUserCircle } from "react-icons/fa";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineClose, AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
-import "./Navbar.css";
-import { IoIosArrowDown } from "react-icons/io";
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
-import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
-import { AuthContext } from "../../Provider/AuthProvider";
-import Swal from "sweetalert2";
 import { FiLogIn } from "react-icons/fi";
-import { getShoppingCart } from "../../utils/setLocalStorage";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 import { useGetAllProductQuery } from "../../Redux/features/Admin/admin.api";
+import { getShoppingCart } from "../../utils/setLocalStorage";
+import AddToCartSidebar from "../Sidebar/AddToCartSidebar";
+import "./Navbar.css";
 
 
 const Navbar = () => {
@@ -92,7 +91,7 @@ const Navbar = () => {
             onClick={toggleMobileMenu}
           />
           <Link to="/" className="text-xl lg:text-2xl font-bold">
-            SMWATCH.CO
+            WEARTICK
           </Link>
         </div>
 

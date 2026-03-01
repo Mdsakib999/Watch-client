@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const About = () => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const About = () => {
             About Us
           </h1>
           <p className="text-lg text-gray-400 pt-3 lg:w-[80%]">
-            Welcome to SM Watch, where quality meets convenience. We are
+            Welcome to WearTick Ltd, where quality meets convenience. We are
             dedicated to delivering top-notch products and exceptional customer
             experiences.
           </p>
@@ -31,7 +31,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto p-8 text-gray-700">
         <h2 className="text-3xl font-semibold text-center">Our Story</h2>
         <p className="mt-4 text-lg text-center py-10">
-          Founded in 2023, SM Watch started with a mission to provide
+          Founded in 2023, WearTick Ltd started with a mission to provide
           high-quality, premium timepieces to customers worldwide. Our passion
           for excellence drives us to curate the best watches while ensuring a
           seamless shopping experience.
@@ -71,7 +71,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto p-8 text-gray-700">
         <h2 className="text-3xl font-semibold text-center">Our Vision</h2>
         <p className="mt-4 text-lg text-center py-10">
-          At SM Watch, we envision a future where shopping for luxury timepieces is effortless and
+          At WearTick Ltd, we envision a future where shopping for luxury timepieces is effortless and
           enjoyable. Our goal is to create an online marketplace that values
           trust, transparency, and customer satisfaction above all.
         </p>

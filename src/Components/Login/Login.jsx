@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   const { signIn, googleSignIn, user } = useContext(AuthContext);
@@ -35,7 +35,7 @@ const Login = () => {
       .catch((error) => {
         // Handle login errors
         const errorMessage = error.message;
-        
+
         // Show SweetAlert on login failure
         Swal.fire({
           icon: "error",
@@ -49,7 +49,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
-  
+
         console.log(loggedUser);
         const saveUser = {
           name: loggedUser.displayName,
@@ -57,8 +57,8 @@ const Login = () => {
           image: loggedUser.photoURL,
           role: "user",
         };
-  
-        fetch("http://localhost:5000/users", {
+
+        fetch("https://new-watch-server.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Login = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-  
+
             navigate("/"); // Redirect to the home page or desired route
           })
           .catch((error) => console.error("Error saving user:", error));
@@ -100,10 +100,15 @@ const Login = () => {
         />
       </div>
       <div className="w-full max-w-sm p-6 bg-gray-50 rounded-2xl shadow-lg mx-3 lg:mx-0">
-        <h2 className="text-2xl font-semibold text-center text-gray-800">Login</h2>
+        <h2 className="text-2xl font-semibold text-center text-gray-800">
+          Login
+        </h2>
         <form onSubmit={handleLogin} className="mt-6">
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
@@ -117,7 +122,10 @@ const Login = () => {
             />
           </div>
           <div className="mb-6 relative">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <div className="relative">
